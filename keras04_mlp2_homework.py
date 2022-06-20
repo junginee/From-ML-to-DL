@@ -36,7 +36,7 @@ model.fit(x,y, epochs=300, batch_size=1)
 #4. 평가, 예측
 loss = model.evaluate(x,y)
 print('loss :',loss)
-result = model.predict([[10, 1.4, 0]]) #열의 갯수가 동일해야하기 때문에 중괄호가 3번들어간다.
+result = model.predict([[10, 1.4, 0]]) #(1,3)
 print('[10, 1.4]의 예측값:', result)
 
 
