@@ -50,13 +50,13 @@ hist = model.fit(x_train, y_train, epochs=3000, batch_size=100,
                  callbacks=[earlyStopping],
                  verbose=1)
 
-end_time = time.time()
+end_time = time.time()- start_time
 
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test)
 y_predict = model.predict(x_test)
 
-#### 과제 1 accuracy_score 완성 y 테스트는 반올림이 됫는데 y 프리딕트는 반올림이 안됫음 ######
+#### 과제 1 accuracy_score 완성 y 테스트는 반올림 되어 출력되지만, y 프리딕트는 반올림X ######
 y_predict = y_predict.round(0)
 print(y_predict)
 
