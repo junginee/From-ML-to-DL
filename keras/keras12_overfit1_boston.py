@@ -12,11 +12,13 @@ y = datasets.target
 
 #2.모델구성
 model = Sequential()
-model.add(Dense(100, input_dim=13)) 
-model.add(Dense(100))
-model.add(Dense(100))
-model.add(Dense(100))
-model.add(Dense(100))
+model.add(Dense(5, input_dim=13))
+model.add(Dense(10))
+model.add(Dense(10))
+model.add(Dense(5))
+model.add(Dense(5))
+model.add(Dense(5))
+model.add(Dense(7))
 model.add(Dense(1))
 
 #3. 컴파일, 훈련
