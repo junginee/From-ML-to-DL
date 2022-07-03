@@ -6,7 +6,7 @@ from tensorflow.python.keras.layers import Dense
 import numpy as np
 
 #1. 데이터
-x = np.array(range(1,17))
+x = np.array(range(1,17)) 
 y = np.array(range(1,17))
 
 # [실습] 슬라이싱
