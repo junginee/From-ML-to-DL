@@ -156,3 +156,10 @@ id_pred_df['SalePrice'] = test_y_pred
 print(id_pred_df)
 
 id_pred_df.to_csv(path + 'sample_submission.csv', index=True)
+
+#boston house price 데이터셋에 어떻게 적절한 feature engineering을 적용하고, 
+#최근 kaggle에서 가장 인기 있는 모델인 XGBoost 모델을 어떻게 적용하였으며, 수업시간에 배운 000,000,000을 사용하였다.
+#수업시간에 배운 000,000,000을 사용하기 이전, 이후의 결과 값은 다음과 같으며
+#000,000,000을 사용했을 때 000 수치가 더 좋게 나왔음을 알 수 있다.
+
+#[결과]
