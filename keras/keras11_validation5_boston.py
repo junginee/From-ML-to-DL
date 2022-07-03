@@ -13,7 +13,6 @@ datasets = load_boston()
 x = datasets.data 
 y = datasets.target 
 x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.70, shuffle=True, random_state=88)
-x_test, x_val, y_test, y_val = train_test_split(x_test, y_test, test_size=0.5, shuffle=True, random_state=70) 
 
 # 2. 모델구성
 
