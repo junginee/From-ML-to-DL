@@ -9,10 +9,13 @@ import numpy as np
 x = np.array(range(1,17))
 y = np.array(range(1,17))
 
-from sklearn.model_selection import train_test_split
-
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3, train_size=0.4, shuffle=True, random_state=66)
-x_test, x_val, y_test, y_val = train_test_split(x, y, test_size=0.5, shuffle=True, random_state=70)
+# [실습] 슬라이싱
+x_train = x[:12]
+y_train = y[:12]
+x_test = x[12:14]
+y_test = y[12:14]
+x_val = x[14:]
+y_val = y[14:]
 
 # x_train = np.array(range(1,11))
 # y_train = np.array(range(1,11))
