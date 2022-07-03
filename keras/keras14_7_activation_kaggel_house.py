@@ -128,6 +128,17 @@ from sklearn.metrics import mean_squared_error, mean_absolute_error
 pred_train = grid_search.predict(X_train)
 pred_val = grid_search.predict(X_val)
 
+# 1. validation 적용했을때 결과
+# loss :
+# RMSE : 
+
+# 2. validation / EarlyStopping / activation 적용했을때 결과
+# loss: 
+# RMSE :
+
+# 1 > 2 과정을 거쳐 0000000000 확인했다. 
+# 이는 모델의 성능이 0000000000000 해석할 수 있다. 
+
 print('train mae score: ', mean_absolute_error(y_train, pred_train))
 print('val mae score:', mean_absolute_error(y_val, pred_val))
 
