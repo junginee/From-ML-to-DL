@@ -1,165 +1,129 @@
-#boston house price 데이터셋에 어떻게 적절한 feature engineering을 적용하고, 
-#최근 kaggle에서 가장 인기 있는 모델인 XGBoost 모델을 어떻게 적용
 
-import numpy as np 
+# [과제]
+# # activation : sigmoid, relu, linear
+# metrics 추가
+# EarlyStopping 넣고
+# 성능비교
+# 느낀점 2줄 이상
+
+import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from sklearn.metrics import r2_score, mean_squared_error
-
-# laod data
-path = './_data/kaggle_house/'
-train_df =  pd.read_csv(path + 'train.csv')
-test_df = pd.read_csv(path + 'test.csv') 
-
-train_df.head()
-
-# set index
-train_df.set_index('Id', inplace=True)
-test_df.set_index('Id', inplace=True)
-len_train_df = len(train_df) #print(len_train_df) #1460
-len_test_df = len(test_df) #print(len_test_df) #1459
-
-corrmat = train_df.corr()
-top_corr_features = corrmat.index[abs(corrmat["SalePrice"])>=0.3]
-top_corr_features
-
-
-# heatmap
-plt.figure(figsize=(13,10))
-g = sns.heatmap(train_df[top_corr_features].corr(),annot=True,cmap="RdYlGn")
-
-#feature selection
-train_df = train_df[top_corr_features]
-test_df = test_df[top_corr_features.drop(['SalePrice'])]
-
-
-# split y_label
-train_y_label = train_df['SalePrice'] 	# target 값을 미리 분리하였음.
-train_df.drop(['SalePrice'], axis=1, inplace=True)
-
-# concat train & test
-boston_df = pd.concat((train_df, test_df), axis=0)
-boston_df_index = boston_df.index
-
-print('Length of Boston Dataset : ',len(boston_df))
-boston_df.head()
-
-# check null 
-check_null = boston_df.isna().sum() / len(boston_df)
-# columns of null ratio >= 0.5
-check_null[check_null >= 0.5]
-
-# remove columns of null ratio >= 0.5
-remove_cols = check_null[check_null >= 0.5].keys()
-boston_df = boston_df.drop(remove_cols, axis=1)
-
-boston_df.head()
-
-# split object & numeric
-boston_obj_df = boston_df.select_dtypes(include='object')	# 카테고리형
-boston_num_df = boston_df.select_dtypes(exclude='object')	# 수치형
-
-print('Object type columns:\n',boston_obj_df.columns)
-print('---------------------------------------------------------------------------------')
-print('Numeric type columns:\n',boston_num_df.columns)
-
-boston_dummy_df = pd.get_dummies(boston_obj_df, drop_first=True)
-boston_dummy_df.index = boston_df_index
-boston_dummy_df.head()
-
-from sklearn.impute import SimpleImputer
-#Imputer 3 버전 전에 사용되지 않으며 0.22에서 제거되었다. 
-#Imputer 모듈을 불러오기 위해선 sklearn.impute를 사용하면 된다.
-
-imputer = SimpleImputer(strategy='mean')
-imputer.fit(boston_num_df)
-boston_num_df_ = imputer.transform(boston_num_df)
-
-boston_num_df = pd.DataFrame(boston_num_df_, columns=boston_num_df.columns, index=boston_df_index)
-boston_num_df.head()
-
-boston_df = pd.merge(boston_dummy_df, boston_num_df, left_index=True, right_index=True)
-boston_df.head()
-
-train_df = boston_df[:len_train_df]
-test_df = boston_df[len_train_df:]
-
-train_df['SalePrice'] = train_y_label
-
-print('train set length: ',len(train_df))
-print('test set length: ',len(test_df))
-
+from sklearn.preprocessing import LabelEncoder
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score, mean_squared_error
+import matplotlib.pyplot as plt
+from tqdm import tqdm_notebook
 
-X_train = train_df.drop(['SalePrice'], axis=1)
-y_train = train_df['SalePrice']
+#1. 데이터
+path = './_data/kaggle_house/' # 경로 = .현재폴더 /하단
+train_set = pd.read_csv(path + 'train.csv', # train.csv 의 데이터가 train set에 들어가게 됨
+                        index_col=0) # 0번째 컬럼은 인덱스로 지정하는 명령
+#print(train_set)
+#print(train_set.shape) # (1460, 80) 원래 열이 81개지만, id를 인덱스로 제외하여 80개
 
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2, shuffle=True)
+test_set = pd.read_csv(path + 'test.csv',
+                       index_col=0)
 
-X_test = test_df
-test_id_idx = test_df.index
+drop_cols = ['Alley', 'PoolQC', 'Fence', 'MiscFeature'] # Columns with more than 70% of missing values
+test_set.drop(drop_cols, axis = 1, inplace =True)
 
-print('X_train : ',len(X_train))
-print('X_val : ',len(X_val))
-print('X_test :',len(X_test))
+sample_submission = pd.read_csv(path + 'sample_submission.csv',
+                       index_col=0)
+#print(test_set)
+#print(test_set.shape) # (1459, 79) # 예측 과정에서 쓰일 예정
 
-from sklearn.model_selection import GridSearchCV
-import xgboost as xgb #pip install xgboost https://log-laboratory.tistory.com/328
+train_set.drop(drop_cols, axis = 1, inplace =True)
+cols = ['MSZoning', 'Street','LandContour','Neighborhood','Condition1','Condition2',
+                'RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','Foundation',
+                'Heating','GarageType','SaleType','SaleCondition','ExterQual','ExterCond','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1',
+                'BsmtFinType2','HeatingQC','CentralAir','Electrical','KitchenQual','Functional',
+                'FireplaceQu','GarageFinish','GarageQual','GarageCond','PavedDrive','LotShape',
+                'Utilities','LandSlope','BldgType','HouseStyle','LotConfig']
 
-param = {
-    'max_depth':[2,3,4],
-    'n_estimators':range(550,700,50),
-    'colsample_bytree':[0.5,0.7,1],
-    'colsample_bylevel':[0.5,0.7,1],
-}
-model = xgb.XGBRegressor()
-grid_search = GridSearchCV(estimator=model, param_grid=param, cv=5, 
-                           scoring='neg_mean_squared_error',
-                           n_jobs=-1)
+for col in tqdm_notebook(cols):
+    le = LabelEncoder()
+    train_set[col]=le.fit_transform(train_set[col])
+    test_set[col]=le.fit_transform(test_set[col])
 
-grid_search.fit(X_train, y_train)
-print(grid_search.best_params_)
-print(grid_search.best_estimator_)
+#print(train_set.columns)
+#print(train_set.info()) # 각 컬럼에 대한 디테일한 내용 출력 / null값(중간에 빠진 값) '결측치'
+#print(train_set.describe())
 
-from sklearn.metrics import mean_squared_error, mean_absolute_error
-pred_train = grid_search.predict(X_train)
-pred_val = grid_search.predict(X_val)
+#### 결측치 처리 1. 제거 ####
+print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능
+train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna) 행별로 모두 삭제(dropna)
+print(train_set.isnull().sum())
+print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
+ 
 
-# 1. validation 적용했을때 결과
-# loss :
-# RMSE : 
+test_set = test_set.fillna(test_set.mean())
 
-# 2. validation / EarlyStopping / activation 적용했을때 결과
-# loss: 
-# RMSE :
 
-# 1 > 2 과정을 거쳐 0000000000 확인했다. 
-# 이는 모델의 성능이 0000000000000 해석할 수 있다. 
+x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
+print(x)
+print(x.columns)
+print(x.shape) # (1460, 79)
 
-print('train mae score: ', mean_absolute_error(y_train, pred_train))
-print('val mae score:', mean_absolute_error(y_val, pred_val))
+y = train_set['SalePrice']
+print(y)
+print(y.shape) # (1460, )
 
-plt.figure(figsize=(17,7))
-plt.plot(range(0, len(y_val)), y_val,'o-', label='Validation Actual')
-plt.plot(range(0, len(pred_val)), pred_val, '-', label='Validation Predict')
-plt.title('Prediction of House Prices')
-plt.ylabel('Prices')
-plt.legend()
 
-test_y_pred = grid_search.predict(X_test)
-id_pred_df = pd.DataFrame()
-id_pred_df['Id'] = test_id_idx
-id_pred_df['SalePrice'] = test_y_pred
-print(id_pred_df)
 
-id_pred_df.to_csv(path + 'sample_submission.csv', index=True)
+x_train, x_test, y_train, y_test = train_test_split(x, y,
+        train_size=0.75, shuffle=True, random_state=68)
 
-#boston house price 데이터셋에 어떻게 적절한 feature engineering을 적용하고, 
-#최근 kaggle에서 가장 인기 있는 모델인 XGBoost 모델을 어떻게 적용하였으며, 수업시간에 배운 000,000,000을 사용하였다.
-#수업시간에 배운 000,000,000을 사용하기 이전, 이후의 결과 값은 다음과 같으며
-#000,000,000을 사용했을 때 000 수치가 더 좋게 나왔음을 알 수 있다.
 
-#[결과]
+#2. 모델구성
+model = Sequential()
+model.add(Dense(24, activation='linear', input_dim=75))
+model.add(Dense(100, activation='relu'))
+model.add(Dense(100, activation='relu'))
+model.add(Dense(1, activation='linear'))
+
+#3. 컴파일, 훈련
+model.compile(loss='mae', optimizer='adam',
+              metrics=['accuracy'])
+from tensorflow.python.keras.callbacks import EarlyStopping
+earlyStopping = EarlyStopping(monitor='val_loss', patience=10, mode='min', verbose=1, 
+                              restore_best_weights=True) 
+hist = model.fit(x_train, y_train, epochs=1000, batch_size=100, 
+                validation_split=0.2,
+                callbacks=[earlyStopping],
+                verbose=1)
+
+#4. 평가 예측
+loss = model.evaluate(x_test, y_test)
+print('loss :', loss)
+
+y_predict = model.predict(x_test)
+
+def RMSE(y_test, y_predict) : #(원y값, 예측y값)
+    return np.sqrt(mean_squared_error(y_test, y_predict)) # MSE에 루트를 씌워 돌려주겠다.
+
+rmse = RMSE(y_test, y_predict)
+print("RMSE : ", rmse)
+
+
+y_summit = model.predict(test_set)
+
+# plt.plot(history.history['loss'])
+# plt.plot(history.history['val_loss'])
+# plt.title('Model accuracy')
+# plt.xlabel('Epoch')
+# plt.ylabel('loss')
+# plt.legend(['train_set', 'test_set'], loc='upper left')
+# plt.show()
+
+# print(y_summit)
+# print(y_summit.shape) # (715, 1)
+
+
+# .to_csv()를 사용하여
+# submission.csv를 완성하시오
+
+# sample_submission['SalePrice'] = y_summit
+# sample_submission = sample_submission.fillna(sample_submission.mean())
+# sample_submission.to_csv(path + 'test04.csv', index=True)
