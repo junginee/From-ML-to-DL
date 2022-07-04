@@ -67,9 +67,8 @@ model.add(Dense(3, activation='softmax'))
 #오류 발생 :  ValueError: Shapes (None, 1) and (None, 3) are incompatible
 # y는 (150, ) 형태이며 이를 (150, 3)로 바꿔줘야 한다. by one hot encoding
 # one hot encoding이란? 자연어를 컴퓨터가 처리하도록 하기 위해서 숫자로 바꾸는 방법인 임베딩 중 하나의 방법(가장 기본적인 표현 방법)
-# how? by 사이킷런/ by 케라스
-  # 1) 케라스 )) from keras.utils import to_categorical
-  # 2) 사이킷런
+# how? by 사이킷런/ by 케라스 / by 판다스
+
 #주의 : 데이터 분류 시 셔플 주의!!  shuffle=True
   
 
