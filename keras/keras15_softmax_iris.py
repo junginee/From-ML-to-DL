@@ -1,3 +1,16 @@
+'''
+
+[다중분류 총 정리]
+1. 분류 값에 대한 숫자만큼(y 값의 종류만큼)을 노드로 빼주며, 마지막 레이러의 활성화 함수를 softmax로 설정한다.  
+   예) model.add(Dense(3, activation='softmax')) 
+2. one hot encoding 처리를 한다. (by 케라스 / 사이킷런)
+     from tensorflow.keras.utils import to_categorical 
+     y = to_categorical(y)
+
+3. 데이터 분류 시 셔플 주의!!  shuffle=True
+4. loss로 categorical_crossentropy
+5. accuracy_score 구할 때 : argmax 사용
+'''
 
 import numpy as np
 from sklearn.datasets import load_iris #1. 데이터
@@ -8,6 +21,9 @@ from tensorflow.python.keras.layers import Dense #2. 모델구성
 
 from sklearn.metrics import accuracy_score #3,4  metrics로 accuracy 지표 사용
 
+
+import tensorflow as tf
+tf.random.set_seed(66)
 
 #1. 데이터
 
@@ -26,6 +42,7 @@ print("y의 라벨값(y의 고유값)", np.unique(y)) #y의 라벨값(y의 고�
 
 from tensorflow.keras.utils import to_categorical 
 y = to_categorical(y)
+
 print(y)
 print(y.shape) #(150,3)
 
@@ -37,19 +54,22 @@ x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shu
 model = Sequential()
 model.add(Dense(5,input_dim = 4))
 model.add(Dense(10, activation='relu'))
-model.add(Dense(10, activation='relu'))
+model.add(Dense(25, activation='relu'))
+model.add(Dense(20, activation='relu'))
 model.add(Dense(3, activation='softmax'))  
 
 # 열 4개 (sepal length / sepal width / petal length / petal width) 를 Iris-Setosa / Iris-Versicolour / Iris-Virginica로 분류한다.
-# 다중분류일 때는 최종 노드의 갯수는 y의 라벨의 갯수 즉, y 값의 종류 >> 마지막 노드 수 맞춰주기
+# 다중분류일 때는 최종 노드의 갯수는 y의 라벨의 갯수 즉, y 값의 종류 >> 마지막 노드 수 맞춰주기 
+# model.add(Dense(3, activation='softmax')) 다중분류의 softmax는 마지막 활성화함수에만 준다. (중간에 주면 터짐!)
 # softmax는 분류 값에 대한 숫자만큼을 노드로 빼준다. 각각을 %로 매기며 총합은 1이다. %중 가장 큰 값을 찾는것이다.
-# softmax의 합은 1 / 즉, Iris-Setosa / Iris-Versicolour / Iris-Virginica 중 가장 큰 %를 찾는다.
+# softmax의 합은 1 이며, Iris-Setosa / Iris-Versicolour / Iris-Virginica 중 가장 큰 %를 찾는다.
 
 #오류 발생 :  ValueError: Shapes (None, 1) and (None, 3) are incompatible
 # y는 (150, ) 형태이며 이를 (150, 3)로 바꿔줘야 한다. by one hot encoding
 # one hot encoding이란? 자연어를 컴퓨터가 처리하도록 하기 위해서 숫자로 바꾸는 방법인 임베딩 중 하나의 방법(가장 기본적인 표현 방법)
 # how? by 사이킷런/ by 케라스
   # 1) 케라스 )) from keras.utils import to_categorical
+  # 2) 사이킷런
 #주의 : 데이터 분류 시 셔플 주의!!  shuffle=True
   
 
@@ -66,13 +86,14 @@ earlyStopping = EarlyStopping(monitor='val_loss', patience=300, mode='auto', ver
                               restore_best_weights=True)        
 
 
-hist = model.fit(x_train, y_train, epochs=500, batch_size=50,
+hist = model.fit(x_train, y_train, epochs=10, batch_size=50,
                  validation_split=0.2,
                  callbacks=[earlyStopping],verbose=1)
 
 
 
-#4. 예측, 평가
+#4. 평가, 예측
+
 
 #[loss, acc 출력방법 1]
 loss, acc = model.evaluate(x_test, y_test)
@@ -84,9 +105,15 @@ results = model.evaluate(x_test, y_test)
 print('loss : ' , results[0])
 print('accuracy : ', results[1]) 
 
+print("----------------------------------------")
+
+from sklearn.metrics import r2_score, accuracy_score  
 y_predict = model.predict(x_test)
+y_predict = np.argmax(y_predict, axis= 1)
+print(y_predict)
+
+y_test = np.argmax(y_test, axis= 1)
+print(y_test)
+
 acc= accuracy_score(y_test, y_predict)
-
-# y_predict = y_predict.round(0)
-# print(y_predict)
-
+print('acc스코어 : ', acc) 
