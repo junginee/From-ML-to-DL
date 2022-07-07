@@ -1,23 +1,4 @@
-#[과제] --- 완료
-#1. scaler 하기 전
-# loss :  [1.329974889755249, 0.9134203791618347]
-# r2스코어 :  -0.00013399220490351027
 
-#2. MinMaxScaler()
-# loss :  [0.3103863000869751, 0.37117621302604675]
-# r2스코어 :  0.7665911561100265
-
-#3. StandardScaler()
-# loss :  [0.31431177258491516, 0.3840213418006897]
-# r2스코어 :  0.7636391857129654
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -91,3 +72,24 @@ y_predict = model.predict(x_test)
 from sklearn.metrics import r2_score
 r2 = r2_score(y_test, y_predict) #R 제곱 = 예측값 (y_predict) / 실제값 (y_test) 
 print('r2스코어 : ', r2)
+
+#[과제] --- 완료
+#1. scaler 하기 전
+# loss :  [1.329974889755249, 0.9134203791618347]
+# r2스코어 :  -0.00013399220490351027
+
+#2. MinMaxScaler()
+# loss :  [0.3103863000869751, 0.37117621302604675]
+# r2스코어 :  0.7665911561100265
+
+#3. StandardScaler()
+# loss :  [0.31431177258491516, 0.3840213418006897]
+# r2스코어 :  0.7636391857129654
+
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 

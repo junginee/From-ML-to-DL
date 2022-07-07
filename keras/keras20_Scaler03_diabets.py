@@ -1,23 +1,4 @@
-#[과제] --- 완료
-#1. scaler 하기 전
-# loss :  [6110.49169921875, 0.0]
-# r2스코어 :  -0.02727990075010478
 
-#2. MinMaxScaler()
-# loss :  [2954.641357421875, 0.0]
-# r2스코어 :  0.5032734320180834
-
-#3. StandardScaler()
-# loss :  [4006.2705078125, 0.0]
-# r2스코어 :  0.3264762087077151
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 :
 
 import numpy as np
 from tensorflow.keras.models import Sequential
@@ -88,3 +69,23 @@ from sklearn.metrics import r2_score
 r2 = r2_score(y_test, y_predict) #R 제곱 = 예측값 (y_predict) / 실제값 (y_test) 
 print('r2스코어 : ', r2)
 
+#[과제] --- 완료
+#1. scaler 하기 전
+# loss :  [6110.49169921875, 0.0]
+# r2스코어 :  -0.02727990075010478
+
+#2. MinMaxScaler()
+# loss :  [2954.641357421875, 0.0]
+# r2스코어 :  0.5032734320180834
+
+#3. StandardScaler()
+# loss :  [4006.2705078125, 0.0]
+# r2스코어 :  0.3264762087077151
+
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 :

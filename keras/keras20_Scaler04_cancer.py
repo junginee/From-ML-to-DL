@@ -1,26 +1,3 @@
-#[과제] --- 완료
-#1. scaler 하기 전
-# loss :  [0.2606964707374573, 0.9122806787490845]
-# acc스코어 :  0.9122807017543859
-
-#2. MinMaxScaler()
-# 걸린시간 :  1657091060.419887
-# loss :  [0.15346671640872955, 0.9590643048286438]
-# acc스코어 :  0.9590643274853801
-
-#3. StandardScaler()
-# 걸린시간 :  1657091174.0220242
-# loss :  [0.11797408759593964, 0.9590643048286438]
-# acc스코어 :  0.9590643274853801
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
-
 
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
@@ -102,3 +79,25 @@ acc= accuracy_score(y_test, y_predict)
 print('loss : ' , loss)
 print('acc스코어 : ', acc) 
 
+#[과제] --- 완료
+#1. scaler 하기 전
+# loss :  [0.2606964707374573, 0.9122806787490845]
+# acc스코어 :  0.9122807017543859
+
+#2. MinMaxScaler()
+# 걸린시간 :  1657091060.419887
+# loss :  [0.15346671640872955, 0.9590643048286438]
+# acc스코어 :  0.9590643274853801
+
+#3. StandardScaler()
+# 걸린시간 :  1657091174.0220242
+# loss :  [0.11797408759593964, 0.9590643048286438]
+# acc스코어 :  0.9590643274853801
+
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 

@@ -1,23 +1,4 @@
-#[과제] --- train 파일 / test 파일 모두 transform!! 주의
-#1. scaler 하기 전
-# loss:  
-# r2스코어 :
 
-#2. MinMaxScaler()
-# loss:  
-# r2스코어 :
-
-#3. StandardScaler()
-# loss:  
-# r2스코어 :
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
 
 import numpy as np
 import pandas as pd #read_csv, columns, info, describe, 결측치 제공
@@ -115,4 +96,23 @@ rmse = RMSE(y_test, y_predict)
 print("RMSE :", rmse)
 print('r2스코어 : ', r2)
 
+#[과제] --- train 파일 / test 파일 모두 transform!! 주의
+#1. scaler 하기 전
+# loss:  
+# r2스코어 :
 
+#2. MinMaxScaler()
+# loss:  
+# r2스코어 :
+
+#3. StandardScaler()
+# loss:  
+# r2스코어 :
+
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 

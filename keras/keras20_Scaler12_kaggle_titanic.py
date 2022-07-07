@@ -1,24 +1,3 @@
-#[과제] --- train 파일 / test 파일 모두 transform!! 주의
-#1. scaler 하기 전
-# loss:  
-# r2스코어 :
-
-#2. MinMaxScaler()
-# loss:  
-# r2스코어 :
-
-#3. StandardScaler()
-# loss:  
-# r2스코어 :
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
-
 
 from pydoc import describe
 import numpy as np
@@ -237,4 +216,27 @@ submission [(submission <0.5)] = 0
 submission [(submission >=0.5)] = 1  
 submission = submission.astype(int)
 submission.to_csv('test21.csv',index=True)
+
+#[과제] --- train 파일 / test 파일 모두 transform!! 주의
+#1. scaler 하기 전
+# loss:  
+# r2스코어 :
+
+#2. MinMaxScaler()
+# loss:  
+# r2스코어 :
+
+#3. StandardScaler()
+# loss:  
+# r2스코어 :
+
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 
+
+
 
