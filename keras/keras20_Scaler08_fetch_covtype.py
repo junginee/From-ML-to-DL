@@ -11,8 +11,17 @@
 # loss :  0.5919050574302673
 # accuracy :  0.7447140216827393
 
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 
+
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import tensorflow as tf
 from sklearn. datasets import fetch_covtype #1. 데이터
 from sklearn.model_selection import train_test_split #1. 데이터
@@ -21,7 +30,7 @@ from tensorflow.python.keras.models import Sequential #2. 모델구성
 from tensorflow.python.keras.layers import Dense #2. 모델구성
 
 from sklearn.metrics import accuracy_score #3,4  metrics로 accuracy 지표 사용
-
+import time
 
 #1. 데이터
 datasets = fetch_covtype()
@@ -42,9 +51,11 @@ print(y)
 
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
-###############스캘러 방법 2가지###############################
-scaler = StandardScaler()
+###############스캘러 방법#####################################
+#scaler = StandardScaler()
 #scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
@@ -69,12 +80,12 @@ from tensorflow.python.keras.callbacks import EarlyStopping
 earlyStopping = EarlyStopping(monitor='val_loss', patience=300, mode='auto', verbose=1, 
                               restore_best_weights=True)        
 
-
+start_time = time.time()
 hist = model.fit(x_train, y_train, epochs=1, batch_size=10,
                  validation_split=0.2,
                  callbacks=[earlyStopping],verbose=1)
 
-
+end_time = time.time() 
 
 #4. 평가, 예측
 
@@ -82,8 +93,7 @@ loss, acc = model.evaluate(x_test, y_test)
 print('loss : ' , loss)
 print('accuracy : ', acc) 
 
-
-print("----------------------------------------")
+print("걸린시간 : ", end_time)
 
 from sklearn.metrics import r2_score, accuracy_score  
 y_predict = model.predict(x_test)

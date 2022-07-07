@@ -1,11 +1,23 @@
-#[과제]
+#[과제] --- train 파일 / test 파일 모두 transform!! 주의
 #1. scaler 하기 전
-
+# loss:  
+# r2스코어 :
 
 #2. MinMaxScaler()
-
+# loss:  
+# r2스코어 :
 
 #3. StandardScaler()
+# loss:  
+# r2스코어 :
+
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 
 
 
 from pydoc import describe
@@ -13,6 +25,8 @@ import numpy as np
 import pandas as pd 
 import time
 
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
 from sklearn.preprocessing import LabelEncoder
@@ -135,13 +149,29 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.91,shuffle
 #셔플을 False 할 경우 순차적으로 스플릿하다보니 훈련에서는 나오지 않는 값이 생겨 정확도가 떨어진다.
 #디폴트 값인  shuffle=True 를 통해 정확도를 올린다.
 
+###############스캘러 방법#####################################
+#scaler = StandardScaler()
+#scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
+scaler.fit(x_train)
+x_train = scaler.transform(x_train) 
+x_test = scaler.transform(x_test)
+test_set = scaler.transform(test_set)
+print(np.min(x_train))  # 0.0
+print(np.max(x_train))  # 1.0
+
+print(np.min(x_test))  # 1.0
+print(np.max(x_test))  # 1.0
+
+
 #2. 모델 구성
 
 model = Sequential()
 model.add(Dense(100,input_dim=9))
 model.add(Dense(100, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
-#다중 분류로 나오는 아웃풋 노드의 개수는 y 값의 클래스의 수와 같다.활성화함수 'softmax'를 통해 
+# 다중 분류로 나오는 아웃풋 노드의 개수는 y 값의 클래스의 수와 같다.활성화함수 'softmax'를 통해 
 # 아웃풋의 합은 1이 된다.
 
 
@@ -158,7 +188,7 @@ model.fit(x_train, y_train, epochs=100, batch_size=20,
                 verbose=2
                 )
 
-end_time = time.time() - start_time
+end_time = time.time() 
 
 #다중 분류 모델은 'categorical_crossentropy'만 사용한다 !!!!
 
@@ -199,6 +229,7 @@ print('acc 스코어 :', acc)
 
 
 y_summit = model.predict(test_set)
+
 
 gender_submission['Survived'] = y_summit
 submission = gender_submission.fillna(gender_submission.mean())

@@ -11,8 +11,17 @@
 # loss :  0.6763269901275635
 # accuracy :  0.9222221970558167
 
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 
+
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn. datasets import load_digits
 import numpy as np
 from sklearn.model_selection import train_test_split #1. 데이터
@@ -38,9 +47,11 @@ y = to_categorical(y)
 
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
-###############스캘러 방법 2가지###############################
-# scaler = StandardScaler()
-scaler = MinMaxScaler()
+###############스캘러 방법#####################################
+#scaler = StandardScaler()
+#scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
@@ -72,7 +83,7 @@ earlyStopping = EarlyStopping(monitor='val_loss', patience=300, mode='auto', ver
 hist = model.fit(x_train, y_train, epochs=100, batch_size=10,validation_split=0.2,
                  callbacks=[earlyStopping],verbose=1)
 
-end_time = time.time()-start_time
+end_time = time.time()
 
 #4. 평가, 예측
 
@@ -80,9 +91,7 @@ loss, acc = model.evaluate(x_test, y_test)
 print('loss : ' , loss)
 print('accuracy : ', acc) 
 
-
-
-print("----------------------------------------")
+print("걸린시간 : ", end_time)
 
 from sklearn.metrics import r2_score, accuracy_score  
 y_predict = model.predict(x_test)

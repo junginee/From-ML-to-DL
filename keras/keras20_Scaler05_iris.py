@@ -11,8 +11,17 @@
 # loss :  0.10914774239063263
 # accuracy :  0.9666666388511658
 
+#4. MaxAbsScaler()
+# loss:  0.272809791564941
+# r2스코어 :  0.8550807368815204
+
+#5. RobustScaler()
+# loss:  0.370014190673828
+# r2스코어 :  0.862376994029175
+
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.datasets import load_iris #1. 데이터
 from sklearn.model_selection import train_test_split #1. 데이터
 
@@ -49,9 +58,11 @@ print(y.shape) #(150,3)
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
 
-###############스캘러 방법 2가지###############################
+###############스캘러 방법#####################################
 #scaler = StandardScaler()
-scaler = MinMaxScaler()
+#scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
@@ -102,16 +113,11 @@ hist = model.fit(x_train, y_train, epochs=100, batch_size=50,
 
 #4. 평가, 예측
 
-
-#[loss, acc 출력방법 1]
-loss, acc = model.evaluate(x_test, y_test)
-print('loss : ' , loss)
-print('accuracy : ', acc) 
-
-#[loss, acc 출력방법 2]
 results = model.evaluate(x_test, y_test)
 print('loss : ' , results[0])
 print('accuracy : ', results[1]) 
+
+print("걸린시간 : ", end_time)
 
 print("----------------------------------------")
 
@@ -126,10 +132,3 @@ print(y_test)
 acc= accuracy_score(y_test, y_predict)
 print('acc스코어 : ', acc) 
 
-# [결과]
-# loss :  0.2630181908607483
-# accuracy :  0.9333333373069763
-# ----------------------------------------
-# [2 0 0 1 1 1 1 0 1 0 0 0 2 2 1 1 1 2 2 2 2 1 0 2 1 0 2 0 2 1]
-# [2 0 0 1 1 1 1 0 1 0 0 0 2 2 1 1 2 2 2 2 2 1 0 2 1 0 2 0 2 2]
-# acc스코어 :  0.9333333333333333

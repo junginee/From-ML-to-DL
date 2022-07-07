@@ -14,6 +14,14 @@
 # loss :  [12.229043960571289, 2.4662506580352783]
 # r2스코어 :  0.8519792672612871
 
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 
+
 
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
@@ -23,6 +31,8 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import numpy as np
 import time
+
+#1. 데이터
 
 datasets = load_boston()
 x = datasets.data
@@ -35,16 +45,18 @@ y = datasets.target
 
 x_train, x_test, y_train, y_test = train_test_split(x,y, train_size = 0.7, random_state = 66)
 
-###############스캘러 방법 2가지###############################
-scaler = StandardScaler()
-# scaler = MinMaxScaler()
+###############스캘러 방법#####################################
+#scaler = StandardScaler()
+#scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
 print(np.min(x_train)) #0.0 
 print(np.max(x_train)) #1.0
 
-#유의할점? 스케일링 할 때에는 test set에 대해서만 transform() 해주면 된다는 것이다. 
+#유의할점? 스케일링 할 때에는 test set에 대해서만 Scaler 해주면 된다는 것이다. 
 #즉, train set에 대해서 fit()한 Scaler 객체를 이용해서 test set을 변황해주면 된다는 것이다.
 #왜?학습데이터로 fit()이 적용된 스케일링 기준 정보를 그대로 test data에 적용해야하며
 #그렇지 않고 test data로 다시 새로운 스케일링 기준 정보를 만들게 되면
@@ -76,7 +88,7 @@ hist = model.fit(x_train, y_train, epochs=500, batch_size=5,
                  callbacks=[earlyStopping],
                  verbose=1)
 
-end_time = time.time() - start_time
+end_time = time.time() 
 
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test)

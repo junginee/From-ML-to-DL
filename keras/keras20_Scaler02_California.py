@@ -11,6 +11,13 @@
 # loss :  [0.31431177258491516, 0.3840213418006897]
 # r2스코어 :  0.7636391857129654
 
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 
 
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -18,6 +25,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_california_housing
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import time
 
 datasets = fetch_california_housing() 
@@ -26,9 +34,11 @@ y = datasets.target
 x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.7, shuffle=True, random_state=50)
 
 
-###############스캘러 방법 2가지###############################
-# scaler = StandardScaler()
-scaler = MinMaxScaler()
+###############스캘러 방법#####################################
+#scaler = StandardScaler()
+#scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
@@ -75,7 +85,9 @@ end_time = time.time()
 loss = model.evaluate(x_test, y_test)
 print('loss : ',loss)
 
+print("걸린시간 : ", end_time)
 y_predict = model.predict(x_test) 
+
 from sklearn.metrics import r2_score
 r2 = r2_score(y_test, y_predict) #R 제곱 = 예측값 (y_predict) / 실제값 (y_test) 
 print('r2스코어 : ', r2)

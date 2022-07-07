@@ -1,20 +1,29 @@
-#[과제]
+#[과제] --- train 파일 / test 파일 모두 transform!! 주의
 #1. scaler 하기 전
-# loss : [177085.0, 0.0]
-# RMSE :  191050.76306676134
+# loss:  
+# r2스코어 :
 
 #2. MinMaxScaler()
-# loss : [15445.17578125, 0.0]
-# RMSE :  23369.995865006676
+# loss:  
+# r2스코어 :
 
 #3. StandardScaler()
-# loss : [17870.025390625, 0.0]
-# RMSE :  25945.123953606955
+# loss:  
+# r2스코어 :
+
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 
 
 
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.preprocessing import LabelEncoder
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
@@ -22,6 +31,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
 import matplotlib.pyplot as plt
 from tqdm import tqdm_notebook
+import time
 
 #1. 데이터
 path = './_data/kaggle_house/' # 경로 = .현재폴더 /하단
@@ -82,14 +92,20 @@ print(y.shape) # (1460, )
 x_train, x_test, y_train, y_test = train_test_split(x, y,
         train_size=0.75, shuffle=True, random_state=68)
 
-###############스캘러 방법 2가지###############################
-scaler = StandardScaler()
-# scaler = MinMaxScaler()
+###############스캘러 방법#####################################
+#scaler = StandardScaler()
+#scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
-print(np.min(x_train)) #0.0 
-print(np.max(x_train)) #1.0
+test_set = scaler.transform(test_set)
+print(np.min(x_train))  # 0.0
+print(np.max(x_train))  # 1.0
+
+print(np.min(x_test))  # 1.0
+print(np.max(x_test))  # 1.0
 
 
 #2. 모델구성
@@ -107,12 +123,16 @@ model.compile(loss='mae', optimizer='adam',
 from tensorflow.python.keras.callbacks import EarlyStopping
 earlyStopping = EarlyStopping(monitor='val_loss', patience=10, mode='min', verbose=1, 
                               restore_best_weights=True) 
+start_time = time.time()
 hist = model.fit(x_train, y_train, epochs=1000, batch_size=100, 
                 validation_split=0.2,
                 callbacks=[earlyStopping],
                 verbose=1)
+end_time = time.time() 
 
 #4. 평가 예측
+print("걸린시간 : ", end_time)
+
 loss = model.evaluate(x_test, y_test)
 print('loss :', loss)
 
@@ -123,6 +143,5 @@ def RMSE(y_test, y_predict) : #(원y값, 예측y값)
 
 rmse = RMSE(y_test, y_predict)
 print("RMSE : ", rmse)
-
 
 y_summit = model.predict(test_set)

@@ -13,10 +13,18 @@
 # loss :  [0.11797408759593964, 0.9590643048286438]
 # acc스코어 :  0.9590643274853801
 
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
+# r2스코어 : 
 
 
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.datasets import load_breast_cancer
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
@@ -39,14 +47,16 @@ print(x.shape, y.shape) # (569,30), (569,)
 
 x_train, x_test, y_train, y_test = train_test_split(x,y,
                                                     train_size=0.7,shuffle=True, random_state=72)
-###############스캘러 방법 2가지###############################
-scaler = StandardScaler()
-#Scaler = MinMaxScaler()
-scaler .fit(x_train)
-x_train = scaler .transform(x_train) 
-x_test = scaler .transform(x_test)
+###############스캘러 방법#####################################
+#scaler = StandardScaler()
+#scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
+scaler.fit(x_train)
+x_train = scaler.transform(x_train) 
+x_test = scaler.transform(x_test)
 print(np.min(x_train)) #0.0 
-print(np.max(x_train)) #1.0                                                  random_state=66
+print(np.max(x_train)) #1.0                                         
                                                     
 
 

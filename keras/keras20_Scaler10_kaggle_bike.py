@@ -1,16 +1,22 @@
-#[과제]
+#[과제] --- train 파일 / test 파일 모두 transform!! 주의
 #1. scaler 하기 전
-# loss :  [2137.388671875, 30.272720336914062]
-# RMSE :  50.09249874725571
+# loss:  
+# r2스코어 :
 
 #2. MinMaxScaler()
-# 걸린시간 :  1657095806.204926
-# loss :  [784193.5, 720.1915893554688]
-# RMSE :  43.43645522194035
+# loss:  
+# r2스코어 :
 
 #3. StandardScaler()
-# 걸린시간 :
-# loss : 
+# loss:  
+# r2스코어 :
+
+#4. MaxAbsScaler()
+# loss:  
+# r2스코어 : 
+
+#5. RobustScaler()
+# loss: 
 # r2스코어 : 
 
 import numpy as np
@@ -22,6 +28,7 @@ from keras.layers.recurrent import LSTM, SimpleRNN
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import datetime as dt
 
 #1. 데이터
@@ -81,14 +88,20 @@ x_train, x_test, y_train, y_test = train_test_split(x,y,
                                                     train_size=0.75,
                                                     random_state=31
                                                     )
-###############스캘러 방법 2가지###############################
-scaler = StandardScaler()
-# scaler = MinMaxScaler()
+###############스캘러 방법#####################################
+#scaler = StandardScaler()
+#scaler = MinMaxScaler()
+# scaler = MaxAbsScaler()
+scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
-print(np.min(x_train)) #0.0 
-print(np.max(x_train)) #1.0
+test_set = scaler.transform(test_set)
+print(np.min(x_train))  # 0.0
+print(np.max(x_train))  # 1.0
+
+print(np.min(x_test))  # 1.0
+print(np.max(x_test))  # 1.0
 
 #2. 모델구성
 model = Sequential()
