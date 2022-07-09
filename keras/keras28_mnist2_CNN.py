@@ -28,11 +28,6 @@ print(np.unique(y_train, return_counts=True))   #10개 array([0, 1, 2, 3, 4, 5, 
 #input data shape rate : 60000,20 4차원
 
 
-##### 문제
-# train test는 이미 분리되어있으니 train은 valsplit으로 하고 test는 평가용으로만
-# 평가지표 acc 0.98 이상으로.
-
-
 # print(y)
 # print(y.shape)
 print(x_train.shape, y_train.shape) #(60000, 28, 28, 1) (60000,)
@@ -69,3 +64,7 @@ model.fit(x_train, y_train, epochs=16, batch_size=32, verbose=1,
 loss = model.evaluate(x_test, y_test)
 print('loss : ', loss[0])             # 값이 2개가 나오는데 첫째로 로스가 나오고, 둘째로 accuracy가 나온다.
 print('accuracy : ', loss[1])              # ★ accuracy빼고싶을때 loss[0]하면 리스트에서 첫번째만 출력하니까 로스만 찍을 수 있음★
+
+
+# loss :  0.06993652880191803
+# accuracy :  0.9815999865531921
