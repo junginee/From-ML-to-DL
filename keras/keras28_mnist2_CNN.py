@@ -16,24 +16,23 @@ y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)         # test도 카테고리컬해줘야 10으로 바뀜
 print(x_train.shape, y_train.shape)    
 print(x_test.shape, y_test.shape)      
-#reshape또한 일종의 전처리이다.
+
 x_train = x_train.reshape(60000, 28, 28, 1) # 전체를 다 곱했을때 같으면 상관없다
 # x_test = x_test.reshape(60000, 28, 14, 1) # 이것도 가능하다
 x_test = x_test.reshape(10000, 28, 28, 1)
-                                           
                                           
-print(x_train.shape)                        # (60000,28,28,1)
+                                          
 
 print(np.unique(y_train, return_counts=True))   #10개 array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-#input data shape rate : 60000,20 4차원
 
 
 # print(y)
 # print(y.shape)
 print(x_train.shape, y_train.shape) #(60000, 28, 28, 1) (60000,)
 
+
 # 2. 모델구성
-#hint conv-layer는 3~4개
+
 model  =  Sequential() 
 model.add(Conv2D(10, kernel_size=(2,2), input_shape=(28, 28, 1 ) ))
 model.add(Conv2D(5, (2,2), activation="relu") )
