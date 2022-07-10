@@ -37,13 +37,23 @@ y_test = to_categorical(y_test)
 
 
 #2. 모델구성
-model=Sequential()
-model.add(Conv1D(64, 2, input_shape=(64, 48)))
-model.add(MaxPool1D())
-model.add(Flatten())
+model = Sequential()
+model.add(Conv2D(filters=64, kernel_size=(3,3), # 64 다음 레이어로 전달해주는 아웃풋 노드의 갯수, kernel size 이미지를 자르는 규격
+                 padding='same', # 원래 shape를 그대로 유지하여 다음 레이어로 보내주고 싶을 때 주로 사용!
+                 input_shape=(32, 32, 3))) # (batch_size, rows, columns, channels)   # 출력 : (N, 32, 32, 64)
+model.add(MaxPooling2D()) # (N, 16, 16, 64)
+model.add(Conv2D(32, (2,2), 
+                 padding='valid', # 디폴트
+                 activation='relu')) # filter = 32, kernel size = (2,2) # 출력 : (N, 15, 15, 32)
+model.add(Conv2D(32, (2,2), 
+                 padding='valid', # 디폴트
+                 activation='relu')) # filter = 32, kernel size = (2,2) # 출력 : (N, 14, 14, 32)
+model.add(Flatten()) # (N, 6272) 14*14*32
 model.add(Dense(32, activation='relu'))
-model.add(Dense(10, activation='softmax')), activation='softmax'))
-# model.summary()
+# model.add(Dropout(0.2))
+model.add(Dense(32, activation='relu'))
+# model.add(Dropout(0.2))
+model.add(Dense(10, activation='softmax'))
 
 
 #3. 컴파일, 훈련
