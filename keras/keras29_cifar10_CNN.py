@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.utils import to_categorical
-
+from sklearn.preprocessing import MinMaxScaler
 
 #1. 데이터
 
@@ -14,26 +14,34 @@ from tensorflow.keras.utils import to_categorical
 print(x_train.shape, y_train.shape) # (50000, 32, 32, 3) (50000, 1)
 print(x_test.shape, y_test.shape)   # (10000, 32, 32, 3) (10000, 1)
 
-# from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
-# scaler = StandardScaler()
-# scaler.fit(x_train)
-# scaler.transform(x_train)
-# x_train = scaler.transform(x_train)
-# x_test = scaler.transform(x_test)
+#--------------------------------------------------------------------
+# x에 대한 전처리
 
-x_train = x_train.reshape(50000, 32, 32, 3)
+scaler = MinMaxScaler() 
+x_train = x_train.reshape(50000,-1)
+x_test = x_test.reshape(10000,-1)
+
+print(x_train.shape, x_test.shape) #(50000, 3072) (10000, 3072)
+
+scaler.fit(x_train)
+x_train = scaler.fit_transform(x_train)
+x_test = scaler.transform(x_test)
+
+x_train = x_train.reshape(50000, 32, 32, 3)  
 x_test = x_test.reshape(10000, 32, 32, 3)
-print(x_train.shape) # (50000, 32, 32, 3)
 
-print(np.unique(y_train, return_counts=True))
-# (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], dtype=uint8), 
-#  array([5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000, 5000], dtype=int64))
+print(x_train.shape, x_test.shape) #(50000, 32, 32, 3) (10000, 32, 32, 3)
 
-# reshape 할 때 모든 개체를 곱한 값은 동일
-# 데이터 순서만 바뀌지 않으면 됨
+#--------------------------------------------------------------------
+# y에 대한 전처리(원핫인코딩)
 
+import numpy as np
+print(np.unique(y_train)) #[0 1 2 3 4 5 6 7 8 9]
+
+from tensorflow.keras.utils import to_categorical
 y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)
+
 
 
 #2. 모델구성
@@ -69,15 +77,16 @@ earlyStopping =EarlyStopping(monitor='val_loss', patience=100, mode='min', verbo
 
 
 
-hist = model.fit(x_train, y_train, epochs=10, batch_size=200, 
+hist = model.fit(x_train, y_train, epochs=1, batch_size=5, 
                 validation_split=0.2,
-                callbacks=[earlyStopping, mcp], # 최저값을 체크해 반환해줌
+                callbacks=[earlyStopping], # 최저값을 체크해 반환해줌
                 verbose=1)
 
 
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test) 
-print('loss : ', loss)
+print('loss : ', loss[0])
+print('accuracy : ', loss[1])
 
 y_predict = model.predict(x_test)
 
@@ -85,5 +94,8 @@ from sklearn.metrics import r2_score, accuracy_score
 y_predict = np.argmax(y_predict, axis= 1)
 y_predict = to_categorical(y_predict)
 
-acc = accuracy_score(y_test, y_predict)
-print('acc스코어 : ', acc)
+#acc = accuracy_score(y_test, y_predict)
+#print('acc스코어 : ', acc)
+
+# loss :  1.3762474060058594
+# accuracy :  0.5
