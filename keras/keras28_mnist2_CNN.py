@@ -1,7 +1,7 @@
 from tensorflow.keras.models import Sequential, Model, load_model
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.layers import Dense, Dropout, Conv2D, Flatten
-from tensorflow.python.keras.layers.core import Dropout
+
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 from sklearn.utils import validation
