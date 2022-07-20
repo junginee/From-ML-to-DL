@@ -65,7 +65,7 @@ delete_amore_past_years = amore[amore['연']<2022].index
 amore.drop(delete_amore_past_years,inplace = True, errors='ignore')
 
 #2. 2022년 4월 이전 데이터 삭제
-delete_samsung_past_months = samsung[samsung['월']<4].index
+delete_samsung_past_months = samsung[samsung['월']<4].index  
 samsung.drop(delete_samsung_past_months,inplace = True, errors='ignore')
 delete_amore_past_months = amore[amore['월']<4].index
 amore.drop(delete_amore_past_months, inplace = True, errors='ignore')
