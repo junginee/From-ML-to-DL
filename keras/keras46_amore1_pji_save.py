@@ -66,7 +66,7 @@ samsung.drop(columns='일자', axis=1, inplace = True, errors='ignore')
 amore.drop(columns='일자', axis=1, inplace = True, errors='ignore')
 
 
-# print(samsung.head())
+# print(samsung.head()) 
 # print(amore.head())
 
 
