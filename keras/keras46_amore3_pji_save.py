@@ -55,7 +55,7 @@ print(amore.head())
 # 1-5. '일자'를 연,월,일로 나누기 위한 연,월, 일 컬럼 추가
 samsung.drop(columns='일자', axis=1, inplace = True, errors='ignore')
 amore.drop(columns='일자', axis=1, inplace = True, errors='ignore')
-
+ 
 # 1-6. 기존 '일자' 컬럼 제거
 print(samsung.head())
 print(amore.head())
