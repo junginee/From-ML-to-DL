@@ -54,7 +54,7 @@ amore.insert(2,'일',amore['일자'].dt.day)
 
 
 # 1-6. 기존 '일자' 컬럼 제거
-samsung.drop(columns='일자', axis=1, inplace = True, errors='ignore')
+samsung.drop(columns='일자', axis=1, inplace = True, errors='ignore') 
 amore.drop(columns='일자', axis=1, inplace = True, errors='ignore')
 
 
