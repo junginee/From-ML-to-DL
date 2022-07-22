@@ -15,7 +15,7 @@ augument_size = 40000
 batch_size=64
 randidx = np.random.randint(x_train.shape[0], size=augument_size) #x_train.shape의 첫번째 shape에 위치한 데이터 중 40000개 랜덤정수 추출
 
-x_augumented = x_train[randidx].copy()  #(40000, 28, 28)
+x_augumented = x_train[randidx].copy()  #(40000, 28, 28) 
 y_augumented = y_train[randidx].copy()  #(40000,)
 
 x_augumented = x_augumented.reshape(x_augumented.shape[0],x_augumented.shape[1], 
@@ -92,6 +92,8 @@ loss = hist.hisory['loss']
 
 print('loss : ', loss[-1])
 print('accuracy : ', loss[-1])
+
+
 
 
 
