@@ -5,7 +5,7 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn. datasets import load_digits
 import numpy as np
-from sklearn.model_selection import train_test_split #1. 데이터
+from sklearn.model_selection import train_test_split #1. 데이터               
 
 from tensorflow.python.keras.models import Sequential #2. 모델구성
 from tensorflow.python.keras.layers import Dense #2. 모델구성
