@@ -43,7 +43,7 @@ model.add(Dense(16, activation='relu'))
 model.add(Dense(10, activation='relu'))  
 model.add(Dense(5))  
 model.add(Dense(2, activation='sigmoid'))  
-
+  
 model.summary()                                  
 
 #3.컴파일, 훈련
