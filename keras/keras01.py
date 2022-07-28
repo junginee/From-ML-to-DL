@@ -27,3 +27,4 @@ result = model.predict([4]) #예측값으로 4를 주며, 4는 result에 저장�
 print('4의 예측값 : ', result)
       
           
+       
