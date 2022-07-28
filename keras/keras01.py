@@ -26,7 +26,7 @@ print('loss :', loss)  #로스값을 출력해주세요.
 result = model.predict([4]) #예측값으로 4를 주며, 4는 result에 저장한다.
 print('4의 예측값 : ', result)
       
-                                  
+                                                     
        
           
       
