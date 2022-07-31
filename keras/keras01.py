@@ -2,7 +2,7 @@
 #1.데이터
 import numpy as np  
 x = np.array([1,2,3])  
-y = np.array([1,2,3])                      
+y = np.array([1,2,3])                                 
                                                             
 #2.모델구성                        
 from tensorflow.keras.models import Sequential #내가 사용할 모델은 시퀀셔 모델이다.           
