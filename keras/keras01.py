@@ -7,7 +7,7 @@ y = np.array([1,2,3])
 #2.모델구성                        
 from tensorflow.keras.models import Sequential #내가 사용할 모델은 시퀀셔 모델이다.           
 from tensorflow.keras.layers import Dense                    
-        
+                      
 model = Sequential()            
 model.add(Dense(4, input_dim=1)) #첫번째 밀집층을 더한다. (=레이어층 하나를 추가시킨다.) 입력하는 차원은 1차원이다. (=인풋레이어에 들어가는 데이터의 형태) #노드 4 :아웃풋은 4
 model.add(Dense(5)) #두번째 레이어층의 인풋값은 4, 아웃풋값은 5 (시퀀셔 모델을 이용하기 때문에 자동으로 인풋값은 4가 된다.)
