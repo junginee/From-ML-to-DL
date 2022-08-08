@@ -1,11 +1,10 @@
-from multiprocessing import Pipe
 import numpy as np
-from sklearn.datasets import load_iris
+from sklearn. datasets import fetch_covtype 
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 #1. 데이터
-datasets = load_iris()
+datasets = fetch_covtype()
 x = datasets.data
 y = datasets.target
 
@@ -47,8 +46,7 @@ model.fit(x_train, y_train)
 
 #4. 평가, 예측
 result = model.score(x_test, y_test)
-print('[iris]')
-print('model.score:', result)        
+print('[fetchcovtype]')
+print('model.score:', round(result,4))       
 
-# [iris]
-# model.score: 1.0                                  
+                               

@@ -1,11 +1,11 @@
 from multiprocessing import Pipe
 import numpy as np
-from sklearn.datasets import load_iris
+from sklearn. datasets import load_digits
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 #1. 데이터
-datasets = load_iris()
+datasets = load_digits()
 x = datasets.data
 y = datasets.target
 
@@ -47,8 +47,8 @@ model.fit(x_train, y_train)
 
 #4. 평가, 예측
 result = model.score(x_test, y_test)
-print('[iris]')
+print('[digits]')
 print('model.score:', result)        
 
-# [iris]
-# model.score: 1.0                                  
+# [digits]
+# model.score: 0.975

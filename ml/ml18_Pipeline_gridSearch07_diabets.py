@@ -1,11 +1,11 @@
 from multiprocessing import Pipe
 import numpy as np
-from sklearn.datasets import load_iris
+from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split, KFold
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 #1. 데이터
-datasets = load_iris()
+datasets =load_diabetes()
 x = datasets.data
 y = datasets.target
 
@@ -17,13 +17,13 @@ x_train, x_test, y_train, y_test = train_test_split(x, y,
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn. ensemble import RandomForestClassifier
+from sklearn. ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.pipeline import make_pipeline, Pipeline
 
 
 # model = SVC()
 # model = make_pipeline(MinMaxScaler(),PCA(),RandomForestClassifier())  # piepline을 통해 순서대로 이동
-pipe = Pipeline([('minmax', MinMaxScaler()), ('RF', RandomForestClassifier())], verbose=1)                                             
+pipe = Pipeline([('minmax', MinMaxScaler()), ('RF', RandomForestRegressor())], verbose=1)                                             
 
 parameters = [
         {'RF__n_estimators':[100,200], 'RF__max_depth':[6,8,10,12], 'RF__min_samples_split':[2,3,5,10]},
@@ -47,8 +47,10 @@ model.fit(x_train, y_train)
 
 #4. 평가, 예측
 result = model.score(x_test, y_test)
-print('[iris]')
-print('model.score:', result)        
+print('[diabetes]')
+print('model.score:', round(result,4))     
 
-# [iris]
-# model.score: 1.0                                  
+# [diabetes]
+# model.score: 0.4594   
+
+
