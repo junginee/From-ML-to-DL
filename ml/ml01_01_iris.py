@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 import tensorflow as tf                      
 tf.random.set_seed(66)       
                                
-#1. 데이터                   
+#1. 데이터                           
 datasets = load_iris()                    
                 
 x = datasets['data']        
