@@ -3,7 +3,7 @@ from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split            
 from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score       
-import tensorflow as tf                                                
+import tensorflow as tf                                                        
 tf.random.set_seed(66)       
                                                            
 #1. 데이터                           
