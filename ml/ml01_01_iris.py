@@ -11,7 +11,7 @@ datasets = load_iris()
                                
 x = datasets['data']                    
 y = datasets.target
-        
+          
 
 print(x.shape, y.shape) 
 print("y의 라벨값(y의 고유값)", np.unique(y)) #y의 라벨값(y의 고유값) [0 1 2]
