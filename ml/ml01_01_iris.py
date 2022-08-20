@@ -9,7 +9,7 @@ tf.random.set_seed(66)
 #1. 데이터                                                      
 datasets = load_iris()                                              
                                
-x = datasets['data']                    
+x = datasets['data']                               
 y = datasets.target
           
 
