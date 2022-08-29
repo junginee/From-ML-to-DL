@@ -10,7 +10,7 @@ tf.random.set_seed(66)
 datasets = load_iris()                                                       
                                
 x = datasets['data']                               
-y = datasets.target
+y = datasets.target                  
           
 
 print(x.shape, y.shape) 
