@@ -1,13 +1,9 @@
-
-
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from sklearn.preprocessing import MaxAbsScaler, RobustScaler
+from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVR
-from sklearn.metrics import r2_score, accuracy_score
-
+from sklearn.metrics import r2_score
 
 datasets =load_diabetes()
 x = datasets.data
@@ -25,6 +21,7 @@ print(np.max(x_train)) #1.0
 #2.모델구성
 model = LinearSVR() 
 
+
 #3. 컴파일, 훈련     
 model.fit(x_train, y_train)                        
 
@@ -32,12 +29,8 @@ model.fit(x_train, y_train)
 #4.평가, 예측
 results = model.score(x_test, y_test)
 print("결과 : ", round(results,3)) 
-
-# loss = model.evaluate(x_test, y_test)
-# print('loss : ', loss)
 y_predict = model.predict(x_test) 
 
-#R2결정계수(성능평가지표)
 r2 = r2_score(y_test, y_predict) 
 print('r2스코어 : ' , round(r2,3)) 
 
