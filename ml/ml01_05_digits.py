@@ -1,10 +1,6 @@
-
-
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from sklearn.preprocessing import MaxAbsScaler, RobustScaler
+from sklearn.preprocessing import RobustScaler
 from sklearn. datasets import load_digits
-import numpy as np
 from sklearn.model_selection import train_test_split 
 from sklearn.metrics import accuracy_score 
 from sklearn.svm import LinearSVC
@@ -36,13 +32,11 @@ model = LinearSVC()
 model.fit(x_train, y_train)
 
 #4. 평가, 예측
-
 results = model.score(x_test, y_test)
 print("결과 acc : ", round(results,3)) 
 
 from sklearn.metrics import r2_score, accuracy_score  
 y_predict = model.predict(x_test)
-
 
 acc= accuracy_score(y_test, y_predict)
 print('acc스코어 : ', round(acc,3))  
