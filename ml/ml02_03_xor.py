@@ -3,8 +3,8 @@ from sklearn.svm import LinearSVC
 from sklearn.metrics import accuracy_score
 
 #1.데이터
-x_data = [[0,0],[0,1],[1,0],[1,1]] #(4,2)
-y_data = [0,1,1,0] #(4,)
+x_data = [[0,0],[0,1],[1,0],[1,1]]
+y_data = [0,1,1,0]
 
 #2.모델
 model = LinearSVC()
