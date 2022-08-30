@@ -1,8 +1,7 @@
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from sklearn.preprocessing import MaxAbsScaler, RobustScaler
+from sklearn.preprocessing import StandardScaler
 
 
 datasets =load_diabetes()
