@@ -1,8 +1,7 @@
 import numpy as np
 import pandas as pd
-from sqlalchemy import true
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.metrics import r2_score
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.svm import LinearSVR
 import datetime as dt
