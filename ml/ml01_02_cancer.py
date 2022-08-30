@@ -21,9 +21,8 @@ scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
 print(np.min(x_train)) #0.0 
-print(np.max(x_train)) #1.0                                 
-                                                  
-
+print(np.max(x_train)) #1.0                                
+                                              
 
 #2. 모델구성
 model = LinearSVC() 
