@@ -12,7 +12,7 @@ train_set = pd.read_csv(path + 'train.csv')
             
 test_set = pd.read_csv(path + 'test.csv') 
 
-######## 년, 월 ,일 ,시간 분리 ############
+######## Year, month, day, time separation ############
 
 train_set["hour"] = [t.hour for t in pd.DatetimeIndex(train_set.datetime)]
 train_set["day"] = [t.dayofweek for t in pd.DatetimeIndex(train_set.datetime)]
