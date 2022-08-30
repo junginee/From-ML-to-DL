@@ -9,8 +9,6 @@ x_data = [[0,0],[0,1],[1,0],[1,1]]
 y_data = [0,1,1,0] 
 
 #2.모델
-# model = LinearSVC()
-
 model = Sequential()
 model.add(Dense(1, input_dim = 2, activation = 'sigmoid'))
 
@@ -25,6 +23,3 @@ print(x_data, "의 예측결과 : ", y_predict)
 
 results = model.evaluate(x_data, y_data)
 print("model.evaluate :", results[1])
-
-# acc = accuracy_score(y_data, y_predict)
-# print("accuracy_score : ",acc)
