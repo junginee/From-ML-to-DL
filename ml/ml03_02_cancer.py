@@ -36,9 +36,6 @@ for i in model:
 
 
     #4. 평가, 예측
-
     result = model.score(x_test,y_test)   
-
     y_predict = model.predict(x_test)
-
     print(f"{i} : ", round(result,4))      
