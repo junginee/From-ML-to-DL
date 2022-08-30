@@ -10,20 +10,15 @@ from tqdm import tqdm_notebook
 
 #1. 데이터
 path = './_data/kaggle_house/' 
-train_set = pd.read_csv(path + 'train.csv', 
-                        index_col=0) 
-
-
-test_set = pd.read_csv(path + 'test.csv',
-                       index_col=0)
+train_set = pd.read_csv(path + 'train.csv', index_col=0) 
+test_set = pd.read_csv(path + 'test.csv', index_col=0)
 
 
 drop_cols = ['Alley', 'PoolQC', 'Fence', 'MiscFeature'] 
 test_set.drop(drop_cols, axis = 1, inplace =True)
 
 
-sample_submission = pd.read_csv(path + 'sample_submission.csv',
-                       index_col=0)
+sample_submission = pd.read_csv(path + 'sample_submission.csv', index_col=0)
 
 #print(test_set)
 #print(test_set.shape) # (1459, 79) 
@@ -44,24 +39,18 @@ for col in tqdm_notebook(cols):
     test_set[col]=le.fit_transform(test_set[col])
 
 
-#### 결측치  제거 ####
-print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능
-train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna) 행별로 모두 삭제(dropna)
+#### Remove missing values ####
+print(train_set.isnull().sum()) 
+train_set = train_set.fillna(train_set.mean()) 
 print(train_set.isnull().sum())
-print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
+print(train_set.shape)
  
 
 test_set = test_set.fillna(test_set.mean())
 
 
-x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
-print(x)
-print(x.columns)
-print(x.shape) # (1460, 79)
-
+x = train_set.drop(['SalePrice'], axis=1) 
 y = train_set['SalePrice']
-print(y)
-print(y.shape) # (1460, )
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
         train_size=0.75, shuffle=True, random_state=68)
@@ -71,19 +60,15 @@ scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
 test_set = scaler.transform(test_set)
-print(np.min(x_train))  # 0.0
-print(np.max(x_train))  # 1.0
-print(np.min(x_test))  # 1.0
-print(np.max(x_test))  # 1.0
 
 
 #2. 모델구성
-from sklearn.svm import LinearSVC,SVC
+from sklearn.svm import LinearSVC
 from sklearn.linear_model import Perceptron
-from sklearn.linear_model import LogisticRegression, LinearRegression  #LogisicRegression 분류
-from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
-from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
-from sklearn. ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.linear_model import LinearRegression  
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn. ensemble import RandomForestRegressor
 
 model = Perceptron(),LinearSVC(),LinearRegression(),KNeighborsRegressor(),DecisionTreeRegressor(),RandomForestRegressor()
 
@@ -97,11 +82,8 @@ for i in model:
 
 
     #4. 평가, 예측
-
     result = model.score(x_test,y_test)   
-
     y_predict = model.predict(x_test)
-
     print(f"{i} : ", round(result,4))
 
 # Perceptron() :  0.0027
