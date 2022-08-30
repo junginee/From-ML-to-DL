@@ -11,17 +11,11 @@ datasets = load_iris()
 x = datasets['data']
 y = datasets.target
 
-
-print(x.shape, y.shape) 
-print("y의 라벨값(y의 고유값)", np.unique(y)) #y의 라벨값(y의 고유값) [0 1 2]
-
-
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
-
 
 #2. 모델구성
 from sklearn.svm import LinearSVC,SVC
-from sklearn.linear_model import Perceptron, LogisticRegression  #LogisicRegression 분류
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn. ensemble import RandomForestClassifier
@@ -42,14 +36,4 @@ for i in model:
 
     y_predict = model.predict(x_test)
 
-    print(f"{i} : ", round(result,4))
-    
-    
-    
-# Perceptron() :  0.7
-# SVC() :  0.9
-# KNeighborsClassifier() :  0.9667
-# LogisticRegression() :  0.9667
-# DecisionTreeClassifier() :  0.9667
-# RandomForestClassifier() :  0.9667
-    
+    print(f"{i} : ", round(result,4))   
