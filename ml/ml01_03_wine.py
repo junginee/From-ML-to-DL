@@ -1,12 +1,7 @@
-
-
 import numpy as np
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.datasets import load_wine 
+from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split 
-from tensorflow.python.keras.models import Sequential 
-from tensorflow.python.keras.layers import Dense 
 from sklearn.metrics import accuracy_score 
 from sklearn.svm import LinearSVC
 
@@ -33,14 +28,11 @@ print(np.max(x_train)) #1.0
 #2. 모델구성
 model = LinearSVC() 
 
-
 #3. 컴파일, 훈련
 model.fit(x_train, y_train)
 
 #4. 평가, 예측
-
 results = model.score(x_test, y_test)
-
 print("결과 acc : ", round(results,3)) 
 
 from sklearn.metrics import r2_score, accuracy_score  
