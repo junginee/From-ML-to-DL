@@ -10,22 +10,19 @@ x = datasets.data
 y = datasets.target
 x_train,x_test,y_train, y_test = train_test_split(x,y, train_size=0.75, shuffle=True, random_state=72)
 
-
 scaler = StandardScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
-print(np.min(x_train)) #0.0 
-print(np.max(x_train)) #1.0
 
 
 #2. 모델구성
-from sklearn.svm import LinearSVC,SVC
+from sklearn.svm import LinearSVC
 from sklearn.linear_model import Perceptron
-from sklearn.linear_model import LogisticRegression, LinearRegression  #LogisicRegression 분류
-from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
-from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
-from sklearn. ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.linear_model import LinearRegression 
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn. ensemble import RandomForestRegressor
 
 model = Perceptron(),LinearSVC(),LinearRegression(),KNeighborsRegressor(),DecisionTreeRegressor(),RandomForestRegressor()
 
@@ -39,11 +36,8 @@ for i in model:
 
 
     #4. 평가, 예측
-
     result = model.score(x_test,y_test)   
-
-    y_predict = model.predict(x_test)
-
+    y_predict = model.predict(x_test)    
     print(f"{i} : ", round(result,4))
     
 # Perceptron() :  0.009
