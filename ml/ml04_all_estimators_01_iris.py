@@ -13,10 +13,6 @@ x = datasets['data']
 y = datasets.target
 
 
-print(x.shape, y.shape) 
-print("y의 라벨값(y의 고유값)", np.unique(y)) #y의 라벨값(y의 고유값) [0 1 2]
-
-
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
 from sklearn.preprocessing import MinMaxScaler
@@ -31,7 +27,7 @@ x_test = scaler.transform(x_test)
 allalgorithm = all_estimators(type_filter='classifier')
 
 print('allalgorithms : ', allalgorithm)
-print("모델의 갯수 : ", len(allalgorithm)) #모델의 갯수 :  41
+print("모델의 갯수 : ", len(allalgorithm))
 
 for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 이루는 dictionary
   try : 
