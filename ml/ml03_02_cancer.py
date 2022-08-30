@@ -9,8 +9,6 @@ datasets = load_breast_cancer()
 
 x = datasets.data   
 y = datasets.target
-print(x.shape, y.shape) 
-
 
 x_train, x_test, y_train, y_test = train_test_split(x,y,
                                                     train_size=0.7,shuffle=True, random_state=72)
@@ -18,13 +16,11 @@ scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
-print(np.min(x_train)) #0.0 
-print(np.max(x_train)) #1.0   
 
 
 #2. 모델구성
 from sklearn.svm import LinearSVC,SVC
-from sklearn.linear_model import Perceptron, LogisticRegression  #LogisicRegression 분류
+from sklearn.linear_model import Perceptron, LogisticRegression  
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn. ensemble import RandomForestClassifier
@@ -45,11 +41,4 @@ for i in model:
 
     y_predict = model.predict(x_test)
 
-    print(f"{i} : ", round(result,4))
-    
-# Perceptron() :  0.9415
-# SVC() :  0.9766
-# KNeighborsClassifier() :  0.9591
-# LogisticRegression() :  0.9708
-# DecisionTreeClassifier() :  0.9123
-# RandomForestClassifier() :  0.9532    
+    print(f"{i} : ", round(result,4))      
