@@ -5,10 +5,10 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score
-
 import warnings
 warnings.filterwarnings("ignore")
 
+#1. 데이터
 datasets =load_diabetes()
 x = datasets.data
 y = datasets.target
@@ -19,17 +19,15 @@ scaler = StandardScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
-print(np.min(x_train)) #0.0 
-print(np.max(x_train)) #1.0
+
 
 #2. 모델구성
-
 allalgorithm = all_estimators(type_filter='classifier')
 
 print('allalgorithms : ', allalgorithm)
 print("모델의 갯수 : ", len(allalgorithm)) #모델의 갯수 :  41
 
-for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 이루는 dictionary
+for (name, algorithm) in allalgorithm :
   try : 
       model = algorithm()
       model.fit(x_train, y_train)
