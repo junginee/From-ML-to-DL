@@ -16,7 +16,6 @@ y = datasets.target
 print(x.shape, y.shape) 
 print("y의 라벨값(y의 고유값)", np.unique(y)) #y의 라벨값(y의 고유값) [0 1 2]
 
-
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
 from sklearn.preprocessing import MinMaxScaler
@@ -90,5 +89,4 @@ for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 �
 # SGDClassifier 0.8467
 # SVC 0.9667
 # StackingClassifier : 미출력!!!!!!!!
-# VotingClassifier : 미출력!!!!!!!! 
-  
+# VotingClassifier : 미출력!!!!!!!!   
