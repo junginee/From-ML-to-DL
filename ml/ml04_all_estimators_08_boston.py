@@ -4,7 +4,6 @@ from sklearn.datasets import load_boston
 from sklearn.preprocessing import RobustScaler
 from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score
-
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -25,7 +24,7 @@ allalgorithm = all_estimators(type_filter='classifier')
 print('allalgorithms : ', allalgorithm)
 print("모델의 갯수 : ", len(allalgorithm)) #모델의 갯수 :  41
 
-for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 이루는 dictionary
+for (name, algorithm) in allalgorithm : 
   try : 
       model = algorithm()
       model.fit(x_train, y_train)
