@@ -29,15 +29,14 @@ parameters = [
     
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression 분류 모델 사용
+from sklearn.linear_model import Perceptron, LogisticRegression 
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier # 가지치기 형식으로 결과값 도출, 분류형식
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor # DecisionTreeClassifier가 ensemble 엮여있는게 random으로 
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor 
 
 # model = SVC(C=1, kernel='linear', degree=3)
 model = HalvingGridSearchCV(RandomForestRegressor(),parameters, cv=kfold, verbose=1,             # 42 * 5 = 210
-                     refit=True, n_jobs=-1)                             # n_jobs는 cpu 사용 갯수
-                                                                        # refit=True 최적의 값을 찾아서 저장 후 모델 학습
+                     refit=True, n_jobs=-1)                           
                                                                     
 #3. 컴파일, 훈련
 import time
@@ -45,12 +44,12 @@ start = time.time()
 model.fit(x_train, y_train)
 end = time.time()
 
-print("최적의 매개변수 : ", model.best_estimator_)  # 가장 좋은 추정치
+print("최적의 매개변수 : ", model.best_estimator_)  
 # 최적의 매개변수 :  SVC(C=100, gamma=0.001)
 print("최적의 파라미터 : ", model.best_params_)
 # 최적의 파라미터 :  {'C': 100, 'gamma': 0.001, 'kernel': 'rbf'}
 
-print("best_score_ : ", model.best_score_)        # 정확도
+print("best_score_ : ", model.best_score_)       
 # best_score_ :  0.9666666666666668
 print("model.score : ", model.score(x_test, y_test))
 # model.score :  0.9666666666666667
