@@ -12,7 +12,7 @@ datasets = load_iris()
 # print(datasets.DESCR) 
 # print(datasets.feature_names)
 
-x = datasets['data']  # .data와 동일 
+x = datasets['data'] 
 y = datasets['target']  
 # print(x.shape)   # (150, 4)
 # print(y.shape)   # (150,)
