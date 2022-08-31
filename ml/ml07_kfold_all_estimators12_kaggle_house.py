@@ -8,7 +8,6 @@ from sklearn.metrics import r2_score
 from tqdm import tqdm_notebook
 from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score
-
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -50,16 +49,12 @@ for col in tqdm_notebook(cols):
 
 
 #### 결측치  제거 ####
-print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능
-train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna) 행별로 모두 삭제(dropna)
 print(train_set.isnull().sum())
-print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
- 
 
+train_set = train_set.fillna(train_set.mean())
 test_set = test_set.fillna(test_set.mean())
+x = train_set.drop(['SalePrice'], axis=1)
 
-
-x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
 print(x)
 print(x.columns)
 print(x.shape) # (1460, 79)
@@ -88,7 +83,7 @@ allalgorithm = all_estimators(type_filter='classifier')
 print('allalgorithms : ', allalgorithm)
 print("모델의 갯수 : ", len(allalgorithm)) #모델의 갯수 :  41
 
-for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 이루는 dictionary
+for (name, algorithm) in allalgorithm : 
   try : 
       model = algorithm()
       model.fit(x_train, y_train)
@@ -99,4 +94,3 @@ for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 �
   except : 
     #   continue
     print(name, ": 미출력!!!!!!!!")
-
