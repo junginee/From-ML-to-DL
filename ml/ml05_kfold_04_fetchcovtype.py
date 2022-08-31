@@ -18,10 +18,6 @@ print(datasets.DESCR)
 print(x.shape, y.shape) #(581012, 54) (581012,)
 print(np.unique(y, return_counts = True)) # y :[1 2 3 4 5 6 7]  / return_counts :[211840, 283301,  35754,   2747,   9493,  17367,  20510]
 
-# import pandas as pd
-# y = pd.get_dummies(y)
-# print(y)
-
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
                 
