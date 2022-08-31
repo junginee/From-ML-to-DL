@@ -1,43 +1,29 @@
 import numpy as np
+import pandas as pd
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold, cross_val_score, GridSearchCV, StratifiedKFold
 from sklearn.metrics import accuracy_score, r2_score
-import numpy as np
-import pandas as pd
-from sklearn import metrics
-from tensorflow.python.keras.models import Sequential,  load_model
-from tensorflow.python.keras.layers import Activation, Dense, Conv2D, Flatten, MaxPooling2D, Input, Dropout,LSTM
 from sklearn.model_selection import train_test_split,RandomizedSearchCV
-from sklearn.metrics import r2_score, mean_squared_error
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
-from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score, r2_score
-import warnings
-warnings.filterwarnings('ignore')
-from sklearn.model_selection import KFold, cross_val_score
 from sklearn.experimental import enable_halving_search_cv   
 from sklearn.model_selection import HalvingRandomSearchCV
+import warnings
+warnings.filterwarnings('ignore')
 
 #1. 데이터
 path = './_data/ddarung/'
 train_set = pd.read_csv(path + 'train.csv', 
                         index_col=0) 
 
-
 test_set = pd.read_csv(path + 'test.csv', 
                        index_col=0)
 
-
-
 train_set =  train_set.dropna()
-
 test_set = test_set.fillna(test_set.mean())
 
 
 x = train_set.drop(['count'], axis=1) 
-
-
 y = train_set['count']
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
@@ -58,15 +44,14 @@ parameters = [
     
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression 분류 모델 사용
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier # 가지치기 형식으로 결과값 도출, 분류형식
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor # DecisionTreeClassifier가 ensemble 엮여있는게 random으로 
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor 
 
 # model = SVC(C=1, kernel='linear', degree=3)
-model = HalvingRandomSearchCV(RandomForestRegressor(),parameters, cv=kfold, verbose=1,             # 42 * 5 = 210
-                     refit=True, n_jobs=-1)                             # n_jobs는 cpu 사용 갯수
-                                                                        # refit=True 최적의 값을 찾아서 저장 후 모델 학습
+model = HalvingRandomSearchCV(RandomForestRegressor(),parameters, cv=kfold, verbose=1,           
+                     refit=True, n_jobs=-1)                            
                                                                     
 #3. 컴파일, 훈련
 import time
