@@ -1,25 +1,16 @@
 import numpy as np
+import pandas as pd
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import KFold, cross_val_score, GridSearchCV, StratifiedKFold,RandomizedSearchCV
 from sklearn.metrics import accuracy_score, r2_score
-from tabnanny import verbose
-from typing import Counter
-import numpy as np
-import pandas as pd
-from tensorflow.python.keras.models import Sequential,  load_model
-from tensorflow.python.keras.layers import Activation, Dense, Conv2D, Flatten, MaxPooling2D, Input, Dropout,LSTM
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
-from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score, r2_score
-import warnings
-warnings.filterwarnings('ignore')
-from sklearn.model_selection import KFold, cross_val_score
+from sklearn.model_selection import KFold, cross_val_score, GridSearchCV, StratifiedKFold,RandomizedSearchCV
 from sklearn.experimental import enable_halving_search_cv   
 from sklearn.model_selection import HalvingRandomSearchCV
+import warnings
+warnings.filterwarnings('ignore')
 
 
 #1. 데이터
