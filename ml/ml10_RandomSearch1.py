@@ -9,7 +9,6 @@ from sklearn.metrics import accuracy_score
                         
 #1. 데이터
 datasets = load_iris()
-
 x = datasets['data']  
 y = datasets['target']  
 
@@ -45,9 +44,9 @@ model = RandomizedSearchCV(SVC(), parameters, cv=kfold, verbose=1,
 
 #3. 컴파일, 훈련 (Fitting 5 folds for each of 10 candidates, totalling 50 fits)
 import time
-start = time.time() #훈련 전 시간
+start = time.time()
 model.fit(x_train, y_train)
-end = time.time() #훈련 후 시간
+end = time.time() 
 
 print("최적의 매개변수 : ", model.best_estimator_)
 # 최적의 매개변수 :  SVC(C=1, kernel='linear')
