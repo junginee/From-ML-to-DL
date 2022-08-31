@@ -31,12 +31,12 @@ kfold = KFold(n_splits=5, shuffle=True, random_state=101)
 parameters = [
         {'n_estimators':[100,200], 'max_depth':[6,8,10,12], 'min_samples_split':[2,3,5,10]},
         {'n_estimators':[100,200], 'min_samples_leaf':[3,5,7,10], 'min_samples_split':[2,3,5,10]},
-]                                                                       # 총 42번
+]                                                                   
 
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression는 분류임
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -46,8 +46,7 @@ model =  RandomForestClassifier(max_depth=10, min_samples_split=3)
 #                      refit=True, n_jobs=1)                             
                                                                            
                                                                           
-                                                                           # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
-
+                                                           
 
 #3. 컴파일, 훈련
 model.fit(x_train, y_train)
