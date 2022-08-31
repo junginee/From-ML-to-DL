@@ -44,11 +44,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-model =  RandomForestClassifier(max_depth=8, min_samples_split=3, n_estimators=200)                    
-      
+model =  RandomForestClassifier(max_depth=8, min_samples_split=3, n_estimators=200)                   
+   
                                                                     
-
-
 #3. 컴파일, 훈련
 model.fit(x_train, y_train)
 
