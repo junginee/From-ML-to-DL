@@ -9,8 +9,6 @@ from sklearn.metrics import accuracy_score
                         
 #1. 데이터
 datasets = load_iris()
-# print(datasets.DESCR)  #행(Instances): 150   /   열(Attributes): 4
-# print(datasets.feature_names)
 
 x = datasets['data']  # .data와 동일 
 y = datasets['target']  
@@ -38,17 +36,14 @@ parameters = [
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression는 분류임
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-model = SVC(C=1, kernel='linear', degree=3)                                 # cv = crossvalidation
-# model = GridSearchCV(SVC(), parameters, cv=kfold, verbose=1,                # 42(parameters) * 5(kfold) = 210
-                    #  refit=True, n_jobs=1)                                  # n_jobs 코어 갯수
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
-
+model = SVC(C=1, kernel='linear', degree=3)                             
+                       
+                                                                            
 
 #3. 컴파일, 훈련
 model.fit(x_train, y_train)
@@ -66,6 +61,5 @@ print("model.score : ", model.score(x_test, y_test))
 y_predict = model.predict(x_test)
 print("accuracy_score", accuracy_score(y_test, y_predict))
 # accuracy_score 0.9666666666666667
-
 # y_pred_best = model.best_estimator_.__prepare__(x_test)
 # print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
