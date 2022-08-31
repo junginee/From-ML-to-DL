@@ -6,7 +6,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVR
 from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score, r2_score
-
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -63,12 +62,11 @@ parameters = [
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression는 분류임
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
-
-# model =  RandomForestClassifier(max_depth=10, min_samples_split=3)                         
+                      
 model = GridSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
                      refit=True, n_jobs=1)                            
 
@@ -89,6 +87,8 @@ print("model.score : ", model.score(x_test, y_test))
 y_predict = model.predict(x_test)
 print("r2_score", round(r2_score(y_test, y_predict),4))
 
-# r2_score 0.7556
-# y_pred_best = model.best_estimator_.__prepare__(x_test)
-# print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
+'''
+r2_score 0.7556
+y_pred_best = model.best_estimator_.__prepare__(x_test)
+print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
+'''
