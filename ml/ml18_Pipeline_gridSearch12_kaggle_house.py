@@ -2,7 +2,10 @@ import numpy as np
 import pandas as pd
 from typing import Counter
 from sklearn.model_selection import train_test_split, KFold
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from sklearn.experimental import enable_halving_search_cv
+from sklearn. model_selection import HalvingGridSearchCV, HalvingRandomSearchCV
+
 
 #1. 데이터
 path = './_data/kaggle_house/'
@@ -50,10 +53,6 @@ Outliers_to_drop = detect_outliers(train_set, 2,['Id', 'MSSubClass', 'LotFrontag
        'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea',
        'MiscVal', 'MoSold', 'YrSold'])
 
-# categorical_feats 살펴보기
-# for catg in list(categorical_feats) :
-#     print(train_set[catg].value_counts())
-#     print('#'*50)
 
 # saleprice와 관련이 큰 변수들 끼리 정리.
 num_strong_corr = ['SalePrice','OverallQual','TotalBsmtSF','GrLivArea','GarageCars',
@@ -83,6 +82,7 @@ cols_fillna = ['PoolQC','MiscFeature','Alley','Fence','MasVnrType','FireplaceQu'
                'KitchenQual', 'SaleType', 'Functional', 'Exterior2nd', 'Exterior1st',
                'BsmtExposure','BsmtCond','BsmtQual','BsmtFinType1','BsmtFinType2',
                'MSZoning', 'Utilities']
+
 # NaN을 없다는 의미의 None 데이터로 바꾼다.
 for col in cols_fillna:
     train_set[col].fillna('None',inplace=True)
@@ -216,17 +216,10 @@ parameters = [
 
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)
-# gridsearch 사용 시 
-# 언더바 2개 사용
-# 언더바 2개 앞에는 내가 위에서 지정한 문자열, 뒤에는 하이퍼파라미터 이름 기재
+
                                             
 #3. 훈련
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
-from sklearn.experimental import enable_halving_search_cv
-from sklearn. model_selection import HalvingGridSearchCV, HalvingRandomSearchCV
-
 model = GridSearchCV(pipe, parameters, cv= kfold, verbose=1)
-
 model.fit(x_train, y_train) 
 
 #4. 평가, 예측
