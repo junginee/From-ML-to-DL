@@ -6,6 +6,8 @@ from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score
 import warnings
 warnings.filterwarnings("ignore")
+import tensorflow as tf
+tf.random.set_seed(66)
 
 #1. 데이터
 datasets = load_digits()
@@ -14,9 +16,6 @@ y= datasets.target
 
 print(x.shape, y.shape)
 print(np.unique(y)) 
-
-import tensorflow as tf
-tf.random.set_seed(66)
 
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
