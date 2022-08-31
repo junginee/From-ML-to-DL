@@ -21,3 +21,8 @@ print("model.score :", results)
 
 acc = accuracy_score(y_data, y_predict)
 print("accuracy_score : ",acc)
+
+'''
+model.score : 0.5
+accuracy_score :  0.5
+'''
