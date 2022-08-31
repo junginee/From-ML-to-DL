@@ -9,14 +9,14 @@ from sklearn.metrics import accuracy_score
                         
 #1. 데이터
 datasets = load_iris()
-# print(datasets.DESCR)  #행(Instances): 150   /   열(Attributes): 4
+# print(datasets.DESCR) 
 # print(datasets.feature_names)
 
 x = datasets['data']  # .data와 동일 
 y = datasets['target']  
 # print(x.shape)   # (150, 4)
 # print(y.shape)   # (150,)
-# print("y의 라벨값 : ", np.unique(y))  # 해당 데이터의 고유값을 출력해준다.
+# print("y의 라벨값 : ", np.unique(y))  
 
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
@@ -28,7 +28,7 @@ x_train, x_test, y_train, y_test = train_test_split(x, y,
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle=True, random_state=66)
 
-###실습 파라미터###
+### parameters ###
 # parameters =[
 #     {'n_estimators':[100,200]},
 #     {'max_depth':[6,8,10,12]},
@@ -80,4 +80,3 @@ print("accuracy_score", accuracy_score(y_test, y_predict))
 
 # y_pred_best = model.best_estimator_.__prepare__(x_test)
 # print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
-
