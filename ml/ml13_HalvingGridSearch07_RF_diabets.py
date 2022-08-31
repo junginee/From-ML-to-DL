@@ -39,8 +39,6 @@ from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 model = HalvingRandomSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
                      refit=True, n_jobs=1)                             
                                                                            
-                                                                          
-                                                                          
 
 
 #3. 컴파일, 훈련
