@@ -34,7 +34,7 @@ kfold = KFold(n_splits=5, shuffle=True, random_state=101)
 parameters = [
         {'n_estimators':[100,200], 'max_depth':[6,8,10,12]},
         {'n_estimators':[100,200], 'min_samples_leaf':[3,5,7,10], 'min_samples_split':[2,3,5,10]},
-]                                                                       # 총 42번
+]                                                                   
 
 
 #2. 모델구성
@@ -44,12 +44,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-model =  RandomForestClassifier(min_samples_leaf=3, min_samples_split=5)                        
-# model = GridSearchCV(RandomForestClassifier(), parameters, cv=kfold, verbose=1,          
-#                      refit=True, n_jobs=1)                             
-                                                                           
-                                                                          
-                                                                           # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
+model =  RandomForestClassifier(min_samples_leaf=3, min_samples_split=5)                      
 
 
 #3. 컴파일, 훈련
