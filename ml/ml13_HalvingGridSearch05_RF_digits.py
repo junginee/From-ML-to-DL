@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
 from sklearn. datasets import load_digits
 from sklearn.preprocessing import OneHotEncoder
-from sklearn.experimental import enable_halving_search_cv  #얘가 더 위에 있어야 함
+from sklearn.experimental import enable_halving_search_cv
 from sklearn.model_selection import KFold, cross_val_score, GridSearchCV, HalvingRandomSearchCV
 from sklearn.metrics import accuracy_score
                         
@@ -49,9 +49,6 @@ from sklearn.ensemble import RandomForestClassifier
 model = HalvingRandomSearchCV(RandomForestClassifier(), parameters, cv=kfold, verbose=1,          
                      refit=True, n_jobs=1)                             
                                                                            
-                                                                          
-                                                                           # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
-
 
 #3. 컴파일, 훈련
 model.fit(x_train, y_train)
