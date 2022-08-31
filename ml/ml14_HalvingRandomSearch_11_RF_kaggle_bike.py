@@ -1,38 +1,24 @@
 import numpy as np
+import pandas as pd
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-from sklearn.model_selection import KFold, cross_val_score, GridSearchCV, StratifiedKFold,RandomizedSearchCV
-from sklearn.metrics import accuracy_score, r2_score
-import numpy as np
-import pandas as pd
 from sklearn import metrics
-from tensorflow.python.keras.models import Sequential,  load_model
-from tensorflow.python.keras.layers import Activation, Dense, Conv2D, Flatten, MaxPooling2D, Input, Dropout,LSTM
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score, mean_squared_error
-from tensorflow.keras.layers import LSTM, Dense
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
-from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score, r2_score
-import warnings
-warnings.filterwarnings('ignore')
 from sklearn.model_selection import KFold, cross_val_score
-import numpy as np
+from sklearn.model_selection import ridSearchCV, StratifiedKFold,RandomizedSearchCV
 from sklearn.experimental import enable_halving_search_cv   
 from sklearn.model_selection import HalvingRandomSearchCV
+import warnings
+warnings.filterwarnings('ignore')
 
 #1. 데이터
 
 path = './_data/kaggle_bike/'
 train_set = pd.read_csv(path + 'train.csv')
 test_set = pd.read_csv(path + 'test.csv')
-# print(train_set.shape)  # (10886, 12)
-# print(test_set.shape)   # (6493, 9)
-# train_set.info() # 데이터 온전한지 확인.
 train_set['datetime'] = pd.to_datetime(train_set['datetime']) 
-#datetime은 날짜와 시간을 나타내는 정보이므로 DTYPE을 datetime으로 변경.
-#세부 날짜별 정보를 보기 위해 날짜 데이터를 년도,월,일, 시간으로 나눈다.
-train_set['year'] = train_set['datetime'].dt.year  # 분과 초는 모든값이 0이므로 추가x
+train_set['year'] = train_set['datetime'].dt.year
 train_set['month'] = train_set['datetime'].dt.month
 train_set['day'] = train_set['datetime'].dt.day
 train_set['hour'] = train_set['datetime'].dt.hour
@@ -42,7 +28,6 @@ train_set['hour'] = train_set['hour'].astype('category')
 train_set = pd.get_dummies(train_set, columns=['season','weather'])
 train_set.drop(['casual', 'registered'], inplace=True, axis=1)
 train_set.drop('atemp', inplace=True, axis=1)
-
 test_set['datetime'] = pd.to_datetime(test_set['datetime'])
 test_set['month'] = test_set['datetime'].dt.month
 test_set['hour'] = test_set['datetime'].dt.hour
@@ -75,15 +60,14 @@ parameters = [
     
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression 분류 모델 사용
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier # 가지치기 형식으로 결과값 도출, 분류형식
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor # DecisionTreeClassifier가 ensemble 엮여있는게 random으로 
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
 # model = SVC(C=1, kernel='linear', degree=3)
-model = HalvingRandomSearchCV(RandomForestRegressor(),parameters, cv=kfold, verbose=1,             # 42 * 5 = 210
-                     refit=True, n_jobs=-1)                             # n_jobs는 cpu 사용 갯수
-                                                                        # refit=True 최적의 값을 찾아서 저장 후 모델 학습
+model = HalvingRandomSearchCV(RandomForestRegressor(),parameters, cv=kfold, verbose=1,            
+                     refit=True, n_jobs=-1)                            
                                                                     
 #3. 컴파일, 훈련
 import time
