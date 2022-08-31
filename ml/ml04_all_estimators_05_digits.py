@@ -12,8 +12,8 @@ datasets = load_digits()
 x = datasets.data
 y= datasets.target
 
-print(x.shape, y.shape)
-print(np.unique(y)) 
+# print(x.shape, y.shape)
+# print(np.unique(y)) 
 
 import tensorflow as tf
 tf.random.set_seed(66)
@@ -35,7 +35,7 @@ allalgorithm = all_estimators(type_filter='classifier')
 print('allalgorithms : ', allalgorithm)
 print("모델의 갯수 : ", len(allalgorithm)) #모델의 갯수 :  41
 
-for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 이루는 dictionary
+for (name, algorithm) in allalgorithm : 
   try : 
       model = algorithm()
       model.fit(x_train, y_train)
@@ -44,7 +44,6 @@ for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 �
       acc = accuracy_score(y_test,y_predict)
       print(name, "의 정답률 : ", round(acc,4))
   except : 
-    #   continue
     print(name, ": 미출력!!!!!!!!")
 
 '''
