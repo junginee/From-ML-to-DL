@@ -17,50 +17,26 @@ from sklearn.model_selection import HalvingRandomSearchCV
 
 #1. 데이터
 
-path = './_data/kaggle_titanic/' # 경로 = .현재폴더 /하단
-train_set = pd.read_csv(path + 'train.csv', # train.csv 의 데이터가 train set에 들어가게 됨
-                        index_col=0) # 0번째 컬럼은 인덱스로 지정하는 명령
+path = './_data/kaggle_titanic/' 
+train_set = pd.read_csv(path + 'train.csv',
+                        index_col=0) 
 test_set = pd.read_csv(path + 'test.csv',
                        index_col=0)
 
 # print(train_set)
-# print(train_set.shape) # (891, 11) 원래 열이 12개지만, id를 인덱스로 제외하여 11개
+# print(train_set.shape)
 
 # print(train_set.columns)
-# print(train_set.info()) # 각 컬럼에 대한 디테일한 내용 출력 / null값(중간에 빠진 값) '결측치'
+# print(train_set.info()) 
 # print(train_set.describe())
 
 print(test_set)
-print(test_set.shape) # (418, 10) # 예측 과정에서 쓰일 예정
-
+print(test_set.shape)
 
 # 결측치 처리
-print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능 -- age 177, cabin 687, embarked 2
-# Survived      0
-# Pclass        0
-# Name          0
-# Sex           0
-# Age         177
-# SibSp         0
-# Parch         0
-# Ticket        0
-# Fare          0
-# Cabin       687
-# Embarked      2
-# dtype: int64
+print(train_set.isnull().sum()) 
 train_set = train_set.fillna(train_set.median())
 print(test_set.isnull().sum())
-# Pclass        0
-# Name          0
-# Sex           0
-# Age          86
-# SibSp         0
-# Parch         0
-# Ticket        0
-# Fare          1
-# Cabin       327
-# Embarked      0
-# dtype: int64
 
 drop_cols = ['Cabin']
 train_set.drop(drop_cols, axis = 1, inplace =True)
@@ -83,7 +59,7 @@ x = train_set.drop(['Survived'],axis=1) #axis는 컬럼
 y = train_set['Survived']
 # print(y.shape) #(891,)
 
-gender_submission = pd.read_csv(path + 'gender_submission.csv', #예측에서 쓰일 예정
+gender_submission = pd.read_csv(path + 'gender_submission.csv',
                        index_col=0)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
@@ -110,9 +86,8 @@ from sklearn.tree import DecisionTreeClassifier # 가지치기 형식으로 결�
 from sklearn.ensemble import RandomForestClassifier # DecisionTreeClassifier가 ensemble 엮여있는게 random으로 
 
 # model = SVC(C=1, kernel='linear', degree=3)
-model = HalvingRandomSearchCV(RandomForestClassifier(),parameters, cv=kfold, verbose=1,             # 42 * 5 = 210
-                     refit=True, n_jobs=-1)                             # n_jobs는 cpu 사용 갯수
-                                                                        # refit=True 최적의 값을 찾아서 저장 후 모델 학습
+model = HalvingRandomSearchCV(RandomForestClassifier(),parameters, cv=kfold, verbose=1,                              
+                     refit=True, n_jobs=-1)                          
                                                                     
 #3. 컴파일, 훈련
 import time
@@ -120,12 +95,12 @@ start = time.time()
 model.fit(x_train, y_train)
 end = time.time()
 
-print("최적의 매개변수 : ", model.best_estimator_)  # 가장 좋은 추정치
+print("최적의 매개변수 : ", model.best_estimator_)  
 # 최적의 매개변수 :  SVC(C=100, gamma=0.001)
 print("최적의 파라미터 : ", model.best_params_)
 # 최적의 파라미터 :  {'C': 100, 'gamma': 0.001, 'kernel': 'rbf'}
 
-print("best_score_ : ", model.best_score_)        # 정확도
+print("best_score_ : ", model.best_score_)      
 # best_score_ :  0.9666666666666668
 print("model.score : ", model.score(x_test, y_test))
 # model.score :  0.9666666666666667
