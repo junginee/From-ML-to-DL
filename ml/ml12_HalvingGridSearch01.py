@@ -1,9 +1,3 @@
-#from sklearn.experimental import enable_halving_search_cv  (얘가 더 위에 있어야 한다.)
-#from sklearn.model_selection import HalvingRandomSearchCV
-# HalvingGridSearch는 완성되지 않은 버전이므로 위와 같은 사이킷런의 실험적 실행을 추가해줘야한다
-# 자원을 전체로 쓰지 않고 이 자원의 일부만 쓴다.
-
-
 import numpy as np
 import time
 import sklearn
@@ -11,17 +5,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_iris
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import accuracy_score
-
 from sklearn.experimental import enable_halving_search_cv 
 from sklearn.model_selection import KFold, cross_val_score, GridSearchCV, HalvingRandomSearchCV
-# HalvingGridSearch는 완성되지 않은 버전이므로 위와 같은 사이킷런의 실험적 실행을 추가해줘야한다
+# HalvingGridSearch는 완성되지 않은 버전이므로 위와 같은 사이킷런의 실험적 실행을 추가
                        
 #1. 데이터
 datasets = load_iris()
-# print(datasets.DESCR)  #행(Instances): 150   /   열(Attributes): 4
-# print(datasets.feature_names)
 
-x = datasets['data']  # .data와 동일 
+x = datasets['data'] 
 y = datasets['target']  
 # print(x.shape)   # (150, 4)
 # print(y.shape)   # (150,)
@@ -83,24 +74,3 @@ print("accuracy_score", accuracy_score(y_test, y_predict))
 # print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
 
 print("걸린시간 :", round((end-start),3)) #걸린시간 : 0.045
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
