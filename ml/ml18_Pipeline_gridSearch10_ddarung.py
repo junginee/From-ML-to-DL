@@ -1,9 +1,11 @@
 from multiprocessing import Pipe
 import numpy as np
+import pandas as pd
 from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split, KFold
-import pandas as pd
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.svm import LinearSVC, SVC
+from sklearn. ensemble import RandomForestClassifier, RandomForestRegressor
+from sklearn.pipeline import make_pipeline, Pipeline
 
 #1. 데이터
 path = './_data/ddarung/'
@@ -13,29 +15,17 @@ train_set = pd.read_csv(path + 'train.csv',
 
 test_set = pd.read_csv(path + 'test.csv', 
                        index_col=0)
-
-
 train_set =  train_set.dropna()
-
-
 test_set = test_set.fillna(test_set.mean())
 
-
 x = train_set.drop(['count'], axis=1) 
-
-
 y = train_set['count']
-
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
         train_size=0.8,shuffle=True, random_state=1234)
 
 
-
 #2. 모델구성
-from sklearn.svm import LinearSVC, SVC
-from sklearn. ensemble import RandomForestClassifier, RandomForestRegressor
-from sklearn.pipeline import make_pipeline, Pipeline
 
 
 # model = SVC()
@@ -49,9 +39,7 @@ parameters = [
 
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)
-# gridsearch 사용 시 
-# 언더바 2개 사용
-# 언더바 2개 앞에는 내가 위에서 지정한 문자열, 뒤에는 하이퍼파라미터 이름 기재
+
                                             
 #3. 훈련
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
@@ -59,7 +47,6 @@ from sklearn.experimental import enable_halving_search_cv
 from sklearn. model_selection import HalvingGridSearchCV, HalvingRandomSearchCV
 
 model = GridSearchCV(pipe, parameters, cv= kfold, verbose=1)
-
 model.fit(x_train, y_train) 
 
 #4. 평가, 예측
@@ -69,4 +56,3 @@ print('model.score:', round(result,4))
 
 # ddaung
 # model.score: 0.8057
-
