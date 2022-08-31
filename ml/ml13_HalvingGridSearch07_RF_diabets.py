@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.experimental import enable_halving_search_cv  #얘가 더 위에 있어야 함
+from sklearn.experimental import enable_halving_search_cv 
 from sklearn.model_selection import KFold, cross_val_score, GridSearchCV, HalvingRandomSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes
@@ -7,7 +7,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVR
 from sklearn. ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, accuracy_score
-
 
 datasets =load_diabetes()
 x = datasets.data
@@ -31,12 +30,12 @@ parameters = [
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression는 분류임
+from sklearn.linear_model import Perceptron, LogisticRegression 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
-# model =  RandomForestRegressor(min_samples_leaf=3, min_samples_split=5)                        
+                     
 model = HalvingRandomSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
                      refit=True, n_jobs=1)                             
                                                                            
