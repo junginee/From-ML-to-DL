@@ -1,6 +1,6 @@
 
 import numpy as np
-import tensorflow as tf #웨이트의 난수
+import tensorflow as tf
 from sklearn.datasets import load_iris
 from sklearn.metrics import accuracy_score
 
