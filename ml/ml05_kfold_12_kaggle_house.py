@@ -1,6 +1,3 @@
-
-
-
 import numpy as np
 import pandas as pd
 from sklearn.svm import LinearSVC, LinearSVR
@@ -49,24 +46,19 @@ for col in tqdm_notebook(cols):
     test_set[col]=le.fit_transform(test_set[col])
 
 
-#### 결측치  제거 ####
-print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능
-train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna) 행별로 모두 삭제(dropna)
+#### Remove missing values ####
+print(train_set.isnull().sum()) 
+train_set = train_set.fillna(train_set.mean()) 
 print(train_set.isnull().sum())
-print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
+print(train_set.shape) 
  
 
 test_set = test_set.fillna(test_set.mean())
 
 
-x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
-print(x)
-print(x.columns)
-print(x.shape) # (1460, 79)
-
+x = train_set.drop(['SalePrice'], axis=1) 
 y = train_set['SalePrice']
-print(y)
-print(y.shape) # (1460, )
+
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
         train_size=0.75, shuffle=True, random_state=68)
@@ -76,10 +68,6 @@ scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
 test_set = scaler.transform(test_set)
-print(np.min(x_train))  # 0.0
-print(np.max(x_train))  # 1.0
-print(np.min(x_test))  # 1.0
-print(np.max(x_test))  # 1.0
 
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=254)
@@ -90,7 +78,6 @@ model = LinearSVR()
                 
 
 #3,4. 컴파일, 훈련, 평가, 예측
-
 # model.fit(x_train, y_train)
 scores = cross_val_score(model,x,y,cv=kfold)
 print('ACC : ',scores,'\ncross_val_score :', round(np.mean(scores),4))
