@@ -63,4 +63,13 @@ for i in model:
     #4. 평가, 예측
     result = model.score(x_test,y_test)   
     y_predict = model.predict(x_test)
-    print(f"{i} : ", round(result,4))   
+    print(f"{i} : ", round(result,4))
+    
+'''
+Perceptron() :  0.7531   
+SVC() :  0.7778
+KNeighborsClassifier() :  0.8148
+LogisticRegression() :  0.7654
+DecisionTreeClassifier() :  0.8025
+RandomForestClassifier() :  0.8395
+'''
