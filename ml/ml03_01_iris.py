@@ -37,3 +37,12 @@ for i in model:
     y_predict = model.predict(x_test)
 
     print(f"{i} : ", round(result,4))   
+
+    # Perceptron() :  0.7
+'''    
+SVC() :  0.9
+KNeighborsClassifier() :  0.9667
+LogisticRegression() :  0.9667
+DecisionTreeClassifier() :  0.9667
+RandomForestClassifier() :  0.9667
+'''
