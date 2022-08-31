@@ -6,13 +6,12 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVR
 from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score
-
 import warnings
 warnings.filterwarnings("ignore")
 
 #1.데이터
 path = './_data/ddarung/'
-train_set = pd.read_csv(path + 'train.csv', index_col =0) #id는 0번째에 위치한다. #[1459 rows x 10 columns]
+train_set = pd.read_csv(path + 'train.csv', index_col =0) 
 
 print(train_set)
 print(train_set.shape) #(1459,10)
@@ -25,11 +24,10 @@ print(train_set.columns)
 print(train_set.info())  
 print(train_set.describe())
 
-
-print(train_set.isnull().sum()) #train set에 있는 널값의 합계를 구한다.
-train_set = train_set.dropna() #결측치가 들어있는 행을 삭제한다.
-print(train_set.isnull().sum()) #결측치 제거 후 train set에 들어있는 널값의 합계를 구한다.
-x = train_set.drop(['count'], axis = 1) #x 변수에는 count 열을 제외한 나머지 컬럼을 저장한다.
+print(train_set.isnull().sum())
+train_set = train_set.dropna() 
+print(train_set.isnull().sum())
+x = train_set.drop(['count'], axis = 1) 
 
 print(x)
 print(x.columns)
@@ -59,7 +57,7 @@ allalgorithm = all_estimators(type_filter='classifier')
 print('allalgorithms : ', allalgorithm)
 print("모델의 갯수 : ", len(allalgorithm)) #모델의 갯수 :  41
 print('kfold_all_estimators')
-for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 이루는 dictionary
+for (name, algorithm) in allalgorithm : 
   try : 
       model = algorithm()
       model.fit(x_train, y_train)
