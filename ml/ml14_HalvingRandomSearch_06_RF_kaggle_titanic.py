@@ -25,7 +25,6 @@ parameters = [
     {'n_jobs' : [-1, 2, 4, 6],'min_samples_split' : [2, 3, 5, 10, 12]}             
 ]
 
-
     
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
