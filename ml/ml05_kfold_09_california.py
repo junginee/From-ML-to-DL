@@ -5,11 +5,11 @@ from sklearn.preprocessing import RobustScaler
 from sklearn.svm import LinearSVC, LinearSVR
 from sklearn.linear_model import Perceptron, LinearRegression
 
+#1. 데이터
 datasets = fetch_california_housing() 
 x = datasets.data 
 y = datasets.target 
 x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.7, shuffle=True, random_state=5)
-
 
 scaler = RobustScaler()
 scaler.fit(x_train)
