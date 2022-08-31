@@ -22,11 +22,10 @@ from sklearn. ensemble import RandomForestRegressor
 from sklearn.pipeline import make_pipeline
 
 #model = SVC()
-model = make_pipeline(MinMaxScaler(),RandomForestRegressor())  # piepline을 통해 순서대로 이동
-                                             # 스케일러 -> svc
+model = make_pipeline(MinMaxScaler(),RandomForestRegressor()) 
                                              
 #3. 훈련
-model.fit(x_train, y_train)  #piepline의  model.fit에서는 fit과 transform 동시 일어남
+model.fit(x_train, y_train)  
 
 #4. 평가, 예측
 result = model.score(x_test, y_test)
