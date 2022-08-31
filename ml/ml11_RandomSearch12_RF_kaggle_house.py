@@ -30,9 +30,6 @@ test_set.drop(drop_cols, axis = 1, inplace =True)
 sample_submission = pd.read_csv(path + 'sample_submission.csv',
                        index_col=0)
 
-#print(test_set)
-#print(test_set.shape) # (1459, 79) 
-
 
 train_set.drop(drop_cols, axis = 1, inplace =True)
 cols = ['MSZoning', 'Street','LandContour','Neighborhood','Condition1','Condition2',
@@ -49,17 +46,17 @@ for col in tqdm_notebook(cols):
     test_set[col]=le.fit_transform(test_set[col])
 
 
-#### 결측치  제거 ####
-print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능
-train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna) 행별로 모두 삭제(dropna)
+#### Remove missing values ####
+print(train_set.isnull().sum()) 
+train_set = train_set.fillna(train_set.mean()) 
 print(train_set.isnull().sum())
-print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
+print(train_set.shape)
  
 
 test_set = test_set.fillna(test_set.mean())
 
 
-x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
+x = train_set.drop(['SalePrice'], axis=1) 
 print(x)
 print(x.columns)
 print(x.shape) # (1460, 79)
@@ -87,24 +84,17 @@ kfold = KFold(n_splits=5, shuffle=True, random_state=101)
 parameters = [
         {'n_estimators':[100,200], 'max_depth':[6,8,10,12], 'min_samples_split':[2,3,5,10]},
         {'n_estimators':[100,200], 'min_samples_leaf':[3,5,7,10], 'min_samples_split':[2,3,5,10]},
-]                                                                            # 총 42번
-                    
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
-
+]                                                                    
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression는 분류임
+from sklearn.linear_model import Perceptron, LogisticRegression 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
-
-# model =  RandomForestClassifier(max_depth=10, min_samples_split=3)                         
+                
 model = RandomizedSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
-                     refit=True, n_jobs=1)                                        # n_jobs 코어 갯수
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
+                     refit=True, n_jobs=1)                                       
 
 
 #3. 컴파일, 훈련
@@ -122,7 +112,7 @@ print("model.score : ", model.score(x_test, y_test))
 #4. 평가
 y_predict = model.predict(x_test)
 print("r2_score", round(r2_score(y_test, y_predict),4))
-# r2_score 0.8881
 
+# r2_score 0.8881
 # y_pred_best = model.best_estimator_.__prepare__(x_test)
 # print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
