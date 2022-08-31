@@ -12,10 +12,6 @@ from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(x, y,
         train_size=0.8,shuffle=True, random_state=1234)
 
-# scaler = StandardScaler()
-# x_train = scaler.fit_transform(x_train)
-# x_test = scaler.transform(x_test)
-
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
 from sklearn. ensemble import RandomForestClassifier
@@ -35,4 +31,4 @@ print('cancer')
 print('model.score:', round(result,4)) 
 
 # cancer
-# model.score: 0.9298                                            
+# model.score: 0.9298                                           
