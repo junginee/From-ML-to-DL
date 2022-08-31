@@ -1,12 +1,13 @@
 import numpy as np
 import time
-import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
 from sklearn.datasets import load_wine
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.model_selection import KFold, cross_val_score, GridSearchCV
 from sklearn.metrics import accuracy_score
+import tensorflow as tf
+tf.random.set_seed(66)
                         
 #1. 데이터
 datasets = load_wine()
@@ -16,8 +17,7 @@ y= datasets.target
 print(x.shape, y.shape) #(178, 13) #(178,)
 print(np.unique(y, return_counts = True)) #[0 1 2]
 
-import tensorflow as tf
-tf.random.set_seed(66)
+
 
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=120 )
 
@@ -39,17 +39,14 @@ parameters = [
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression는 분류임
+from sklearn.linear_model import Perceptron, LogisticRegression 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-model =  RandomForestClassifier(max_depth=8, min_samples_split=3, n_estimators=200)                     
-# model = GridSearchCV(RandomForestClassifier(), parameters, cv=kfold, verbose=1,          
-#                      refit=True, n_jobs=1)                             
-                                                                           
-                                                                          
-                                                                           # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
+model =  RandomForestClassifier(max_depth=8, min_samples_split=3, n_estimators=200)                    
+      
+                                                                    
 
 
 #3. 컴파일, 훈련
