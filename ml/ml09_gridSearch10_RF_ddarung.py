@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore")
 
 #1.데이터
 path = './_data/ddarung/'
-train_set = pd.read_csv(path + 'train.csv', index_col =0) #id는 0번째에 위치한다. #[1459 rows x 10 columns]
+train_set = pd.read_csv(path + 'train.csv', index_col =0) 
 
 print(train_set)
 print(train_set.shape) #(1459,10)
