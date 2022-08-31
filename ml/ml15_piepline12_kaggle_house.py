@@ -7,8 +7,6 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 path = './_data/kaggle_house/'
 train_set = pd.read_csv(path + 'train.csv')
 test_set = pd.read_csv(path + 'test.csv')
-# print(train_set.shape) # (1460, 81)
-# print(test_set.shape)  # (1459, 80)
 
 
 # 수치형 변수와 범주형 변수 찾기
@@ -211,7 +209,7 @@ model = make_pipeline(MinMaxScaler(),RandomForestRegressor())
                                            
                                              
 #3. 훈련
-model.fit(x_train, y_train)  #piepline의  model.fit에서는 fit과 transform 동시 일어남
+model.fit(x_train, y_train) 
 
 #4. 평가, 예측
 result = model.score(x_test, y_test)
