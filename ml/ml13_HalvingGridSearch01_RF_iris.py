@@ -35,7 +35,7 @@ parameters = [
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression는 분류임
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -63,10 +63,11 @@ print("model.score : ", model.score(x_test, y_test))
 #4. 평가
 y_predict = model.predict(x_test)
 print("accuracy_score", accuracy_score(y_test, y_predict))
-# accuracy_score 0.9666666666666667
 
-# y_pred_best = model.best_estimator_.__prepare__(x_test)
-# print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
-
+'''
+accuracy_score 0.9666666666666667
+y_pred_best = model.best_estimator_.__prepare__(x_test)
+print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
 print("걸린시간 :", round((end-start),3)) 
-# 걸린시간 : 0.048
+걸린시간 : 0.048
+'''
