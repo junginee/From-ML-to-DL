@@ -5,6 +5,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split, KFold, cross_val_score  
 from sklearn.metrics import accuracy_score 
 from sklearn.svm import SVC
+import tensorflow as tf
+tf.random.set_seed(66)
 
 #1. 데이터
 datasets = load_digits()
@@ -14,17 +16,13 @@ y= datasets.target
 print(x.shape, y.shape)
 print(np.unique(y)) 
 
-import tensorflow as tf
-tf.random.set_seed(66)
-
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
 scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
-print(np.min(x_train)) 
-print(np.max(x_train))
+
 
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)   
