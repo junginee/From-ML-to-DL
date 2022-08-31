@@ -12,11 +12,10 @@ warnings.filterwarnings("ignore")
 
 #1. 데이터
 path = './_data/kaggle_bike/'
-train_set = pd.read_csv(path + 'train.csv') # + 명령어는 문자를 앞문자와 더해줌  index_col=n n번째 컬럼을 인덱스로 인식
-            
-test_set = pd.read_csv(path + 'test.csv') # 예측에서 쓸거임       
+train_set = pd.read_csv(path + 'train.csv')             
+test_set = pd.read_csv(path + 'test.csv')   
 
-######## 년, 월 ,일 ,시간 분리 ############
+######## Year, month, day, time separation ############
 
 train_set["hour"] = [t.hour for t in pd.DatetimeIndex(train_set.datetime)]
 train_set["day"] = [t.dayofweek for t in pd.DatetimeIndex(train_set.datetime)]
