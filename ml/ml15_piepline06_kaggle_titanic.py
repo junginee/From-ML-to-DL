@@ -4,10 +4,10 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 #1. 데이터
-path = './_data/kaggle_titanic/' # ".은 현재 폴더"
+path = './_data/kaggle_titanic/' 
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
-test_set = pd.read_csv(path + 'test.csv', #예측에서 쓸거야!!
+test_set = pd.read_csv(path + 'test.csv',
                        index_col=0)
 
 train_set = train_set.fillna(train_set.median())
@@ -59,11 +59,11 @@ from sklearn. ensemble import RandomForestClassifier
 from sklearn.pipeline import make_pipeline
 
 #model = SVC()
-model = make_pipeline(MinMaxScaler(),RandomForestClassifier())  # piepline을 통해 순서대로 이동
-                                             # 스케일러 -> svc
+model = make_pipeline(MinMaxScaler(),RandomForestClassifier())  
+
                                              
 #3. 훈련
-model.fit(x_train, y_train)  #piepline의  model.fit에서는 fit과 transform 동시 일어남
+model.fit(x_train, y_train) 
 
 #4. 평가, 예측
 result = model.score(x_test, y_test)
