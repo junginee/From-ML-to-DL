@@ -36,6 +36,7 @@ kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)
 model = GridSearchCV(pipe, parameters, cv= kfold, verbose=1)
 model.fit(x_train, y_train) 
 
+
 #4. 평가, 예측
 result = model.score(x_test, y_test)
 print('[cancer]')
