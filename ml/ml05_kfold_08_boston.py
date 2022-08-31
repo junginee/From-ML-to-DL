@@ -17,9 +17,8 @@ x_train, x_test, y_train, y_test = train_test_split(x, y,
                                                     test_size=0.2,
                                                     shuffle=True)
 
-
 n_splits = 5
-kfold = KFold(n_splits=n_splits, shuffle = True, random_state=100)                                                    random_state=66)
+kfold = KFold(n_splits=n_splits, shuffle = True, random_state=100)                                                 
 
 
 #2.모델구성
@@ -28,7 +27,6 @@ model = LinearSVR()
 
  
 #3,4. 컴파일, 훈련, 평가, 예측
-
 # model.fit(x_train, y_train)
 scores = cross_val_score(model,x_train,y_train,cv=kfold)
 print('ACC : ',scores,'\ncross_val_score :', round(np.mean(scores),4))
