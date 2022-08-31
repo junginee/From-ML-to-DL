@@ -6,13 +6,12 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVR
 from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score, r2_score
-
 import warnings
 warnings.filterwarnings("ignore")
 
 #1.데이터
 path = './_data/ddarung/'
-train_set = pd.read_csv(path + 'train.csv', index_col =0) #id는 0번째에 위치한다. #[1459 rows x 10 columns]
+train_set = pd.read_csv(path + 'train.csv', index_col =0) 
 
 print(train_set)
 print(train_set.shape) #(1459,10)
@@ -25,17 +24,16 @@ print(train_set.columns)
 print(train_set.info())  
 print(train_set.describe())
 
-
-print(train_set.isnull().sum()) #train set에 있는 널값의 합계를 구한다.
-train_set = train_set.dropna() #결측치가 들어있는 행을 삭제한다.
-print(train_set.isnull().sum()) #결측치 제거 후 train set에 들어있는 널값의 합계를 구한다.
-x = train_set.drop(['count'], axis = 1) #x 변수에는 count 열을 제외한 나머지 컬럼을 저장한다.
+print(train_set.isnull().sum())
+train_set = train_set.dropna()
+print(train_set.isnull().sum()) 
+x = train_set.drop(['count'], axis = 1)
 
 print(x)
 print(x.columns)
 print(x.shape) #(1459,9)
 
-y = train_set['count'] #count 컬럼만 y 변수에 저장한다.
+y = train_set['count'] 
 print(y)
 print(y.shape)
 
@@ -71,9 +69,7 @@ from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
 
 # model =  RandomForestClassifier(max_depth=10, min_samples_split=3)                         
 model = GridSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
-                     refit=True, n_jobs=1)                             # n_jobs 코어 갯수
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
+                     refit=True, n_jobs=1)                            
 
 
 #3. 컴파일, 훈련
@@ -91,7 +87,7 @@ print("model.score : ", model.score(x_test, y_test))
 #4. 평가
 y_predict = model.predict(x_test)
 print("r2_score", round(r2_score(y_test, y_predict),4))
-# r2_score 0.7556
 
+# r2_score 0.7556
 # y_pred_best = model.best_estimator_.__prepare__(x_test)
 # print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
