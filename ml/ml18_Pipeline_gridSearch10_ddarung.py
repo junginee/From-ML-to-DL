@@ -26,8 +26,6 @@ x_train, x_test, y_train, y_test = train_test_split(x, y,
 
 
 #2. 모델구성
-
-
 # model = SVC()
 # model = make_pipeline(MinMaxScaler(),PCA(),RandomForestClassifier())  # piepline을 통해 순서대로 이동
 pipe = Pipeline([('minmax', MinMaxScaler()), ('RF', RandomForestRegressor())], verbose=1)                                             
