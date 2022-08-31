@@ -22,8 +22,7 @@ scaler = RobustScaler()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
-print(np.min(x_train)) #0.0 
-print(np.max(x_train)) #1.0                                 
+                         
                 
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)                                                  
