@@ -4,6 +4,8 @@ from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split ,KFold, cross_val_score 
 from sklearn.utils import all_estimators
 from sklearn.metrics import accuracy_score
+import tensorflow as tf
+tf.random.set_seed(66)
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -14,9 +16,6 @@ y= datasets.target
 
 print(x.shape, y.shape) #(178, 13) #(178,)
 print(np.unique(y, return_counts = True)) #[0 1 2]
-
-import tensorflow as tf
-tf.random.set_seed(66)
 
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
