@@ -4,7 +4,6 @@ from sklearn.datasets import fetch_california_housing
 from sklearn.preprocessing import RobustScaler
 from sklearn.svm import LinearSVC, LinearSVR
 from sklearn.metrics import accuracy_score, r2_score
-
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -40,9 +39,7 @@ from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
 
 # model =  RandomForestClassifier(max_depth=10, min_samples_split=3)                         
 model = GridSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
-                     refit=True, n_jobs=1)                             # n_jobs 코어 갯수
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
+                     refit=True, n_jobs=1)                            
 
 
 #3. 컴파일, 훈련
