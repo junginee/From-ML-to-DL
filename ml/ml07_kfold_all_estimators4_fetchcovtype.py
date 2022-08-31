@@ -17,10 +17,6 @@ print(datasets.DESCR)
 print(x.shape, y.shape) #(581012, 54) (581012,)
 print(np.unique(y, return_counts = True)) # y :[1 2 3 4 5 6 7]  / return_counts :[211840, 283301,  35754,   2747,   9493,  17367,  20510]
 
-# import pandas as pd
-# y = pd.get_dummies(y)
-# print(y)
-
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
 n_splits = 5
@@ -33,7 +29,7 @@ allalgorithm = all_estimators(type_filter='classifier')
 print('allalgorithms : ', allalgorithm)
 print("모델의 갯수 : ", len(allalgorithm)) #모델의 갯수 :  41
 
-for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 이루는 dictionary
+for (name, algorithm) in allalgorithm : 
   try : 
       model = algorithm()
       model.fit(x_train, y_train)
