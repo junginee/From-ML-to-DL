@@ -14,11 +14,11 @@ warnings.filterwarnings("ignore")
 
 #1. 데이터
 path = './_data/kaggle_bike/'
-train_set = pd.read_csv(path + 'train.csv') # + 명령어는 문자를 앞문자와 더해줌  index_col=n n번째 컬럼을 인덱스로 인식
+train_set = pd.read_csv(path + 'train.csv') 
             
-test_set = pd.read_csv(path + 'test.csv') # 예측에서 쓸거임       
+test_set = pd.read_csv(path + 'test.csv') 
 
-######## 년, 월 ,일 ,시간 분리 ############
+######## Year, month, day, time separation ############
 
 train_set["hour"] = [t.hour for t in pd.DatetimeIndex(train_set.datetime)]
 train_set["day"] = [t.dayofweek for t in pd.DatetimeIndex(train_set.datetime)]
@@ -53,11 +53,6 @@ scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
 test_set = scaler.transform(test_set)
-print(np.min(x_train))  # 0.0
-print(np.max(x_train))  # 1.0
-
-print(np.min(x_test))  # 1.0
-print(np.max(x_test))  # 1.0
 
 
 #2. 모델구성
@@ -67,7 +62,7 @@ allalgorithm = all_estimators(type_filter='classifier')
 print('allalgorithms : ', allalgorithm)
 print("모델의 갯수 : ", len(allalgorithm)) #모델의 갯수 :  41
 
-for (name, algorithm) in allalgorithm : #name-algorithm : key-value 쌍으로 이루는 dictionary
+for (name, algorithm) in allalgorithm :
   try : 
       model = algorithm()
       model.fit(x_train, y_train)
