@@ -1,7 +1,5 @@
 import numpy as np
 import pandas as pd 
-
-
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
@@ -17,10 +15,10 @@ warnings.filterwarnings("ignore")
 
 #1.데이터
 
-path = './_data/kaggle_titanic/' # ".은 현재 폴더"
+path = './_data/kaggle_titanic/' 
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
-test_set = pd.read_csv(path + 'test.csv', #예측에서 쓸거야!!
+test_set = pd.read_csv(path + 'test.csv', 
                        index_col=0)
 
 # print(test_set) 
@@ -52,13 +50,13 @@ for col in tqdm_notebook(cols):
     train_set[col]=le.fit_transform(train_set[col])
     test_set[col]=le.fit_transform(test_set[col])
     
-x = train_set.drop(['Survived'],axis=1) #axis는 컬럼 
+x = train_set.drop(['Survived'],axis=1) 
 print(x) #(891, 9)
 
 y = train_set['Survived']
 print(y.shape) #(891,)
 
-gender_submission = pd.read_csv(path + 'gender_submission.csv',#예측에서 쓸거야!!
+gender_submission = pd.read_csv(path +
                        index_col=0)
 
 
@@ -69,10 +67,6 @@ scaler.fit(x_train)
 x_train = scaler.transform(x_train) 
 x_test = scaler.transform(x_test)
 test_set = scaler.transform(test_set)
-print(np.min(x_train))  # 0.0
-print(np.max(x_train))  # 1.0
-print(np.min(x_test))  # 1.0
-print(np.max(x_test))  # 1.0
 
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)                                                  
