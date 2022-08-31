@@ -9,15 +9,11 @@ from sklearn.metrics import accuracy_score
                         
 #1. 데이터
 datasets = load_iris()
-# print(datasets.DESCR)  #행(Instances): 150   /   열(Attributes): 4
+# print(datasets.DESCR)  
 # print(datasets.feature_names)
 
-x = datasets['data']  # .data와 동일 
+x = datasets['data']  
 y = datasets['target']  
-# print(x.shape)   # (150, 4)
-# print(y.shape)   # (150,)
-# print("y의 라벨값 : ", np.unique(y))  # 해당 데이터의 고유값을 출력해준다.
-
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
                                                     train_size=0.8,
@@ -43,12 +39,11 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-model = SVC(C=1, kernel='linear', degree=3)                                 # cv = crossvalidation
-model = GridSearchCV(SVC(), parameters, cv=kfold, verbose=1,                # 42(parameters) * 5(kfold) = 210
-                     refit=True, n_jobs=1)                                  # n_jobs 코어 갯수
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
-
+model = SVC(C=1, kernel='linear', degree=3)                               
+model = GridSearchCV(SVC(), parameters, cv=kfold, verbose=1,               
+                     refit=True, n_jobs=1)                                
+                                                                        
+                                                                         
 
 #3. 컴파일, 훈련
 import time
@@ -69,8 +64,6 @@ print("model.score : ", model.score(x_test, y_test))
 y_predict = model.predict(x_test)
 print("accuracy_score", accuracy_score(y_test, y_predict))
 # accuracy_score 0.9666666666666667
-
 # y_pred_best = model.best_estimator_.__prepare__(x_test)
 # print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
-
 print("걸린시간 :", round((end-start),3))
