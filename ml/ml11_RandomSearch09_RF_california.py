@@ -4,7 +4,6 @@ from sklearn.datasets import fetch_california_housing
 from sklearn.preprocessing import RobustScaler
 from sklearn.svm import LinearSVC, LinearSVR
 from sklearn.metrics import accuracy_score, r2_score
-
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -12,7 +11,6 @@ datasets = fetch_california_housing()
 x = datasets.data 
 y = datasets.target 
 x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.7, shuffle=True, random_state=5)
-
 
 scaler = RobustScaler()
 scaler.fit(x_train)
@@ -23,7 +21,6 @@ print(np.max(x_train)) #1.0
 
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)
-
 
 parameters = [
         {'n_estimators':[100,200], 'max_depth':[6,8,10,12], 'min_samples_split':[2,3,5,10]},
@@ -40,10 +37,7 @@ from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
 
 # model =  RandomForestClassifier(max_depth=10, min_samples_split=3)                         
 model = GridSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
-                     refit=True, n_jobs=1)                             # n_jobs 코어 갯수
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
-
+                     refit=True, n_jobs=1)                            
 
 #3. 컴파일, 훈련
 model.fit(x_train, y_train)
@@ -60,7 +54,9 @@ print("model.score : ", model.score(x_test, y_test))
 #4. 평가
 y_predict = model.predict(x_test)
 print("r2_score", round(r2_score(y_test, y_predict),4))
-# r2_score 0.9207
 
-# y_pred_best = model.best_estimator_.__prepare__(x_test)
-# print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
+'''
+r2_score 0.9207
+y_pred_best = model.best_estimator_.__prepare__(x_test)
+print('최적 튠 ACC : ', accuracy_score(y_test, y_pred_best))
+'''
