@@ -9,7 +9,6 @@ tf.random.set_seed(66)
 
 #1. 데이터
 datasets = load_iris()
-
 x = datasets['data']
 y = datasets.target
 
@@ -31,13 +30,12 @@ kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)
 
 #2. 모델구성
 from sklearn.svm import LinearSVC,SVC
-from sklearn.linear_model import Perceptron, LogisticRegression  #LogisicRegression 분류
+from sklearn.linear_model import Perceptron, LogisticRegression  
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn. ensemble import RandomForestClassifier
 
-model = SVC() #linearsvc 모델은 원핫인코딩 사용x
-
+model = SVC()
 #3,4. 컴파일, 훈련, 평가, 예측
 
 # model.fit(x_train, y_train)
