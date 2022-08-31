@@ -28,7 +28,6 @@ n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)
 
 #2. 모델구성
-
 allalgorithm = all_estimators(type_filter='classifier')
 
 print('allalgorithms : ', allalgorithm)
