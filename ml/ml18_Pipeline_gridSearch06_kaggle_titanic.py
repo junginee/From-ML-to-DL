@@ -2,13 +2,19 @@ import numpy as np
 import pandas as pd 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split, KFold
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.svm import LinearSVC, SVC
+from sklearn. ensemble import RandomForestClassifier
+from sklearn.pipeline import make_pipeline, Pipeline
+from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
+from sklearn.experimental import enable_halving_search_cv
+from sklearn. model_selection import HalvingGridSearchCV, HalvingRandomSearchCV
+
 
 #1. 데이터
-path = './_data/kaggle_titanic/' # ".은 현재 폴더"
+path = './_data/kaggle_titanic/' 
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
-test_set = pd.read_csv(path + 'test.csv', #예측에서 쓸거야!!
+test_set = pd.read_csv(path + 'test.csv', 
                        index_col=0)
 
 train_set = train_set.fillna(train_set.median())
@@ -22,8 +28,6 @@ train_set = train_set.fillna(train_set.mean())
 
 
 print("===============================")
-
-
 print(train_set) 
 print(train_set.isnull().sum())
 
@@ -52,13 +56,6 @@ x_train, x_test, y_train, y_test = train_test_split(x, y,
 
 
 #2. 모델구성
-from sklearn.svm import LinearSVC, SVC
-from sklearn. ensemble import RandomForestClassifier
-from sklearn.pipeline import make_pipeline, Pipeline
-
-
-# model = SVC()
-# model = make_pipeline(MinMaxScaler(),PCA(),RandomForestClassifier())  # piepline을 통해 순서대로 이동
 pipe = Pipeline([('minmax', MinMaxScaler()), ('RF', RandomForestClassifier())], verbose=1)                                             
 
 parameters = [
@@ -68,17 +65,9 @@ parameters = [
 
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)
-# gridsearch 사용 시 
-# 언더바 2개 사용
-# 언더바 2개 앞에는 내가 위에서 지정한 문자열, 뒤에는 하이퍼파라미터 이름 기재
-                                            
+                                           
 #3. 훈련
-from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
-from sklearn.experimental import enable_halving_search_cv
-from sklearn. model_selection import HalvingGridSearchCV, HalvingRandomSearchCV
-
 model = GridSearchCV(pipe, parameters, cv= kfold, verbose=1)
-
 model.fit(x_train, y_train) 
 
 #4. 평가, 예측
