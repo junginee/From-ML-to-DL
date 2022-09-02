@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split, StratifiedKFold,\
     HalvingRandomSearchCV
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 import warnings
-warnings.filterwarnings('ignore') # warnig 출력 안함
+warnings.filterwarnings('ignore') 
 
 # pandas의 y라벨의 종류 확인 train_set.columns.values
 # numpy에서는 np.unique(y, return_counts=True)
