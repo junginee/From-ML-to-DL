@@ -11,8 +11,6 @@ y = datasets['target']
 
 df = pd.DataFrame(x, 
      columns=[['sepal length', 'sepal width', 'petal length', 'petal width']])
-     #컬럼명을 사용하기 위해 판다스 형태로 바꿔줌
-     #컬럼명은 히트맵에서 show
 
 df['Target(Y)'] = y
 print(df) #[150 rows x 5 columns]
