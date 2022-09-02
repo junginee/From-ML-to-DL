@@ -1,6 +1,5 @@
-# 실습
-# feature importance가 전체 중요도해서 하위 20~25% 컬럼들을 제거하여
-# 데이터셋 재구성후
+# feature importance 전체 중요도에서 하위 20~25% 칼럼들을 제거하여
+# 데이터셋 재구성 후
 # 각 모델별로 돌려서 결과 도출
 # 기존 모델결과와 비교
 
@@ -47,3 +46,13 @@ for model in models:
         print('XGB 의 드랍후 스코어: ', score)
     else:
         print(str(model).strip('()'), '의 드랍후 스코어: ', score)
+
+# 자를 갯수:  1
+# DecisionTreeClassifier 의 스코어:         1.0
+# DecisionTreeClassifier 의 드랍후 스코어:  1.0
+# RandomForestClassifier 의 스코어:         1.0
+# RandomForestClassifier 의 드랍후 스코어:  1.0
+# GradientBoostingClassifier 의 스코어:         1.0
+# GradientBoostingClassifier 의 드랍후 스코어:  1.0
+# XGB 의 스코어:         1.0
+# XGB 의 드랍후 스코어:  1.0
