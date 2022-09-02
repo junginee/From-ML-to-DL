@@ -34,7 +34,7 @@ def plot_feature_importances_dataset(model):
     
 for i in range(4):
     # 3. 훈련
-    plt.subplot(2,2,i+1)                # nrows=2, ncols=1, index=1
+    plt.subplot(2,2,i+1)               
     model_list[i].fit(x_train, y_train)
 
 
