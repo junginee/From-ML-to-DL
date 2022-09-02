@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split, KFold,\
     HalvingRandomSearchCV
 from sklearn.preprocessing import MinMaxScaler
 import warnings
-warnings.filterwarnings('ignore') # warnig 출력 안함
+warnings.filterwarnings('ignore')
 
 encording_columns = ['MSZoning','Street','Alley','LotShape','LandContour','Utilities','LotConfig',
                     'LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle',
