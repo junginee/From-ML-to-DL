@@ -17,8 +17,7 @@ model = XGBRegressor()
 
 #3. 훈련
 model.fit(x_train, y_train)
-print(model, ':', model.feature_importances_) #feature 중요도를 알 수 有
-
+print(model, ':', model.feature_importances_) 
 import matplotlib.pyplot as plt
 from xgboost.plotting import plot_importance
 plot_importance(model)
