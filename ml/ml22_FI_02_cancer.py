@@ -1,8 +1,9 @@
-# 실습
-# feature importance가 전체 중요도해서 하위 20~25% 컬럼들을 제거하여
-# 데이터셋 재구성후
-# 각 모델별로 돌려서 결과 도출
-# 기존 모델결과와 비교
+'''
+feature importance가 전체 중요도해서 하위 20~25% 컬럼들을 제거하여
+데이터셋 재구성후
+각 모델별로 돌려서 결과 도출
+기존 모델결과와 비교
+'''
 
 import numpy as np
 from sklearn.datasets import load_breast_cancer
@@ -48,3 +49,13 @@ for model in models:
     else:
         print(str(model).strip('()'), '의 드랍후 스코어: ', score)
  
+
+# 자를 갯수:  6
+# DecisionTreeClassifier 의 스코어:         0.8947368421052632
+# DecisionTreeClassifier 의 드랍후 스코어:  0.8859649122807017
+# RandomForestClassifier 의 스코어:         0.9298245614035088
+# RandomForestClassifier 의 드랍후 스코어:  0.9298245614035088
+# GradientBoostingClassifier 의 스코어:         0.9122807017543859
+# GradientBoostingClassifier 의 드랍후 스코어:  0.9122807017543859
+# XGB 의 스코어:         0.9385964912280702
+# XGB 의 드랍후 스코어:  0.9385964912280702
