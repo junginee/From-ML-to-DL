@@ -1,4 +1,3 @@
-
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
@@ -14,11 +13,10 @@ w = tf.Variable(tf.random_normal([1]), dtype=tf.float32)
 hypothesis = x * w
 loss = tf.reduce_mean(tf.square(hypothesis - y))
 
-#경사하강법 구현 by gradient, descent, update
 lr = 0.1
 gradient = tf.reduce_mean((w * x - y) * x)
 descent = w -lr * gradient
-update = w.assign(descent) #assign 함수 사용해야 값 업데이트
+update = w.assign(descent) 
 
 w_history = [ ]
 loss_history = [ ]
@@ -35,7 +33,6 @@ for step in range(21) :
     w_history.append(w_v)
     loss_history.append(loss_v)
 
-############ [실습] R2 ############
 y_predict = x_test * w_v
 print(y_predict)
 
@@ -46,8 +43,3 @@ mae = mean_absolute_error(y_test, y_predict)
 print("mae :", mae)
 
 sess.close()    
-
-
-      
-        
-
