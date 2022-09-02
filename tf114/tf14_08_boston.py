@@ -1,6 +1,9 @@
 import tensorflow as tf 
 from sklearn.datasets import load_boston
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score,mean_absolute_error
+
+# 1. 데이터
 datasets = load_boston()
 x_data, y_data= datasets.data,datasets.target
 
@@ -13,7 +16,7 @@ x_train, x_test, y_train, y_test = train_test_split(x_data,y_data, train_size=0.
 x = tf.compat.v1.placeholder(tf.float32, shape=[None,x_data.shape[1]])
 y = tf.compat.v1.placeholder(tf.float32, shape=[None,1])
 
-w = tf.compat.v1.Variable(tf.compat.v1.random_normal([x_data.shape[1],1],dtype=tf.float32), name = 'weights') #행렬곱 shape 을 맞춰줘야함 y(h)가 (5, 1)이므로 w(3,1)을 곱해줘야함
+w = tf.compat.v1.Variable(tf.compat.v1.random_normal([x_data.shape[1],1],dtype=tf.float32), name = 'weights') 
 b = tf.compat.v1.Variable(tf.compat.v1.random_normal([1],dtype=tf.float32), name='bias')
 
 # 2.모델
@@ -36,8 +39,6 @@ for epochs in range(epoch):
         print(epochs, 'loss : ', cost_val)
 
 # 4.평가, 예측
-from sklearn.metrics import r2_score,mean_absolute_error
-
 y_predict = sess.run(h, feed_dict={x:x_test})
 
 r2 = r2_score(y_test,y_predict)
