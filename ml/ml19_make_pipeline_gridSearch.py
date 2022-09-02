@@ -33,9 +33,6 @@ parameters = [
 n_splits = 5
 kfold = KFold(n_splits=n_splits, shuffle = True, random_state=66)
 
-# gridsearch 사용 시 
-# 언더바 2개 사용
-# 언더바 2개 앞에는 내가 위에서 지정한 문자열, 뒤에는 하이퍼파라미터 이름 기재
                                             
 #3. 훈련
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
