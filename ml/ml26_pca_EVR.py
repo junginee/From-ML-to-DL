@@ -2,11 +2,8 @@ import numpy as np
 from sklearn.datasets import load_boston, load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA 
-#https://www.youtube.com/watch?v=FgakZw6K1QQ
-
 import sklearn as sk
 print(sk.__version__) #0.24.2
-
 import warnings
 warnings.filterwarnings(action = 'ignore')
 
@@ -17,15 +14,14 @@ y = datasets.target
 
 print(x.shape, y.shape) #(506, 13) (506,)
 
-pca = PCA(n_components=10)   # pca = 차원(컬럼)축소
+pca = PCA(n_components=10)   
 x = pca.fit_transform(x)
-# print(x.shape) #(506, 2)
 
-pca_EVR = pca.explained_variance_ratio_   #설명된 변수 비율
+pca_EVR = pca.explained_variance_ratio_
 print(pca_EVR)
-print(sum(pca_EVR)) #0.999998352533973
+print(sum(pca_EVR)) 
 
-cumsum = np.cumsum(pca_EVR) #누적합
+cumsum = np.cumsum(pca_EVR) 
 print(cumsum)
 
 import matplotlib.pyplot as plt
