@@ -22,12 +22,9 @@ y_data = [[0,0,1],
                 [1,0,0]]
 
  
-
-x = tf. compat. v1.placeholder(tf.float32, shape = [None,4]) #shape주의
+x = tf. compat. v1.placeholder(tf.float32, shape = [None,4]) 
 w = tf.Variable(tf.random.normal([4, 3]), name='weight')
-b = tf.Variable(tf.random.normal([1, 3]), name='bias')  # 출력노드 개수에 맞춰서 ! (덧셈으로 맞춰준거)
-                                                        # y의 출력 개수만큼 출력 (행렬의 덧셈방법-행과 열의 갯수가 같아야함)
-                                                        # 더해지는건 한개인데 나가는게(y 개수가) 3개라서 1,3
+b = tf.Variable(tf.random.normal([1, 3]), name='bias')  
 
 y = tf.compat.v1.placeholder(tf.float32, shape = [None, 3] )
 
