@@ -5,10 +5,10 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 #1. 데이터
-path = './_data/kaggle_titanic/' # ".은 현재 폴더"
+path = './_data/kaggle_titanic/' 
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
-test_set = pd.read_csv(path + 'test.csv', #예측에서 쓸거야!!
+test_set = pd.read_csv(path + 'test.csv', 
                        index_col=0)
 
 train_set = train_set.fillna(train_set.median())
