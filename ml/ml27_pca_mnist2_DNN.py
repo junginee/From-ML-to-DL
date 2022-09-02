@@ -45,42 +45,12 @@ print('실행 시간 :', end-start)
 print('accuracy :', result)
 
 
-# 1. 나의 최고의 DNN
-# time = 87.61148142814636
-# acc = 0.9375
-# keras30_dnn1_mnist
 
-
-# 2. 나의 최고의 CNN
-# time = 928.7224872112274
-# acc = 0.8612
-# keras29_Fashion_mnist_CNN
-
-
-# 3. PCA 0.95  #154
-# time = ???
-# acc = ???
-
-
-# 4. PCA 0.99  #331
-# time = ???
-# acc = ???
-
-
-# 5. PCA 0.999  #486
-# time = ???
-# acc = ???
-
-
-# 5. PCA 1.0  #713 
-# time =  1094.127665758133
-# acc =  0.9574285714285714
-
-# 1. 나의 최고의 DNN
+# 1. best DNN
 # 시간:  362.1198184490204
 # acc스코어 :  0.9445
 
-# 2. 나의 최고의 CNN
+# 2. best CNN
 # 시간:  152.1847949028015
 # acc스코어 :  0.9765
 
