@@ -67,4 +67,4 @@ predict = x_test * w_val + b_val
 
 print("3. [6,7,8] 예측 : " , predict.eval(feed_dict={x_test:x_test_d}))
 
-sess.close()
+sess.close()        
