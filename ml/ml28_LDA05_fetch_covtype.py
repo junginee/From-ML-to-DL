@@ -1,10 +1,9 @@
 import numpy as np
 import pandas as pd
-from sklearn.datasets import load_iris, load_breast_cancer
-from sklearn.datasets import load_wine, fetch_covtype
+from sklearn.datasets import fetch_covtype
 from sklearn.datasets import load_digits
+from sklearn.preprocessing import StandardScaler
 from xgboost import XGBClassifier
-from sklearn.decomposition import PCA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
@@ -15,25 +14,13 @@ x = datasets.data
 y = datasets.target
 print(x.shape) #(581012, 54)
 
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
-# scaler = MinMaxScaler()
-scaler = StandardScaler()
-# scaler = MaxAbsScaler()
-# scaler = RobustScaler()
 
+scaler = StandardScaler()
 x = scaler.fit_transform(x)
 le = LabelEncoder()
 y = le.fit_transform(y)
 
 print(np.unique(y))  #[0 1 2 3 4 5 6]
-
-# pca = PCA(n_components=20)  
-# x = pca.fit_transform(x)
-# print(x.shape)  
-
-# pca_EVR = pca.explained_variance_ratio_
-# cumsum = np.cumsum(pca_EVR) 
-# print(cumsum)
 
 # LDA (LDA의 n_components에 들어가는 값은 'y라벨-1' 이하 값 기재)
 lda = LinearDiscriminantAnalysis(n_components=6)
@@ -44,15 +31,9 @@ print(x.shape)
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, train_size=0.8, random_state=72, shuffle=True, stratify=y)
 
-# LDA 
-# lda = LinearDiscriminantAnalysis(n_components=6)
-# lda.fit(x_train, y_train)
-# x_train = lda.transform(x_train)
-# x_test = lda.transform(x_test)
 print(x_train.shape, x_test.shape) 
 print(np.unique(y_train, return_counts=True))  
 #(array([0, 1], dtype=int64), array([170, 285], dtype=int64))
-
 
 #2. 모델
 model = XGBClassifier(tree_method='gpu_hist', predictor='gpu_predictor', gpu_id=0)
