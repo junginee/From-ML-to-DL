@@ -1,7 +1,3 @@
-#############################################################
-# [실습] ml20_feature_importances02 feature importance가 적은 feature를 제거
-#############################################################
-
 import numpy as np
 import pandas as pd
 from sklearn.datasets import load_diabetes
