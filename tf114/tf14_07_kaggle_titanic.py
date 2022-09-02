@@ -2,13 +2,14 @@ import pandas as pd
 import numpy as np 
 import tensorflow as tf 
 tf.compat.v1.set_random_seed(123)
+from sklearn.metrics import r2_score,mean_absolute_error,accuracy_score
 
 #1.데이터
 path = './_data/kaggle_titanic/'
 train_set = pd.read_csv(path + 'train.csv',index_col =0)
 test_set = pd.read_csv(path + 'test.csv', index_col=0)
 
-##########전처리############
+##########preprocessing############
 train_test_data = [train_set, test_set]
 sex_mapping = {"male":0, "female":1}
 for dataset in train_test_data:
@@ -68,7 +69,7 @@ b = tf.Variable(tf.zeros([1]), name='bias')
 h = tf.sigmoid(tf.matmul(x, w) + b)  
 
 # 3-1.컴파일 
-loss = -tf.reduce_mean(y*tf.log(h)+(1-y)*tf.log(1-h))               # binary cross entropy
+loss = -tf.reduce_mean(y*tf.log(h)+(1-y)*tf.log(1-h))              
 optimizer = tf.train.AdamOptimizer(learning_rate = 1e-6)
 train = optimizer.minimize(loss)
 
@@ -84,14 +85,9 @@ for epochs in range(epoch):
 print(epochs, 'loss : ', cost_val)
 
 # #4.평가, 예측
-y_predict = sess.run(tf.cast(sess.run(h,feed_dict={x:x_test})>0.5, dtype=tf.float32))             #텐서를 새로운 형태로 캐스팅하는데 사용한다.부동소수점형에서 정수형으로 바꾼 경우 소수점 버림.
-                                                                        #Boolean형태인 경우 True이면 1, False이면 0을 출력한다.
-
-from sklearn.metrics import r2_score,mean_absolute_error,accuracy_score
-
+y_predict = sess.run(tf.cast(sess.run(h,feed_dict={x:x_test})>0.5, dtype=tf.float32))         
 acc = accuracy_score(y_test,y_predict)
 print('acc : ', acc)
-
 
 sess.close()
 
