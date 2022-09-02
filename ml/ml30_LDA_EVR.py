@@ -1,7 +1,5 @@
 import numpy as np
 import pandas as pd
-from sklearn.datasets import load_iris, load_breast_cancer
-from sklearn.datasets import load_wine, fetch_covtype
 from sklearn.datasets import load_digits
 from sklearn.decomposition import PCA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
@@ -11,10 +9,6 @@ from xgboost import XGBClassifier
 from sklearn.preprocessing import LabelEncoder
 
 #1. 데이터
-# datasets =  load_iris() #(150, 4)->(150, 2)
-# datasets =  load_breast_cancer() #(569, 30)->(569, 1)
-# datasets =  load_wine() #(178, 13)->(178, 2)
-#datasets =  fetch_covtype() #(581012, 54)->(581012, 6)
 datasets =  load_digits() #(1797, 64)->(1797, 9)
 
 x = datasets.data
