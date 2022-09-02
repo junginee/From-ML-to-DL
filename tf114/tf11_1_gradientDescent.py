@@ -1,4 +1,3 @@
-
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
@@ -38,6 +37,3 @@ print("============ w history ===============")
 print(w_history)
 print("============ loss history ===============")  
 print(loss_history)
-      
-        
-
