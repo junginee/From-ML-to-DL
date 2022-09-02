@@ -13,7 +13,7 @@ sess.close()
 # 2. 초기화 두번째
 sess = tf.compat.v1.Session()
 sess.run(tf.compat.v1.global_variables_initializer())
-bbb = sample .eval(session=sess)      #이 과정을 거쳐야 진정한 변수로 다시 태어난다.
+bbb = sample .eval(session=sess)     
 print("bbb:", bbb,'\n')           #bbb: [-1.5080816]
 sess.close
 
@@ -23,4 +23,3 @@ sess.run(tf.compat.v1.global_variables_initializer())
 ccc = sample .eval()
 print("ccc :", ccc,'\n')    # ccc : [-1.5080816]
 sess.close
-
