@@ -35,7 +35,7 @@ r2 = r2_score(y_test, y_predict)
 print("r2 : ", round(r2,4))
 
 print("=======================")
-print(model, ':', model.feature_importances_) #feature 중요도를 알 수 有
+print(model, ':', model.feature_importances_) 
 
 # model.score :  0.1482
 # DecisionTreeRegressor() : [0.0897716  0.0230252  0.2339448  0.05252239 0.04966723 0.06435879
