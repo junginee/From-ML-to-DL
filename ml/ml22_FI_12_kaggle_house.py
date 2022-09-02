@@ -28,9 +28,9 @@ non_encording_columns = ['MSSubClass','LotFrontage','LotArea','OverallQual','Ove
 
 #1. 데이터
 path = 'D:\study_data\_data\kaggle_house/'
-train_set = pd.read_csv(path + 'train.csv') # + 명령어는 문자를 앞문자와 더해줌  index_col=n n번째 컬럼을 인덱스로 인식
+train_set = pd.read_csv(path + 'train.csv') 
             
-test_set = pd.read_csv(path + 'test.csv') # 예측에서 쓸거임  3
+test_set = pd.read_csv(path + 'test.csv') 
 
 ###################### IQR 이용해서 train_set에서 이상치나온 행 삭제########################
 def detect_outliers(df, n, features):
@@ -67,7 +67,6 @@ train_set.shape
 
 print(train_set)
 
-#################긁어온거####################################
 
 num_strong_corr = ['SalePrice','OverallQual','TotalBsmtSF','GrLivArea','GarageCars',
                    'FullBath','YearBuilt','YearRemodAdd']
@@ -110,7 +109,7 @@ total = train_set.isnull().sum().sort_values(ascending=False)
 percent = (train_set.isnull().sum()/train_set.isnull().count()).sort_values(ascending=False)
 missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
 
-print(train_set.isnull().sum().sum(), test_set.isnull().sum().sum()) # 0 0 출력시 결측치 확인 끝
+print(train_set.isnull().sum().sum(), test_set.isnull().sum().sum()) 
 
 id_test = test_set['Id']
 
@@ -185,8 +184,6 @@ for df in [train_set, test_set]:
 train_set.drop(['MSZoning','Neighborhood' , 'Condition2', 'MasVnrType', 'ExterQual', 'BsmtQual','CentralAir', 'Electrical', 'KitchenQual', 'SaleType', 'Cond2_num', 'Mas_num', 'CA_num', 'Elc_num', 'SlTy_num'], axis = 1, inplace = True)
 test_set.drop(['MSZoning', 'Neighborhood' , 'Condition2', 'MasVnrType', 'ExterQual', 'BsmtQual','CentralAir', 'Electrical', 'KitchenQual', 'SaleType', 'Cond2_num', 'Mas_num', 'CA_num', 'Elc_num', 'SlTy_num'], axis = 1, inplace = True)
 
-
-##############################긁어온거끝################################
 
 x = train_set.drop(['SalePrice'], axis=1)
 y = train_set['SalePrice']
