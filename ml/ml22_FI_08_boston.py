@@ -1,4 +1,3 @@
-# 실습
 # feature importance가 전체 중요도해서 하위 20~25% 컬럼들을 제거하여
 # 데이터셋 재구성후
 # 각 모델별로 돌려서 결과 도출
@@ -47,3 +46,14 @@ for model in models:
         print('XGB 의 드랍후 스코어: ', score)
     else:
         print(str(model).strip('()'), '의 드랍후 스코어: ', score)
+'''
+자를 갯수:  3
+DecisionTreeRegressor 의 스코어:         0.819132062854431
+DecisionTreeRegressor 의 드랍후 스코어:  0.8788168011481795
+RandomForestRegressor 의 스코어:         0.919503768524925
+RandomForestRegressor 의 드랍후 스코어:  0.916677169671509
+GradientBoostingRegressor 의 스코어:         0.9144701851632612
+GradientBoostingRegressor 의 드랍후 스코어:  0.9150789606965627
+XGB 의 스코어:         0.9111783299858156
+XGB 의 드랍후 스코어:  0.9045261349938265        
+'''
