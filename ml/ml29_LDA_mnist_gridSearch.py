@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestRegressor,RandomForestClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from xgboost import XGBClassifier
 from sklearn.preprocessing import MinMaxScaler
-import time
+
 
 (x_train, y_train), (x_test, y_test)=mnist.load_data()  
 
