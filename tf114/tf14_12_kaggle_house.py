@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score, r2_score, mean_absolute_error
 import tensorflow as tf
 from collections import Counter
 
-
+         
 encording_columns = ['MSZoning','Street','Alley','LotShape','LandContour','Utilities','LotConfig',
                     'LandSlope','Neighborhood','Condition1','Condition2','BldgType','HouseStyle',
                     'RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','ExterQual',
