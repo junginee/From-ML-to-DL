@@ -1,6 +1,7 @@
 import tensorflow as tf 
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
+
 datasets = load_diabetes()
 x_data, y_data= datasets.data,datasets.target
 
@@ -13,17 +14,19 @@ x_train, x_test, y_train, y_test = train_test_split(x_data,y_data, train_size=0.
 x = tf.compat.v1.placeholder(tf.float32, shape=[None,x_data.shape[1]])
 y = tf.compat.v1.placeholder(tf.float32, shape=[None,1])
 
-w = tf.compat.v1.Variable(tf.compat.v1.random_normal([x_data.shape[1],1],dtype=tf.float32), name = 'weights') #행렬곱 shape 을 맞춰줘야함 y(h)가 (5, 1)이므로 w(3,1)을 곱해줘야함
+w = tf.compat.v1.Variable(tf.compat.v1.random_normal([x_data.shape[1],1],dtype=tf.float32), name = 'weights')
 b = tf.compat.v1.Variable(tf.compat.v1.random_normal([1],dtype=tf.float32), name='bias')
+
 
 # 2.모델
 h = tf.compat.v1.matmul(x, w) + b  
 
-# 3-1.컴파일
 
+# 3-1.컴파일
 loss = tf.reduce_mean(tf.square(h - y))
 optimizer = tf.train.AdamOptimizer(learning_rate = 1) 
 train = optimizer.minimize(loss)
+
 
 # 3-2.훈련
 sess = tf.compat.v1.Session()
