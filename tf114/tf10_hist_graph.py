@@ -1,23 +1,16 @@
-# 실습
-#lr 수정해서 epoch 100번 이하로 줄이기
-#step = 100 이하, w=1.99, b=0.99
-
-
 import tensorflow as tf
 tf.set_random_seed(123)
 
 #1. 데이터
 x_train_data = [1, 2, 3]
 y_train_data = [3, 5, 7]
-x_train = tf.placeholder(tf.float32, shape=[None]) #레이어마다 shape 명시
+x_train = tf.placeholder(tf.float32, shape=[None])
 y_train = tf.placeholder(tf.float32, shape=[None])
-w = tf.Variable(tf.random_normal([1]), dtype=tf.float32) #[숫자] = 출력되는 개수 
-b = tf.Variable(tf.random_normal([1]), dtype=tf.float32) #[숫자] = 출력되는 개수
-
+w = tf.Variable(tf.random_normal([1]), dtype=tf.float32)
+b = tf.Variable(tf.random_normal([1]), dtype=tf.float32)
 
 #2. 모델구성
 hypothesis = x_train * w + b
-
 
 #3-1. 컴파일
 loss = tf.reduce_mean(tf.square(hypothesis - y_train))
@@ -26,13 +19,12 @@ loss = tf.reduce_mean(tf.square(hypothesis - y_train))
 optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.172)
 train = optimizer.minimize(loss) 
 
-
 #3-2. 훈련
 loss_val_list = [ ]
 w_val_list=[ ]
 with tf.compat.v1.Session() as sess : 
 
-    sess.run(tf.global_variables_initializer()) #세션 열기
+    sess.run(tf.global_variables_initializer()) 
     epochs =101
     for step in range(epochs):
         # sess.run(train)
