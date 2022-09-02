@@ -17,7 +17,7 @@ x = datasets.data
 y = datasets.target
 # print(x.shape, y.shape) #(506, 13) (506,)
 
-pca = PCA(n_components=11)   # pca = 차원(컬럼)축소
+pca = PCA(n_components=11)  
 x = pca.fit_transform(x)
 # print(x.shape) #(506, 2)
 
@@ -32,7 +32,7 @@ from xgboost import XGBClassifier, XGBRegressor
 model = RandomForestRegressor()
 
 #3. 훈련
-model.fit(x_train, y_train) #eval_metric='error' >> randomforest에는 적용 X
+model.fit(x_train, y_train) 
 
 #4. 평가, 예측
 results = model.score(x_test, y_test)
