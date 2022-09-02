@@ -50,7 +50,7 @@ def plot_feature_importances(model):
 
 plot_feature_importances(model)
 plt.show()  
-
+     
 # model.score :  0.1482
 # DecisionTreeRegressor() : [0.0897716  0.0230252  0.2339448  0.05252239 0.04966723 0.06435879
 #  0.04145477 0.00953339 0.36244456 0.07327727]
