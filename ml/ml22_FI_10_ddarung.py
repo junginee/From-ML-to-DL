@@ -1,4 +1,3 @@
-# 실습
 # feature importance가 전체 중요도해서 하위 20~25% 컬럼들을 제거하여
 # 데이터셋 재구성후
 # 각 모델별로 돌려서 결과 도출
@@ -13,12 +12,12 @@ from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 import warnings
-warnings.filterwarnings('ignore') # warnig 출력 안함
+warnings.filterwarnings('ignore') 
 
 
 # 1. 데이터
 path = 'D:\study_data\_data\ddarung/'
-train_set = pd.read_csv(path+'train.csv',index_col=0) # index_col = n : n번째 칼럼을 인덱스로 인식
+train_set = pd.read_csv(path+'train.csv',index_col=0)
 # print(train_set)
 # print(train_set.shape) # (1459, 10)
 
@@ -26,14 +25,14 @@ test_set = pd.read_csv(path+'test.csv', index_col=0)
 # print(test_set)
 # print(test_set.shape) # (715, 9)
 
-### 결측치 처리(일단 제거로 처리) ###
+### Missing value processing ###
 print(train_set.info())
-print(train_set.isnull().sum()) # 결측치 전부 더함
-# train_set = train_set.dropna() # nan 값(결측치) 열 없앰
-train_set = train_set.fillna(0) # 결측치 0으로 채움
-print(train_set.isnull().sum()) # 없어졌는지 재확인
+print(train_set.isnull().sum()) 
+# train_set = train_set.dropna() 
+train_set = train_set.fillna(0) 
+print(train_set.isnull().sum())
 
-x = train_set.drop(['count'], axis=1) # axis = 0은 열방향으로 쭉 한줄(가로로 쭉), 1은 행방향으로 쭉 한줄(세로로 쭉)
+x = train_set.drop(['count'], axis=1) 
 y = train_set['count']
 
 print(x.shape, y.shape) # (1328, 9) (1328,)
