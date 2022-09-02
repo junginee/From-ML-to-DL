@@ -3,7 +3,6 @@ from sklearn.datasets import load_breast_cancer
 tf.compat.v1.set_random_seed(66)
 
 # 1. 데이터
-
 datasets = load_breast_cancer()
 x_data = datasets.data
 y_data = datasets.target
@@ -21,20 +20,11 @@ x_train, x_test, y_train, y_test = train_test_split(x_data,y_data,
 x = tf.compat.v1.placeholder(tf.float32, shape = [None, 30] )
 y = tf.compat.v1.placeholder(tf.float32, shape = [None, 1] )
 
-# w = tf.Variable(tf.random.normal([30,1])) #값이 엄청 낮고 nan값 출력 
-# b = tf.Variable(tf.random.normal([1])) #0.64 수준 값은 출력된다
-
-# 초기값을 설정하는 것에서 왜 정규분포를 따르는
-# random.normal() 사용하면 nan 출력?  
 w = tf.Variable(tf.zeros([30,1]),name='weight')
 b = tf.Variable(tf.zeros([1]), name='bias')
 
-
-# hypothesis 에서 값을 제한한다 ! 
-hypothesis = tf.sigmoid(tf.matmul(x, w) + b) # 값을 0-1 사이의 값을 내보낸다 
+hypothesis = tf.sigmoid(tf.matmul(x, w) + b) 
 cost = -tf.reduce_mean(y*tf.log(hypothesis)+(1-y)*tf.log(1-hypothesis))
-#바이너리 크로스 엔트로피 
-#결과값이 마이너스로 나오기 때문에 - 붙여 줘야한다 
 
 # 3-1. 컴파일
 loss =   - tf.reduce_mean(y*tf.log(hypothesis)+(1-y)*tf.log(1-hypothesis))
