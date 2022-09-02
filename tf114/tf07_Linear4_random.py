@@ -1,5 +1,3 @@
-# y = wx + b
-
 import tensorflow as tf
 tf.set_random_seed(123)
 
@@ -7,16 +5,14 @@ tf.set_random_seed(123)
 x = [1, 2, 3, 4, 5]
 y = [1, 2, 3, 4, 5]
 
-
-
 # w = tf.Variable(111, dtype=tf.float32)
 # b = tf.Variable(10, dtype=tf.float32)
-w = tf.Variable(tf.random_normal([1]), dtype=tf.float32) #[숫자] = 출력되는 개수 
-b = tf.Variable(tf.random_normal([1]), dtype=tf.float32) #[숫자] = 출력되는 개수
+w = tf.Variable(tf.random_normal([1]), dtype=tf.float32)  
+b = tf.Variable(tf.random_normal([1]), dtype=tf.float32) 
 
-sess = tf.compat.v1.Session() #세션 열기
-sess.run(tf.global_variables_initializer()) #초기화
-print(sess.run(w)) #런
+sess = tf.compat.v1.Session()
+sess.run(tf.global_variables_initializer())
+print(sess.run(w)) 
 
 '''
 #2. 모델구성
