@@ -3,11 +3,8 @@ import numpy as np
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA 
-#https://www.youtube.com/watch?v=FgakZw6K1QQ
-
 import sklearn as sk
 print(sk.__version__) #0.24.2
-
 import warnings
 warnings.filterwarnings(action = 'ignore')
 
@@ -17,7 +14,7 @@ x = datasets.data
 y = datasets.target
 print(x.shape, y.shape) #(569, 30) (569,)
 
-pca = PCA(n_components=14)   # pca = 차원(컬럼)축소
+pca = PCA(n_components=14)  
 x = pca.fit_transform(x)
 print(x.shape) #(569, 14)
 
@@ -32,7 +29,7 @@ from xgboost import XGBClassifier, XGBRegressor
 model = RandomForestClassifier()
 
 #3. 훈련
-model.fit(x_train, y_train) #eval_metric='error' >> randomforest에는 적용 X
+model.fit(x_train, y_train)
 
 #4. 평가, 예측
 results = model.score(x_test, y_test)
