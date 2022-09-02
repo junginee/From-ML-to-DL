@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
-from sklearn.datasets import load_iris, load_breast_cancer
-from sklearn.datasets import load_wine, fetch_covtype
-from sklearn.datasets import load_digits
+from sklearn.datasets import load_breast_cancer
 from xgboost import XGBClassifier
 from sklearn.decomposition import PCA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
@@ -15,25 +13,14 @@ x = datasets.data
 y = datasets.target
 print(x.shape) #(569, 30)
 
-from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
-# scaler = MinMaxScaler()
+from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
-# scaler = MaxAbsScaler()
-# scaler = RobustScaler()
 
 x = scaler.fit_transform(x)
 le = LabelEncoder()
 y = le.fit_transform(y)
 
 print(np.unique(y))  #[0 1]
-
-# pca = PCA(n_components=20)  
-# x = pca.fit_transform(x)
-# print(x.shape)  
-
-# pca_EVR = pca.explained_variance_ratio_
-# cumsum = np.cumsum(pca_EVR) 
-# print(cumsum)
 
 # LDA (LDA의 n_components에 들어가는 값은 'y라벨-1' 이하 값 기재)
 lda = LinearDiscriminantAnalysis(n_components=1)
@@ -72,5 +59,3 @@ print('걸린 시간 : ', end - start)
 # LDA 결과
 # 결과 :  0.9824561403508771
 # 걸린 시간 :  0.3450758457183838
-
-
