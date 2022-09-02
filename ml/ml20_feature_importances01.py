@@ -32,7 +32,7 @@ acc = accuracy_score(y_test, y_predict)
 print("accuacy score : ", round(acc,4))
 
 print("=======================")
-print(model, ':', model.feature_importances_) #feature 중요도를 알 수 有
+print(model, ':', model.feature_importances_)
 
 # DecisionTreeClassifier() # [0.01088866 0.01253395 0.54516978 0.43140761]
 # RandomForestClassifier() : [0.07651702 0.02087412 0.44554124 0.45706762]
