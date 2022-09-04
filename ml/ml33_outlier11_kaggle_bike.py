@@ -13,9 +13,8 @@ warnings.filterwarnings("ignore")
 
 #1. 데이터
 path = './_data/kaggle_bike/'
-train_set = pd.read_csv(path + 'train.csv') # + 명령어는 문자를 앞문자와 더해줌  index_col=n n번째 컬럼을 인덱스로 인식
-            
-test_set = pd.read_csv(path + 'test.csv') # 예측에서 쓸거임       
+train_set = pd.read_csv(path + 'train.csv')             
+test_set = pd.read_csv(path + 'test.csv') 
 
 ###########이상치 처리##############
 def dr_outlier(train_set):
@@ -44,10 +43,10 @@ test_set["month"] = [t.month for t in pd.DatetimeIndex(test_set.datetime)]
 test_set['year'] = [t.year for t in pd.DatetimeIndex(test_set.datetime)]
 test_set['year'] = test_set['year'].map({2011:0, 2012:1})
 
-train_set.drop('datetime',axis=1,inplace=True) # 트레인 세트에서 데이트타임 드랍
-train_set.drop('casual',axis=1,inplace=True) # 트레인 세트에서 캐주얼 레지스터드 드랍
+train_set.drop('datetime',axis=1,inplace=True) 
+train_set.drop('casual',axis=1,inplace=True) 
 train_set.drop('registered',axis=1,inplace=True)
-test_set.drop('datetime',axis=1,inplace=True) # 트레인 세트에서 데이트타임 드랍
+test_set.drop('datetime',axis=1,inplace=True) 
 
 x = train_set.drop(['count'], axis=1)  
 print(x.shape) # (10886, 12)
@@ -88,9 +87,8 @@ from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
 
 # model =  RandomForestClassifier(max_depth=10, min_samples_split=3)                         
 model = RandomizedSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
-                     refit=True, n_jobs=1)                                        # n_jobs 코어 갯수
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
+                     refit=True, n_jobs=1)                                       
+
 
 
 #3. 컴파일, 훈련
