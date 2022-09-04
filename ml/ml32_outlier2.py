@@ -1,4 +1,4 @@
-# 실습 : 다차원의 outlier가 출력되도록 수정!
+#다차원 이상치 출력
 
 import numpy as np
 import pandas as pd
