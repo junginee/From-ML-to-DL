@@ -17,4 +17,4 @@ index_for_outlier = np.where(pred == -1)
 print('outier indexex are', index_for_outlier)
 
 outlier_value = aaa[index_for_outlier]
-print('outlier_value :', outlier_value) 
+print('outlier_value :', outlier_value)          
