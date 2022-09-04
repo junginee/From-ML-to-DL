@@ -1,15 +1,12 @@
 import numpy as np
 import pandas as pd 
-
-
-from sklearn.preprocessing import MaxAbsScaler, RobustScaler
+from sklearn.preprocessing import RobustScaler
+from sklearn.impute import SimpleImputer 
 from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, KFold, cross_val_score, GridSearchCV
-from sklearn.svm import SVC
 from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.metrics import accuracy_score
-from sklearn.metrics import r2_score, mean_squared_error
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -17,10 +14,10 @@ warnings.filterwarnings("ignore")
 
 #1.데이터
 
-path = './_data/kaggle_titanic/' # ".은 현재 폴더"
+path = './_data/kaggle_titanic/' 
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
-test_set = pd.read_csv(path + 'test.csv', #예측에서 쓸거야!!
+test_set = pd.read_csv(path + 'test.csv', 
                        index_col=0)
 
 # print(test_set) 
@@ -30,10 +27,8 @@ train_set = train_set.fillna(train_set.median())
 
 # print(test_set.isnull().sum())
 
-from sklearn.impute import SimpleImputer 
+
 imputer = SimpleImputer(strategy='constant')
-# imputer = KNNImputer()
-# imputer = IterativeImputer()
 imputer.fit(train_set)
 train_set2 = imputer.transform(train_set)
 
@@ -65,7 +60,7 @@ print(x) #(891, 9)
 y = train_set['Survived']
 print(y.shape) #(891,)
 
-gender_submission = pd.read_csv(path + 'gender_submission.csv',#예측에서 쓸거야!!
+gender_submission = pd.read_csv(path + 'gender_submission.csv',
                        index_col=0)
 
 
