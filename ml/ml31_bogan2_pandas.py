@@ -28,7 +28,7 @@ print(data.isnull())
 # 4  False   True  False   True
 
 print(data.isnull().sum())
-# x1    1
+# x1    1          
 # x2    2
 # x3    0
 # x4    3
