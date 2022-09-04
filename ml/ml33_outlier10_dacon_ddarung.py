@@ -1,12 +1,10 @@
 import numpy as np
 import pandas as pd 
 from sklearn.model_selection import train_test_split,KFold, cross_val_score,GridSearchCV, RandomizedSearchCV
-from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import LinearSVR
 from sklearn.utils import all_estimators
-from sklearn.metrics import accuracy_score, r2_score
-
+from sklearn.metrics import r2_score
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -25,14 +23,11 @@ print(train_set.columns)
 print(train_set.info())  
 print(train_set.describe())
 
-
-print(train_set.isnull().sum()) #train set에 있는 널값의 합계를 구한다.
+print(train_set.isnull().sum())
 train_set = train_set.dropna() 
-# means = train_set.median()
-# train_set = train_set.fillna(means) #결측치가 들어있는 행을 삭제한다.
 
-print(train_set.isnull().sum()) #결측치 제거 후 train set에 들어있는 널값의 합계를 구한다.
-x = train_set.drop(['count'], axis = 1) #x 변수에는 count 열을 제외한 나머지 컬럼을 저장한다.
+print(train_set.isnull().sum()) 
+x = train_set.drop(['count'], axis = 1)
 
 print(x)
 print(x.columns)
@@ -74,9 +69,7 @@ from sklearn.ensemble import RandomForestClassifier,RandomForestRegressor
 
 # model =  RandomForestClassifier(max_depth=10, min_samples_split=3)                         
 model = RandomizedSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
-                     refit=True, n_jobs=1)                             # n_jobs 코어 갯수
-                                                                            # n_jobs=-1로 지정해주면 모든 코어를 다 사용하기때문에 
-                                                                            # 컴퓨터는 뜨거워지겠지만, 속도는 많이 빨라진다.
+                     refit=True, n_jobs=1)                            
 
 
 #3. 컴파일, 훈련
@@ -102,5 +95,3 @@ print("r2_score", round(r2_score(y_test, y_predict),4))
 # r2_score 0.7585 (삭제)
 # 결측치 삭제 후 훈련시켰을 때의 값이 가장 좋으며 
 # 그 결과값은 이전과 크게 차이나지 않음
-
-
