@@ -29,5 +29,5 @@ ts = pd.Series([2, np.nan, np.nan, 8, 10], index=dates)
 print(ts)
 
 print("===========================")
-ts = ts.interpolate()
+ts = ts.interpolate()  
 print(ts)
