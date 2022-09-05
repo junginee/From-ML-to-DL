@@ -1,3 +1,17 @@
+# 'n_estimators' : [100, 200, 300, 400, 500, 1000] #n_estimator = 디폴트 100 / 1 ~ inf   
+# 'learning_rate' : [0.1, 0.2, 0.3, 0.5, 1, 0.01, 0.001]}  #디폴트 0.3 / 0~1
+# 'max_dapth' : [None, 2, 3, 4, 5, 6, 7, 8, 9, 10]} 디폴트 6 / 0 ~ inf / 정수
+# 'gamma' : [0, 1, 2, 3, 4, 5, 7, 10, 100]} 디폴트 0
+# 'min_child_weight' :[0, 0.01, 0.001, 0.1, 0.5, 1, 5, 10, 100]} 디폴트 1
+# 'subsample' : [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1]} 디폴트 1 / 0~1
+# 'colsample_bytree' : [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1] 디폴트 1 / 0~1
+# 'colsample_bylevel' : [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1]} 디폴트 1 / 0~1
+# 'reg_alpha' : [0, 0.1, 0.01, 0.001, 1, 2, 10] / 디폴트 0 / 0~inf  / L1 절대값 가중치 규제 / alpha
+# 'reg_lamda' : [0, 0.1, 0.01, 0.001, 1, 2, 10] / 디폴트 1 / 0~inf  / L2 제곱 가중치 규제 / lamda
+
+#max_depth 숫자가 작을수록 통상적으로 성능이 좋다. 숫자가 커질수록 과적합 걸릴 수 有                                                      
+#min_depth 숫자가 커질수록 통상적으로 성능이 좋다. 숫자가 작아질수록 과적합 걸릴 수 有
+
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import KFold, StratifiedKFold
@@ -27,16 +41,7 @@ n_splits = 5
 kfold = StratifiedKFold(n_splits=n_splits, shuffle = True, random_state=123)
 
 
-# 'n_estimators' : [100, 200, 300, 400, 500, 1000] #n_estimator = 디폴트 100 / 1 ~ inf   
-# 'learning_rate' : [0.1, 0.2, 0.3, 0.5, 1, 0.01, 0.001]}  #디폴트 0.3 / 0~1
-# 'max_dapth' : [None, 2, 3, 4, 5, 6, 7, 8, 9, 10]} 디폴트 6 / 0 ~ inf / 정수
-# 'gamma' : [0, 1, 2, 3, 4, 5, 7, 10, 100]} 디폴트 0
-# 'min_child_weight' :[0, 0.01, 0.001, 0.1, 0.5, 1, 5, 10, 100]} 디폴트 1
-# 'subsample' : [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1]} 디폴트 1 / 0~1
-# 'colsample_bytree' : [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1] 디폴트 1 / 0~1
-# 'colsample_bylevel' : [0, 0.1, 0.2, 0.3, 0.5, 0.7, 1]} 디폴트 1 / 0~1
-# 'reg_alpha' : [0, 0.1, 0.01, 0.001, 1, 2, 10] / 디폴트 0 / 0~inf  / L1 절대값 가중치 규제 / alpha
-# 'reg_lamda' : [0, 0.1, 0.01, 0.001, 1, 2, 10] / 디폴트 1 / 0~inf  / L2 제곱 가중치 규제 / lamda
+
 
 '''
 gamma 트리에서 가지를 추가로 치기 위해 필요한 최소한의 손실 감소 기준. 기준값이 클 수록 모형이 더 단순해진다.(> 0)
@@ -56,9 +61,6 @@ parameters = {'n_estimators' : [100],
               'reg_alpha' : [0],
               'reg_labda' : [0]}
 
-
-#max_depth 숫자가 작을수록 통상적으로 성능이 좋다. 숫자가 커질수록 과적합 걸릴 수 有                                                      
-#min_depth 숫자가 커질수록 통상적으로 성능이 좋다. 숫자가 작아질수록 과적합 걸릴 수 有
 
 #2. 모델
 xgb = XGBClassifier(random_state = 123,
