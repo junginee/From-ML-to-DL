@@ -29,19 +29,15 @@ parameters = [
 
 #2. 모델구성
 from sklearn.svm import LinearSVC, SVC
-from sklearn.linear_model import Perceptron, LogisticRegression # LogisticRegression는 분류임
+from sklearn.linear_model import Perceptron, LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 
-model =  RandomForestRegressor(min_samples_leaf=3, min_samples_split=5)                        
-# model = GridSearchCV(RandomForestRegressor(), parameters, cv=kfold, verbose=1,          
-#                      refit=True, n_jobs=1)                             
-                                                                           
-                                                                          
-                                                                          
-
-
+model =  RandomForestRegressor(min_samples_leaf=3, min_samples_split=5)                  
+                    
+                                                                         
+                                                                                                                                                 
 #3. 컴파일, 훈련
 model.fit(x_train, y_train)
 
