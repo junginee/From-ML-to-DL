@@ -7,7 +7,6 @@ import numpy as np
 import time
 import pickle
 
-
 #1. 데이터
 datasets = load_breast_cancer()
 x = datasets.data
@@ -32,14 +31,11 @@ x_train, x_test, y_train, y_test = train_test_split(x,y,
 path = 'D:\study_data\_save\_xg\\'
 model = pickle.load(open(path + 'ml39_pickle1_save.dat', 'rb')) # 저장, rb : read binary
 
-
 #4. 평가, 예측
 result = model.score(x_test, y_test)
-
 print('model.score : ', result)
 
 y_predict = model.predict(x_test)
-
 print('accuracy_score :',accuracy_score(y_test,y_predict))
 
 # pickle.dump(model, open(path+'m39_pickle1_save.dat', 'wb')) # 저장, wb : write binary
