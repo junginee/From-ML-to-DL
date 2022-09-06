@@ -1,10 +1,10 @@
+import time
 import numpy as np
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import KFold, StratifiedKFold, train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from xgboost import XGBClassifier, XGBRegressor
-import time
 from sklearn.metrics import accuracy_score, r2_score
 from sklearn.feature_selection import SelectFromModel
 
@@ -115,4 +115,4 @@ print('드랍 후 acc_score 결과: ', score)
 # Thresh=0.005, n=13, R2: 92.46% 
 
 # 드랍 후 테스트 스코어:  0.9736842105263158
-# 드랍 후 acc_score 결과:  0.9736842105263158
+# 드랍 후 acc_score 결과:  0.9736842105263158      
