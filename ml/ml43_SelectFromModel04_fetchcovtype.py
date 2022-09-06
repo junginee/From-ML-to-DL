@@ -1,10 +1,10 @@
 import numpy as np
+import time
 from sklearn.datasets import fetch_covtype
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import KFold, StratifiedKFold, train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, LabelEncoder
 from xgboost import XGBClassifier, XGBRegressor
-import time
 from sklearn.metrics import accuracy_score, r2_score
 from sklearn.feature_selection import SelectFromModel
 
@@ -114,12 +114,3 @@ print('드랍 후 acc_score 결과: ', score)
 # -----------------------------------------------
 # (464809, 45) (464809, 45)
 # Thresh=0.003, n=45, R2: 77.99% 
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Con
