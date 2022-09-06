@@ -85,4 +85,4 @@ for thresh in thresholds:
 # Thresh=0.159, n=3, R2: 93.33% 
 
 # (120, 1) (120, 1)
-# Thresh=0.543, n=1, R2: 93.33% 
+# Thresh=0.543, n=1, R2: 93.33%     
