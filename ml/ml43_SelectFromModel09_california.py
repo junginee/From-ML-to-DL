@@ -90,13 +90,10 @@ xaf_train = np.delete(x_train, f_to_drop, axis=1)
 xaf_test = np.delete(x_test, f_to_drop, axis=1)
 
 model.fit(xaf_train, y_train)
-
 print('드랍 후 테스트 스코어: ', model.score(xaf_test, y_test))
 
 score = r2_score(y_test, model.predict(xaf_test))
 print('드랍 후 score 결과: ', score)
-
-
 
 # 테스트 스코어:  0.7779620382147857
 # acc_score 결과:  0.7779620382147857
