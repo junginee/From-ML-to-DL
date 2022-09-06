@@ -59,8 +59,7 @@ model.fit(x_train, y_train, verbose = 1, early_stopping_rounds=200,
                 # eval_metric 종류
                 # 회귀 : rmse, mae, rmsle..
                 # 이진 : error, auc, logloss
-                # 다중 : merror, mlogloss..
-            
+                # 다중 : merror, mlogloss..          
 
 
 # - early_stopping_rounds: 더 이상 비용 평가 지표가 감소하지 않는 최대 반복횟수
@@ -74,13 +73,12 @@ print("걸린시간 : ", end-start)
 #4. 평가
 
 results = model.score(x_test, y_test)
-print('최종 점수 :', results)
+print('점수 :', results)
 
 y_predict = model.predict(x_test)
 acc = accuracy_score(y_test, y_predict)
-print("진짜 최종 test 점수 :", acc)
+print("최종 test 점수 :", acc)
 
 # 걸린시간 :  0.3981049060821533
-# 최종 점수 : 0.9736842105263158   
-# 진짜 최종 test 점수 : 0.9736842105263158
-
+# 점수 : 0.9736842105263158   
+# 최종 test 점수 : 0.9736842105263158
