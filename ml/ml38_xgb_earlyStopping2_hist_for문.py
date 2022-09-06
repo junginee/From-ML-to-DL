@@ -44,11 +44,10 @@ print('-----------------------------------------------------------------------')
 hist = model.evals_result()
 print(hist)
 
-# [실습] 그래프 그리기
+
 import matplotlib.pyplot as plt
 print(hist.keys()) 
 # dict_keys(['validation_0', 'validation_1'])
-# hist는 훈련 중 발생하는 모든 정보를 담고 있는 딕셔너리 형태
 
 # plt.figure(figsize=(10,10))
 # for i in range(len(hist.keys())):
@@ -58,7 +57,6 @@ print(hist.keys())
 #     plt.xlabel('n_estimators')
 #     plt.ylabel('evals_result')
 #     plt.title('validation_'+str(i))
-
 # plt.show()
 
 # plt.figure(figsize=(10,10))
