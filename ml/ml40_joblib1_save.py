@@ -6,8 +6,6 @@ from sklearn.metrics import accuracy_score, r2_score
 import numpy as np
 import time
 
-
-
 #1. 데이터
 datasets = load_breast_cancer()
 x = datasets.data
@@ -41,4 +39,3 @@ print('accuracy_score :',accuracy_score(y_test,y_predict))
 import joblib
 path = 'D:\study_data\_save\_xg\\'
 joblib.dump(model, path+'ml40_joblib1_save.dat')
-# pickle, joblib 모두 저장 가능하다.(원래는 파이썬 바이너리 세이브용)
