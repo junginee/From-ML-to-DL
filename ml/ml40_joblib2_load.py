@@ -1,7 +1,5 @@
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split, GridSearchCV, KFold, StratifiedKFold
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from xgboost import XGBClassifier, XGBRegressor, XGBRFRegressor, XGBRFClassifier
 from lightgbm import LGBMClassifier, LGBMRegressor
 from sklearn.metrics import accuracy_score, r2_score
 import numpy as np
@@ -37,11 +35,6 @@ model = joblib.load(path+'ml40_joblib1_save.dat')
 
 #4. 평가, 예측
 result = model.score(x_test, y_test)
-
 print('model.score : ', result)
-
 y_predict = model.predict(x_test)
-
 print('accuracy_score :',accuracy_score(y_test,y_predict))
-
-# pickle.dump(model, open(path+'m39_pickle1_save.dat', 'wb')) # 저장, wb : write binary
