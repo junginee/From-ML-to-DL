@@ -17,13 +17,13 @@ path = 'D:\study_data\_data\kaggle_titanic/'
 train_set = pd.read_csv(path+'train.csv')
 test_set = pd.read_csv(path+'test.csv')
 
+#----------------------------------Data Preprocessing-----------------------------------------------
 train_set = train_set.drop(columns='Cabin', axis=1)
 train_set['Age'].fillna(train_set['Age'].mean(), inplace=True)
 print(train_set['Embarked'].mode())
 train_set['Embarked'].fillna(train_set['Embarked'].mode()[0], inplace=True)
 train_set.replace({'Sex':{'male':0,'female':1}, 'Embarked':{'S':0,'C':1,'Q':2}}, inplace=True)
 
-# train_set 불러올 때와 마찬가지로 전처리시켜야 model.predict에 넣어서 y값 구하기가 가능함-----------
 print(test_set.isnull().sum())
 test_set = test_set.drop(columns='Cabin', axis=1)
 test_set['Age'].fillna(test_set['Age'].mean(), inplace=True)
