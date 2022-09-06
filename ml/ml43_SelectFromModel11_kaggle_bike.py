@@ -1,15 +1,15 @@
 import pandas as pd 
 import numpy as np
+import time
 from sklearn.experimental import enable_halving_search_cv
 from sklearn.model_selection import train_test_split, KFold,\
     HalvingRandomSearchCV, RandomizedSearchCV
 from sklearn.metrics import r2_score
-import time
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.feature_selection import SelectFromModel
 from xgboost import XGBRegressor
 import warnings
-warnings.filterwarnings('ignore') # warnig 출력 안함
+warnings.filterwarnings('ignore')
 
 # 1. 데이터
 path = 'D:\study_data\_data\kaggle_bike/'
@@ -45,8 +45,6 @@ train_set.drop('registered',axis=1,inplace=True) # registered 드랍 이유 모�
 x = train_set.drop(['count'], axis=1)
 y = train_set['count']
 x = np.array(x)
-
-print(x.shape, y.shape) # (10886, 14) (10886,)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, shuffle=True, train_size=0.8, random_state=1234)
 
