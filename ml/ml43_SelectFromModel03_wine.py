@@ -96,7 +96,7 @@ model.fit(xaf_train, y_train, early_stopping_rounds=10,
 print('드랍 후 테스트 스코어: ', model.score(xaf_test, y_test))
 
 score = accuracy_score(y_test, model.predict(xaf_test))
-print('드랍 후 acc_score 결과: ', score)
+print('드랍 후 acc_score 결과: ', score)           
 
 
 # 테스트 스코어:  1.0
@@ -128,4 +128,3 @@ print('드랍 후 acc_score 결과: ', score)
 
 # 드랍 후 테스트 스코어:  1.0
 # 드랍 후 acc_score 결과:  1.0
-
