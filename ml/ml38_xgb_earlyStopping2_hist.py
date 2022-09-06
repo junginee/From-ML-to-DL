@@ -4,8 +4,8 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import KFold, StratifiedKFold, train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from xgboost import XGBClassifier, XGBRegressor
-import time
 from sklearn.metrics import accuracy_score, r2_score
+import time
 
 # 1. 데이터
 datasets = load_breast_cancer()
@@ -40,19 +40,17 @@ model.fit(x_train, y_train, early_stopping_rounds=10,
 
 #4. 평가
 results = model.score(x_test, y_test)
-print('최종 점수 :', results)
+print('점수 :', results)
 
 y_predict = model.predict(x_test)
 acc = accuracy_score(y_test, y_predict)
-print("진짜 최종 test 점수 :", acc)
+print("최종 test 점수 :", acc)
 
 print("===================================")
 hist = model.evals_result()
 print(hist)
 
-#[실습]
 import matplotlib.pyplot as plt
-
 plt.figure(figsize=(9,6))
 plt.plot( hist['validation_0']['logloss'], marker=".", c='red', alpha=0.3, label='train_set' )
 plt.plot( hist['validation_1']['logloss'], marker='.', c='blue', alpha =0.3,label='test_set' )
@@ -62,4 +60,3 @@ plt.ylabel('loss_error')
 plt.xlabel('epoch')
 plt.legend(loc='upper right') 
 plt.show()
-
