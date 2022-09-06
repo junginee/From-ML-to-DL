@@ -1,10 +1,10 @@
 import numpy as np
+import time
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import KFold, StratifiedKFold, train_test_split
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from xgboost import XGBClassifier, XGBRegressor
-import time
 from sklearn.metrics import accuracy_score, r2_score
 from sklearn.feature_selection import SelectFromModel
 
@@ -133,4 +133,4 @@ print('드랍 후 score 결과: ', score)
 
 
 # 드랍 후 테스트 스코어:  0.2523683529923497
-# 드랍 후 score 결과:  0.2523683529923497
+# 드랍 후 score 결과:  0.2523683529923497  
