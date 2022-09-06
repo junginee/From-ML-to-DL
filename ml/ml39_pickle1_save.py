@@ -30,11 +30,9 @@ end = time.time()- start
 
 #4. 평가, 예측
 result = model.score(x_test, y_test)
-
 print('model.score : ', result)
 
 y_predict = model.predict(x_test)
-
 print('accuracy_score :',accuracy_score(y_test,y_predict))
 
 import pickle
