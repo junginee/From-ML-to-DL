@@ -22,16 +22,14 @@ test_set = pd.read_csv(path+'test.csv', index_col=0)
 # print(test_set)
 # print(test_set.shape) # (715, 9)
 
-# 결측치 중간값으로
 print(train_set.info())
-print(train_set.isnull().sum()) # 결측치 전부 더함
+print(train_set.isnull().sum())
 median = train_set.median()
-train_set = train_set.fillna(median) # 결측치 중간값으로
-print(train_set.isnull().sum()) # 없어졌는지 재확인
+train_set = train_set.fillna(median) 
+print(train_set.isnull().sum())
 
-x = train_set.drop(['count'], axis=1) # axis = 0은 열방향으로 쭉 한줄(가로로 쭉), 1은 행방향으로 쭉 한줄(세로로 쭉)
+x = train_set.drop(['count'], axis=1) 
 y = train_set['count']
-
 print(x.shape, y.shape) # (1328, 9) (1328,)
 
 # pca = PCA(n_components=8)
