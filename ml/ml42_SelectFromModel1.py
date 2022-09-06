@@ -86,12 +86,6 @@ for thresh in thresholds:
 # (353, 2) (353, 2)
 # (353, 4) (353, 4)
 # (353, 3) (353, 3)
-# 칼럼 갯수 중복 없음
-# 해당 피처임포턴스보다 작은 놈을 빼버린다 / 자기와 자기보다 큰 임포턴스의 피처만 남겨놓는다
-
-
-
-
 
 # 최상의 매개변수:  {'colsample_bylevel': 1, 'colsample_bynode': 1, 'colsample_bytree': 0.5, 'gamma': 0, 'learning_rate': 1, 'max_depth': 2, 'min_child_weight': 1, 'n_estimators': 100, 'reg_alpha': 0.01, 'reg_lambda': 1, 'subsample': 1}
 # 최상의 점수:  0.9824175824175825
@@ -99,96 +93,3 @@ for thresh in thresholds:
 
 # n_estimators = 100
 # 테스트 스코어:  0.9912280701754386
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
