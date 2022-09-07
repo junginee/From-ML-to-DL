@@ -1,6 +1,3 @@
-# 아웃라이어 확인
-# 아웃라이어 처리
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -86,9 +83,5 @@ print("accuracy score : ",
       round(accuracy_score(y_test, y_predict), 4 ))
 print("f1_score(macro) : ",f1_score(y_test, y_predict, average = 'macro'))
 print("f1_score(micro) : ",f1_score(y_test, y_predict, average = 'micro'))
-
-#다중분류에서는 f1_score를 사용할 수 없다. 
-#so, 컬럼별로 f1_score를 구한 후 이 값들의 평균을 구한다.
-
 
 '''
