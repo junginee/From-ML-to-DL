@@ -1,6 +1,3 @@
-# 아웃라이어 확인
-# 아웃라이어 처리
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
