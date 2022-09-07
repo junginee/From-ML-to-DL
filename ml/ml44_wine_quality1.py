@@ -1,7 +1,3 @@
-# 왜 정확도가 낮을까?
-# 데이터 분포가 골고루게 분포되어 있지 않기 때문이다.
-# 분류에서는 y 값 분포 확인하기
-
 import numpy as np
 import pandas as pd
 from sklearn.datasets import load_wine
@@ -103,6 +99,3 @@ print("f1_score(micro) : ",f1_score(y_test, y_predict, average = 'micro'))
 
 #다중분류에서는 f1_score를 사용할 수 없다. 
 #so, 컬럼별로 f1_score를 구한 후 이 값들의 평균을 구한다.
-
-
-
