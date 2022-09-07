@@ -1,6 +1,3 @@
-# 라벨 축소하기
-# y라벨 값이 많다면? 정확도가 떨어질 수 있다. 이럴 때 라벨을 축소시켜 모델을 구성할 수 있다.
-
 import numpy as np
 import pandas as pd
 from sklearn.datasets import load_wine
@@ -73,8 +70,3 @@ print("f1_score(micro) : ",round(f1_score(y_test, y_predict, average = 'micro'),
 # accuracy score :  0.7439
 # f1_score(macro) :  0.7415
 # f1_score(micro) :  0.7439
-
-
-
-
-
