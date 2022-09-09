@@ -1,6 +1,3 @@
-# smote 넣기 전, 후 차이 비교
-# 이진분류니까 macro, micro
-
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
