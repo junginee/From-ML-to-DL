@@ -1,5 +1,3 @@
-# 실습 시작! 라벨 3개 짜리 증폭
-
 import numpy as np
 import pandas as pd
 from sklearn.datasets import load_wine
@@ -13,7 +11,7 @@ from sklearn.model_selection import KFold,StratifiedKFold, cross_val_score, Grid
 path = 'D:\study\_data\\'
 
 datasets = pd.read_csv(path + 'winequality-white.csv', 
-                   index_col=None, header=0, sep=';') #csv 파일은 통상 , or ; 형태로 되어 있음
+                   index_col=None, header=0, sep=';') 
 
 print(datasets.shape) #(4898, 12)
 print(datasets.head())
