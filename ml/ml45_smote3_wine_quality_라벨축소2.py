@@ -11,7 +11,7 @@ from sklearn.model_selection import KFold,StratifiedKFold, cross_val_score, Grid
 path = 'D:\study\_data\\'
 
 datasets = pd.read_csv(path + 'winequality-white.csv', 
-                   index_col=None, header=0, sep=';') #csv 파일은 통상 , or ; 형태로 되어 있음
+                   index_col=None, header=0, sep=';') 
 
 print(datasets.shape) #(4898, 12)
 print(datasets.head())
@@ -91,8 +91,7 @@ from imblearn.over_sampling import SMOTE
 smote = SMOTE(random_state=123, k_neighbors = 144
               ) 
 
-smote.fit_resample(x_train, y_train)  #test 데이터는 예측하기 위해 smote 적용하지 않는다.
-
+smote.fit_resample(x_train, y_train)  
 model = RandomForestClassifier()
 model.fit(x_train, y_train)               
 
