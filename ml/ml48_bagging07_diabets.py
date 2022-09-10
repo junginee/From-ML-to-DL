@@ -21,7 +21,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.svm import LinearSVC
 
 scaler = StandardScaler()
-# scaler = MinMaxScaler()
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
 
