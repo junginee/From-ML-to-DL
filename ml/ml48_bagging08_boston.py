@@ -48,4 +48,4 @@ for i in model :
 
 # DecisionTreeRegressor() 모델 score : 0.8046
 
-# RandomForestRegressor() 모델 score : 0.9039 
+# RandomForestRegressor() 모델 score : 0.9039   
