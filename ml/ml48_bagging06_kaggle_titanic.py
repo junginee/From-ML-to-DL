@@ -15,19 +15,12 @@ warnings.filterwarnings("ignore")
 
 #1.데이터
 
-path = './_data/kaggle_titanic/' # ".은 현재 폴더"
+path = './_data/kaggle_titanic/'
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
-test_set = pd.read_csv(path + 'test.csv', #예측에서 쓸거야!!
+test_set = pd.read_csv(path + 'test.csv',
                        index_col=0)
-
-# print(test_set) 
-# print(train_set.isnull().sum()) 
-
 train_set = train_set.fillna(train_set.median())
-
-# print(test_set.isnull().sum())
-
 
 drop_cols = ['Cabin']
 train_set.drop(drop_cols, axis = 1, inplace =True)
@@ -56,7 +49,7 @@ print(x) #(891, 9)
 y = train_set['Survived']
 print(y.shape) #(891,)
 
-gender_submission = pd.read_csv(path + 'gender_submission.csv',#예측에서 쓸거야!!
+gender_submission = pd.read_csv(path + 'gender_submission.csv',
                        index_col=0)
 
 x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.91,shuffle=True ,random_state=100)
