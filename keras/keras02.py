@@ -1,7 +1,3 @@
-#[실습] [6]을 예측한다.
-
-       
-
 #1. 데이터
 import numpy as np
 x = np.array([1,2,3,5,4])
@@ -26,14 +22,3 @@ print('loss :', loss)
 
 result = model.predict([6]) 
 print('6의 예측값 : ', result)
-
-
-#나는 배운 내용을 토대로 로스에 회귀모델 mse로 설정하였다. 최대 예측치는 5.8정도로 6과 가까운 예측치가 나오지 않았다
-#mse를 mae(평균제곱오차)로 설정했다.              
-         
-
-
-         
-
-
-        
