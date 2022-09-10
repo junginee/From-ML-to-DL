@@ -50,4 +50,4 @@ for i in model :
 
 # LogisticRegression() 모델 score : 0.9667    
 
-# XGBClassifier() 모델 score : 0.9667  
+# XGBClassifier() 모델 score : 0.9667    
