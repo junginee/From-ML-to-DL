@@ -19,12 +19,6 @@ from sklearn.ensemble import BaggingClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 
-
-# LogisticRegression 모델을 wrapping 후 
-# BaggingClassifier로 작동시킨다.
-# Bagging 사용하고 싶은 모델 스케일링 처리!!
-
-
 scaler = StandardScaler()
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
