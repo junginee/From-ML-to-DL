@@ -1,4 +1,3 @@
-
 #1. 데이터
 import numpy as np
 x = np.array([1,2,3,5,4])
@@ -23,4 +22,3 @@ print('loss :', loss)
 
 result = model.predict([4]) 
 print('4의 예측값 : ', result)
-
