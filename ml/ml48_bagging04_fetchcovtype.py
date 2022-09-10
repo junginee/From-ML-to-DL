@@ -49,4 +49,4 @@ for i in model :
 
 # DecisionTreeClassifier() 모델 score : 0.9398  
 
-# LogisticRegression() 모델 score : 0.7197    
+# LogisticRegression() 모델 score : 0.7197              
