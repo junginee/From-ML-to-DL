@@ -47,7 +47,7 @@ for i in model :
 # LogisticRegression() 모델 score : 1.0        
 
 # DecisionTreeClassifier() 모델 score : 0.9167 
-
+         
 # LogisticRegression() 모델 score : 1.0     
 
 # XGBClassifier 모델 score : 0.9722 
