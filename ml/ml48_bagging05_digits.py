@@ -47,7 +47,7 @@ for i in model :
     print(i,'모델 score :',round(model.score(x_test, y_test),4),'\n') 
     
 # SVC() 모델 score : 0.9917   
-
+   
 # LogisticRegression() 모델 score : 0.975 
 
 # DecisionTreeClassifier() 모델 score : 0.8778   
