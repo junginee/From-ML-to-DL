@@ -10,7 +10,7 @@ y = np.array([11,12,13,14,15,16,17,18,19,20])
 print(x.shape)  #(2,10)
 print(y.shape)  #(10,)
 
-# x = x.T #x의 행과 열을 전치하여 다시 x에 집어넣겠다.
+# x = x.T #x 행, 열 전치
 # print(x)
 # print(x.shape) #(10,2)
 
@@ -35,6 +35,6 @@ model.fit(x,y, epochs=300, batch_size=1)
 #4. 평가, 예측
 loss = model.evaluate(x,y)
 print('loss :',loss)
-result = model.predict([[10,1.4]]) #열의 갯수가 동일해야하기 때문에 중괄호가 2번들어간다.
+result = model.predict([[10,1.4]])
 print('[10, 1.4]의 예측값:', result)
 
