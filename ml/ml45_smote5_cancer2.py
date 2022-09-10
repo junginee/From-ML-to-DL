@@ -75,6 +75,6 @@ print("f1_score(micro) : ",round(f1_score(y_test, y_predict, average = 'micro'),
 
 ###################smote 적용 후###################
 # model.score : 0.9737
-# accuracy score :  0.9737
+# accuracy score :  0.9737     
 # f1_score(macro) :  0.9721
 # f1_score(micro) :  0.9737
