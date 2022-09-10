@@ -1,7 +1,3 @@
-# [숙제] 모델을 완성하시오
-# 예측 : [[10, 1.4, 0]]
-# 결과값 : 20
-
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -37,10 +33,4 @@ model.fit(x,y, epochs=300, batch_size=1)
 loss = model.evaluate(x,y)
 print('loss :',loss)
 result = model.predict([[10, 1.4, 0]]) #(1,3)
-print('[10, 1.4]의 예측값:', result)
-
-
-
-
-
-
+print('[10, 1.4, 0]의 예측값:', result)
