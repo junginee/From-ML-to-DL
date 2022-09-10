@@ -1,6 +1,5 @@
 #시각화
 
-
 from tensorflow.keras.models import Sequential 
 from tensorflow.keras.layers import Dense
 import numpy as np
@@ -34,5 +33,3 @@ import matplotlib.pyplot as plt
 plt.scatter(x,y)
 plt.plot(x, y_predict, color='green')
 plt.show()
-
-
