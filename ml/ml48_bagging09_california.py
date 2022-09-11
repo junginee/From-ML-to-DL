@@ -44,7 +44,7 @@ for i in model :
     
 # LinearSVC() 모델 score : 0.0945 
 
-# LinearRegression() 모델 score : 0.6167
+# LinearRegression() 모델 score : 0.6167  
 
 # DecisionTreeRegressor() 모델 score : 0.6415 
 
