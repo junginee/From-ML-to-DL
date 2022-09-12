@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-
 from sklearn.ensemble import VotingClassifier,VotingRegressor
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
@@ -9,7 +8,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler,StandardScaler
 from tqdm import tqdm_notebook
 from sklearn.preprocessing import LabelEncoder
-
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -18,21 +16,17 @@ path = './_data/kaggle_house/'
 train_set = pd.read_csv(path + 'train.csv', 
                         index_col=0) 
 
-
 test_set = pd.read_csv(path + 'test.csv',
                        index_col=0)
 
-
 drop_cols = ['Alley', 'PoolQC', 'Fence', 'MiscFeature'] 
 test_set.drop(drop_cols, axis = 1, inplace =True)
-
 
 sample_submission = pd.read_csv(path + 'sample_submission.csv',
                        index_col=0)
 
 #print(test_set)
 #print(test_set.shape) # (1459, 79) 
-
 
 train_set.drop(drop_cols, axis = 1, inplace =True)
 cols = ['MSZoning', 'Street','LandContour','Neighborhood','Condition1','Condition2',
@@ -42,24 +36,20 @@ cols = ['MSZoning', 'Street','LandContour','Neighborhood','Condition1','Conditio
                 'FireplaceQu','GarageFinish','GarageQual','GarageCond','PavedDrive','LotShape',
                 'Utilities','LandSlope','BldgType','HouseStyle','LotConfig']
 
-
 for col in tqdm_notebook(cols):
     le = LabelEncoder()
     train_set[col]=le.fit_transform(train_set[col])
     test_set[col]=le.fit_transform(test_set[col])
 
-
 #### 결측치  제거 ####
-print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능
-train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna) 행별로 모두 삭제(dropna)
 print(train_set.isnull().sum())
-print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
- 
+train_set = train_set.fillna(train_set.mean()) 
+print(train_set.isnull().sum())
+print(train_set.shape) 
 
 test_set = test_set.fillna(test_set.mean())
 
-
-x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
+x = train_set.drop(['SalePrice'], axis=1) 
 print(x)
 print(x.columns)
 print(x.shape) # (1460, 79)
@@ -91,19 +81,16 @@ cat = CatBoostRegressor()
 
 model = VotingRegressor(
     estimators=[('xg',xg),('lg',lg), ('cb',cat)],
-    # voting = 'soft'      #hard => 분류모델 파라미터
+    # voting = 'soft'   
 )
 
 #3. 훈련
 model.fit(x_train, y_train)
 
-
 #4. 평가, 예측
 y_predict = model.predict(x_test)
-
 score = r2_score(y_test, y_predict)
 print('score :', round(score,4))
-
 
 classfiers = [xg,lg,cat]
 for model2 in classfiers:
