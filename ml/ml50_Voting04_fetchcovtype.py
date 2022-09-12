@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-
 from sklearn.ensemble import VotingClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
@@ -17,7 +16,7 @@ x = datasets.data
 y = datasets.target
 
 
-# df =pd.DataFrame(datasets.data, columns=datasets.feature_names) #데이터프레임 형태로 전환
+# df =pd.DataFrame(datasets.data, columns=datasets.feature_names) 
 # print(df.head(7))
 
 
