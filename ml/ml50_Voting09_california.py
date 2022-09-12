@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-
 from sklearn.ensemble import VotingClassifier,VotingRegressor
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
@@ -15,7 +14,7 @@ warnings.filterwarnings("ignore")
 #1. 데이터
 datasets = fetch_california_housing()
 
-# df =pd.DataFrame(datasets.data, columns=datasets.feature_names) #데이터프레임 형태로 전환
+# df =pd.DataFrame(datasets.data, columns=datasets.feature_names) 
 # print(df.head(7))
 
 
@@ -41,7 +40,7 @@ cat = CatBoostRegressor()
 
 model = VotingRegressor(
     estimators=[('xg',xg),('lg',lg), ('cb',cat)],
-    # voting = 'soft'      #hard => 분류모델 파라미터
+    # voting = 'soft'    
 )
 
 #3. 훈련
