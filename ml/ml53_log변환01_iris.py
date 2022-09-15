@@ -9,8 +9,6 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression,LogisticRegression
 from sklearn.ensemble import RandomForestRegressor,RandomForestClassifier
 from xgboost import XGBClassifier, XGBRegressor 
-from sklearn.pipeline import make_pipeline
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
