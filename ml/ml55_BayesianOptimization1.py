@@ -14,8 +14,6 @@
 #                    n_iter=20)
 
 
-
-
 #########################################
 from bayes_opt import BayesianOptimization
 
