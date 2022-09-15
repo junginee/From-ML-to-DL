@@ -8,9 +8,6 @@ from collections import Counter
 from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.preprocessing import MinMaxScaler,StandardScaler,MaxAbsScaler,RobustScaler
 from xgboost import XGBRegressor
-from lightgbm import LGBMRegressor
-from catboost import CatBoostRegressor
-from sklearn.ensemble import VotingRegressor
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import Pipeline,make_pipeline
 from sklearn.linear_model import LinearRegression
