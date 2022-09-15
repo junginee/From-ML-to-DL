@@ -140,7 +140,7 @@ def lgb_hamsu(max_depth, gamma, min_child_weight,
 lgb_bo = BayesianOptimization(f=lgb_hamsu, 
                               pbounds=bayesian_params,
                               random_state=123,
-                              )
+                              )        
 lgb_bo.maximize(init_points=5,
                 n_iter=20)
 print(lgb_bo.max)
