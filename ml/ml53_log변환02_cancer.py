@@ -5,12 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, accuracy_score
 from sklearn.preprocessing import StandardScaler,MinMaxScaler,MaxAbsScaler, RobustScaler
 from sklearn.preprocessing import QuantileTransformer, PowerTransformer
-from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression,LogisticRegression
 from sklearn.ensemble import RandomForestRegressor,RandomForestClassifier
 from xgboost import XGBClassifier, XGBRegressor 
-from sklearn.pipeline import make_pipeline
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -20,7 +17,6 @@ x = datasets.data
 y = datasets.target
 
 print(x.shape, y.shape) #(506, 13) (506,)
-
 
 x_train, x_test, y_train, y_test = train_test_split(
     x,y, test_size = 0.2, random_state=1234,
@@ -32,7 +28,6 @@ x_test = scaler.transform(x_test)
 
 #2.모델
 model = LogisticRegression(), RandomForestClassifier(), XGBClassifier()
-
 
 for i in model :
     model = i
@@ -84,6 +79,5 @@ XGBClassifier 결과 : 0.9386
 
 LogisticRegression 로그 변환 결과 : 0.9474
 RandomForestClassifier 로그 변환 결과 : 0.9298
-XGBClassifier 로그 변환 결과 : 0.9386
-   
+XGBClassifier 로그 변환 결과 : 0.9386   
 '''
