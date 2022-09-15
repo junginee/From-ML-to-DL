@@ -8,9 +8,6 @@ from sklearn.preprocessing import QuantileTransformer, PowerTransformer
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
-from xgboost import XGBClassifier, XGBRegressor 
-from sklearn.pipeline import make_pipeline
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -91,7 +88,5 @@ RandomForestRegressor() QuantileTransformer() - 결과 : 0.9543
 
 LinearRegression() PowerTransformer() - 결과 : 0.4003
 RandomForestRegressor() PowerTransformer() - 결과 : 0.9531
-
-
 
 '''
