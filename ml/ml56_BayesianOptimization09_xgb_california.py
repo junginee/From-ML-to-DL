@@ -2,7 +2,6 @@ from bayes_opt import BayesianOptimization
 from lightgbm import LGBMRegressor,LGBMClassifier
 import numpy as np 
 from xgboost import XGBClassifier,XGBRegressor
-
 from sklearn.datasets import fetch_california_housing
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
