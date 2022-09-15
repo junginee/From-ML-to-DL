@@ -4,7 +4,6 @@ from sklearn.preprocessing import PolynomialFeatures
 
 x = np.arange(8).reshape(4,2)
 
-
 print(x)
 # [[0 1]
 #  [2 3]
@@ -12,10 +11,8 @@ print(x)
 #  [6 7]]
 print(x.shape) #(4, 2)
 
-
 pf = PolynomialFeatures(degree=3)
 x_pf = pf.fit_transform(x)
-
 
 print(x_pf)
 # [[ 1.  0.  1.  0.  0.  1.]       
@@ -30,7 +27,6 @@ print(x_pf.shape) #(4, 6)
 
 x = np.arange(12).reshape(4,3)
 
-
 print(x)
 # [[0 1]
 #  [2 3]
@@ -38,10 +34,8 @@ print(x)
 #  [6 7]]
 print(x.shape) #(4, 2)
 
-
 pf = PolynomialFeatures(degree=2) #degree=3 넘을 경우 성능 떨어짐
 x_pf = pf.fit_transform(x)
-
 
 print(x_pf)
 # [[ 1.  0.  1.  0.  0.  1.]       
@@ -55,14 +49,12 @@ print(x_pf.shape) #(4, 6)
 
 x = np.arange(8).reshape(4,2)
 
-
 print(x)
 # [[0 1]
 #  [2 3]
 #  [4 5]
 #  [6 7]]
 print(x.shape) #(4, 2)
-
 
 pf = PolynomialFeatures(degree=3) #degree=3 넘을 경우 성능 떨어짐
 x_pf = pf.fit_transform(x)
