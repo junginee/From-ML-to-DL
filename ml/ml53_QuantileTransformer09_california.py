@@ -17,7 +17,7 @@ y = datasets.target
 print(x.shape, y.shape) #(506, 13) (506,)
 
 
-x_train, x_test, y_train, y_test = train_test_split(
+x_train, x_test, y_train, y_test = train_test_split( 
     x,y, test_size = 0.2, random_state=1234,
 )
 
