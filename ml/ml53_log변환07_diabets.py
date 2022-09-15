@@ -9,8 +9,6 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBClassifier, XGBRegressor 
-from sklearn.pipeline import make_pipeline
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -21,12 +19,9 @@ y = datasets.target
 
 print(x.shape, y.shape) #(506, 13) (506,)
 
-
 x_train, x_test, y_train, y_test = train_test_split(
     x,y, test_size = 0.2, random_state=123,
 )
-
-
 
 scaler = StandardScaler()
 x_train = scaler.fit_transform(x_train)
@@ -34,7 +29,6 @@ x_test = scaler.transform(x_test)
 
 #2.모델
 model = LinearRegression(), RandomForestRegressor(), XGBRegressor()
-
 
 for i in model :
     model = i
