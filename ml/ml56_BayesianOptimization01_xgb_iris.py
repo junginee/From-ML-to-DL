@@ -12,7 +12,6 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from lightgbm import LGBMClassifier, LGBMRegressor
 from xgboost import XGBClassifier
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 import time
