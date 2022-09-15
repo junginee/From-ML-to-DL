@@ -9,10 +9,9 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBClassifier, XGBRegressor 
-from sklearn.pipeline import make_pipeline
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
+
 
 #1. 데이터
 datasets = fetch_california_housing()
