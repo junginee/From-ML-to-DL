@@ -5,13 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, accuracy_score, f1_score
 from sklearn.preprocessing import StandardScaler,MinMaxScaler,MaxAbsScaler, RobustScaler
 from sklearn.preprocessing import QuantileTransformer, PowerTransformer
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from xgboost import XGBClassifier, XGBRegressor 
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import LabelEncoder
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
