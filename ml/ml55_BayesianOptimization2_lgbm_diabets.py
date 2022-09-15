@@ -2,15 +2,12 @@ from dataclasses import dataclass
 from bayes_opt import BayesianOptimization
 from lightgbm import LGBMRegressor
 import numpy as np
-
 from sklearn.datasets import load_diabetes
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, r2_score
-
 import warnings
 warnings.filterwarnings("ignore")
-
 
 #1. 데이터
 datasets = load_diabetes()
