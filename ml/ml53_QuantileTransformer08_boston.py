@@ -42,4 +42,4 @@ print()
 # MaxAbsScaler() 결과 : 0.9201
 # RobustScaler() 결과 : 0.9114
 # QuantileTransformer() 결과 : 0.9165
-# PowerTransformer() 결과 : 0.9200
+# PowerTransformer() 결과 : 0.9200 
