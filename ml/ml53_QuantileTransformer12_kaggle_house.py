@@ -5,11 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, accuracy_score
 from sklearn.preprocessing import StandardScaler,MinMaxScaler,MaxAbsScaler, RobustScaler
 from sklearn.preprocessing import QuantileTransformer, PowerTransformer
-from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
-from xgboost import XGBClassifier, XGBRegressor 
-from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm_notebook
 import matplotlib.pyplot as plt
@@ -53,16 +50,14 @@ for col in tqdm_notebook(cols):
 
 
 #### 결측치  제거 ####
-print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능
-train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna) 행별로 모두 삭제(dropna)
+print(train_set.isnull().sum()) 
+train_set = train_set.fillna(train_set.mean()) 
 print(train_set.isnull().sum())
-print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
- 
+print(train_set.shape)  
 
 test_set = test_set.fillna(test_set.mean())
 
-
-x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
+x = train_set.drop(['SalePrice'], axis=1) 
 print(x)
 print(x.columns)
 print(x.shape) # (1460, 79)
@@ -70,7 +65,6 @@ print(x.shape) # (1460, 79)
 y = train_set['SalePrice']
 print(y)
 print(y.shape) # (1460, )
-
 
 x_train, x_test, y_train, y_test = train_test_split(
     x,y, test_size = 0.2, random_state=1234,
@@ -101,7 +95,7 @@ MaxAbsScaler() 결과 : 0.8665
 
 RobustScaler() 결과 : 0.8694
 
-QuantileTransformer() 결과 : 0.8701
+QuantileTransformer() 결과 : 0.8701  
 
 PowerTransformer() 결과 : 0.8676
 
