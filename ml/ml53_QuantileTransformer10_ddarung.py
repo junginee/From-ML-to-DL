@@ -5,10 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, accuracy_score
 from sklearn.preprocessing import StandardScaler,MinMaxScaler,MaxAbsScaler, RobustScaler
 from sklearn.preprocessing import QuantileTransformer, PowerTransformer
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
-from xgboost import XGBClassifier, XGBRegressor 
 from sklearn.pipeline import make_pipeline
 import matplotlib.pyplot as plt
 import warnings
@@ -16,7 +13,7 @@ warnings.filterwarnings("ignore")
 
 #1. 데이터
 path = 'D:\study\_data\ddarung\\'
-train_set = pd.read_csv(path+'train.csv',index_col=0) # index_col = n : n번째 칼럼을 인덱스로 인식
+train_set = pd.read_csv(path+'train.csv',index_col=0) 
 # print(train_set)
 # print(train_set.shape) # (1459, 10)
 
@@ -26,14 +23,13 @@ test_set = pd.read_csv(path+'test.csv', index_col=0)
 
 # 결측치 중간값으로
 print(train_set.info())
-print(train_set.isnull().sum()) # 결측치 전부 더함
+print(train_set.isnull().sum())
 median = train_set.median()
-train_set = train_set.fillna(median) # 결측치 중간값으로
-print(train_set.isnull().sum()) # 없어졌는지 재확인
+train_set = train_set.fillna(median) 
+print(train_set.isnull().sum())
 
-x = train_set.drop(['count'], axis=1) # axis = 0은 열방향으로 쭉 한줄(가로로 쭉), 1은 행방향으로 쭉 한줄(세로로 쭉)
+x = train_set.drop(['count'], axis=1) 
 y = train_set['count']
-
 
 x_train, x_test, y_train, y_test = train_test_split(
     x,y, test_size = 0.2, random_state=1234,
