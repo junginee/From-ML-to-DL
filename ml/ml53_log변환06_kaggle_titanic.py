@@ -9,17 +9,15 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression,LogisticRegression
 from sklearn.ensemble import RandomForestRegressor,RandomForestClassifier
 from xgboost import XGBClassifier, XGBRegressor 
-from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import LabelEncoder
-import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
 #1. 데이터
-path = './_data/kaggle_titanic/' # ".은 현재 폴더"
+path = './_data/kaggle_titanic/' 
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
-test_set = pd.read_csv(path + 'test.csv', #예측에서 쓸거야!!
+test_set = pd.read_csv(path + 'test.csv', 
                        index_col=0)
 
 # print(test_set) 
@@ -57,7 +55,7 @@ print(x) #(891, 9)
 y = train_set['Survived']
 print(y.shape) #(891,)
 
-gender_submission = pd.read_csv(path + 'gender_submission.csv',#예측에서 쓸거야!!
+gender_submission = pd.read_csv(path + 'gender_submission.csv',
                        index_col=0)
 
 x_train, x_test, y_train, y_test = train_test_split(
