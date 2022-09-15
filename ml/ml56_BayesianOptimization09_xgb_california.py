@@ -71,4 +71,4 @@ lgb_bo = BayesianOptimization(f=lgb_hamsu,
 
 lgb_bo.maximize(init_points=5, n_iter=100)  #초기 2번  ,n-iter : 20번 돌거다! 총 22번 돈다 
 
-print(lgb_bo.max) 
+print(lgb_bo.max)           
