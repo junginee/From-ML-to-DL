@@ -5,8 +5,10 @@ import torch.optim as optim
 import torch.nn.functional as F
 
 #1. 데이터
-x = np.array([1,2,3])
+x = np.array([1,2,3]) 
 y = np.array([1,2,3])
+x_test = np.array([[[4]]]) #(1, 1)
+print(x_test.shape)
 
 #토치에서 1차원으로 데이터 사용하면 오류날 수도 있음, 2차원으로 reshape
 #정수 tensor 형태
@@ -23,11 +25,12 @@ model = nn.Linear(1,1) #input x, output y / 단층레이어, 선형회귀
 #3. 컴파일, 훈련
 # model.compile(loss='mes', optimizer='SGD')
 criterion = nn.MSELoss() #표준
-optimizer = optim.SGD(model.parameters(), lr=0.01) #옵티마이저는 모든 파라미터에서 연산되기 때문에 model.parameters 명시
-#optim.Adam(model.parameters(), lr=0.01)
+optimizer = optim.SGD(model.parameters(), lr=0.01) 
+옵티마이저는 모든 파라미터에서 연산되기 때문에 model.parameters 명시
+optim.Adam(model.parameters(), lr=0.01)
 
 def train(model,  criterion, optimizer, x, y):
-    # model. train()            # 훈련모드 (생략할 수도 있음)
+    # model. train()             # 훈련모드 (생략할 수도 있음)
     optimizer.zero_grad()   #손실함수 기울기 초기화
     
     hypothesis = model(x)
@@ -66,5 +69,5 @@ loss2 = evaluate(model, criterion, x, y)
 print("최종 loss : ", loss2)
 
 #y_predict = model.predict([4])    
-results = model(torch.Tensor([[4]])) #shape 맞춰주기
+results = model(torch.Tensor([[4]])) #shape 맞춰주기 (1,1)
 print('4의 예측값 : ',results.item())
