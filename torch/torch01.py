@@ -8,7 +8,7 @@ import torch.nn.functional as F
 x = np.array([1,2,3]) 
 y = np.array([1,2,3])
 x_test = np.array([[[4]]]) #(1, 1)
-print(x_test.shape)
+print(x_test.shape)         
 
 #토치에서 1차원으로 데이터 사용하면 오류날 수도 있음, 2차원으로 reshape
 #정수 tensor 형태
