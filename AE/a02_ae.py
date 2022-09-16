@@ -3,7 +3,7 @@ from keras.datasets import mnist
                                                                     
 (x_train, _), (x_test, _) = mnist.load_data()   
 
-x_train = x_train.reshape(60000, 784).astype('float32')/255. #255로 나눈 후 부동소수점으로 반환
+x_train = x_train.reshape(60000, 784).astype('float32')/255. 
 x_test = x_test.reshape(10000, 784).astype('float32')/255.
 
 from keras.models import Sequential, Model
@@ -32,7 +32,7 @@ import random
 fig, ((ax1, ax2, ax3, ax4, ax5), (ax6, ax7, ax8, ax9, ax10)) = \
         plt.subplots(2, 5, figsize=(20, 7))
         
-# 이미지 5개를 무작위로 고른다
+
 random_images = random.sample(range(output.shape[0]), 5)
 
 # 원본(입력) 이미지를 맨 위에 그린다.
