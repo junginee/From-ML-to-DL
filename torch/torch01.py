@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 
-#1. 데이터
+#1. 데이터       
 x = np.array([1,2,3]) 
 y = np.array([1,2,3])
 x_test = np.array([[[4]]]) #(1, 1)
