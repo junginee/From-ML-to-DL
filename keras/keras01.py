@@ -4,7 +4,7 @@ import numpy as np
 x = np.array([1,2,3])       
 y = np.array([1,2,3])                                                                                           
                                                                                                                         
-#2.모델구성                                               
+#2.모델구성                                                                            
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense                            
                                                          
@@ -22,7 +22,7 @@ model.fit(x,y,epochs=600) #1000번 훈련시키겠다. 이때 훈련을 여러�
 #4. 평가, 예측
 loss = model.evaluate(x, y) #x,y의 평가값은 로스입니다.
 print('loss :', loss)  #로스값을 출력해주세요.    
-
+ 
 result = model.predict([4]) #예측값으로 4를 주며, 4는 result에 저장한다.
 print('4의 예측값 : ', result)
       
