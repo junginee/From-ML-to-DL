@@ -1,8 +1,3 @@
-# [실습]
-# R2 0.62 이상 
-#y는 정제된 x의 데이터 값으로 나온 결과치기 때문에 정제를 할 필요는 없다.
-
-
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -48,6 +43,3 @@ print('r2스코어 : ', r2)
 #결과
 #loss :  39.40278625488281
 #r2스코어 :  0.6281169407558016
-
-
-
