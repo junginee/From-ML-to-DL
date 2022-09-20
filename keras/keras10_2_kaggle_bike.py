@@ -82,5 +82,5 @@ sampleSubmission = abs(sampleSubmission)
 sampleSubmission = sampleSubmission.fillna(sampleSubmission.mean())
 sampleSubmission.to_csv(path + 'sampleSubmission_test04.csv', index=True)
 
-# loss : 92.75188446044922
+# loss : 92.75188446044922 
 # RMSE :  139.62974866131475 
