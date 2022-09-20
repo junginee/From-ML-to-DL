@@ -37,7 +37,7 @@ print('loss : ',loss)
 
 y_predict = model.predict(x_test) 
 from sklearn.metrics import r2_score
-r2 = r2_score(y_test, y_predict) #R 제곱 = 예측값 (y_predict) / 실제값 (y_test) 
+r2 = r2_score(y_test, y_predict)
 print('r2스코어 : ', r2)
 
 #결과
