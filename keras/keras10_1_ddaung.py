@@ -1,15 +1,3 @@
-#데이콘 따릉이 문제풀이
-
-#모든 훈련, 평가는 train set으로 한다. test set에는 count가 빠져있는데, train set으로 훈련시킨 후 test set의 count 값 715개를 예측해서 제출해라
-#train set에 10개의 컬럼이 있는데 9개 컬럼은 x변수로 하고, 1개(count) 컬럼은 y 값에 집어 넣는다. 이 count 값을 test set의 결과로 제출할 것
-#그리고 이 10개의 컬럼을 가지고 train70%, test30% 으로 설정한다.
-#원래 train set에는 총11개의 컬럼이 있는데 id는 index로 분류하였기에 10개의 컬럼으로 (x,y) 트레인, 테스트 한다.
-
-#문제해결하기
-#모델 구성 후 실행했을 때 nan 값이 나왔다.
-#해결방법은? nan 값 들어간 행을 제외시킨다. 결측치가 들어있는 행을 삭제함으로써 이 방법을 해결할 수 있으며 데이터가 많을 경우 이 단순작업은 위험한 방법이다. 
-#따라서 nan 값 해결하는 방법은 추후 배울 예정
-
 import numpy as np
 import pandas as pd #read_csv, columns, info, describe, 결측치 제공
 from tensorflow.keras.models import Sequential
@@ -76,8 +64,5 @@ def RMSE(y_test, y_predict):
 
 rmse = RMSE(y_test, y_predict)
 print("RMSE :", rmse)
-# y_predict = model.predict(test_set) #y_predict 값이 제출할 값이다.
-
- 
 
        
