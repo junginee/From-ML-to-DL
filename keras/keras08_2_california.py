@@ -1,5 +1,3 @@
-# sklearn.datasets.fetch_california_housing
-
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import numpy as np
