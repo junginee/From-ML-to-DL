@@ -2,7 +2,6 @@
 # R2 0.62 이상 
 #y는 정제된 x의 데이터 값으로 나온 결과치기 때문에 정제를 할 필요는 없다.
 
-
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -43,7 +42,7 @@ print('loss : ',loss)
 
 y_predict = model.predict(x_test) 
 from sklearn.metrics import r2_score
-r2 = r2_score(y_test, y_predict) #R 제곱 = 예측값 (y_predict) / 실제값 (y_test) 
+r2 = r2_score(y_test, y_predict) 
 print('r2스코어 : ', r2)
 
 #[keras08_3_diabets]
@@ -53,6 +52,3 @@ print('r2스코어 : ', r2)
 #[keras11_validation7.diabets]
 #loss :  48.89834213256836 
 #r2스코어 :  0.4484093264571287
-
-
-
