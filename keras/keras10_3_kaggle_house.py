@@ -51,9 +51,7 @@ train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna)
 print(train_set.isnull().sum())
 print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
  
-
 test_set = test_set.fillna(test_set.mean())
-
 
 x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
 print(x)
@@ -85,8 +83,8 @@ print('loss :', loss)
 
 y_predict = model.predict(x_test)
 
-def RMSE(y_test, y_predict) : #(원y값, 예측y값)
-    return np.sqrt(mean_squared_error(y_test, y_predict)) # MSE에 루트를 씌워 돌려주겠다.
+def RMSE(y_test, y_predict) :
+    return np.sqrt(mean_squared_error(y_test, y_predict)) 
 
 rmse = RMSE(y_test, y_predict)
 print("RMSE : ", rmse)
@@ -104,10 +102,6 @@ plt.show()
 
 # print(y_summit)
 # print(y_summit.shape) # (715, 1)
-
-
-# .to_csv()를 사용하여
-# submission.csv를 완성하시오
 
 sample_submission['SalePrice'] = y_summit
 sample_submission = sample_submission.fillna(sample_submission.mean())
