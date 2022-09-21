@@ -1,5 +1,3 @@
-# sklearn.datasets.fetch_california_housing
-
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import numpy as np
@@ -33,7 +31,6 @@ model.add(Dense(1))
                 
 
 #3. 컴파일, 훈련
-
 model.compile(loss='mse', optimizer = 'adam')
 model.fit(x_train, y_train , epochs=500, batch_size=20,validation_split= 0.3)
 
