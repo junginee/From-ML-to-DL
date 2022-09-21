@@ -89,12 +89,9 @@ def RMSE(y_test,y_predict):
 rmse=RMSE(y_test,y_predict)
 print("RMSE",rmse)
 
-
-
 y_summit=model.predict(test_set)
 # print(y_summit)
 # print(y_summit.shape)
-
 
 result=pd.read_csv(path+'sampleSubmission.csv',index_col=0)
 result['count']=y_summit
