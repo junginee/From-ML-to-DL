@@ -102,4 +102,4 @@ result=abs(result)
 result.to_csv(path+'sampleSubmission.csv',index=True)
 
 # loss: 2941.988525390625
-# RMSE 54.24010049650571 
+# RMSE 54.24010049650571         
