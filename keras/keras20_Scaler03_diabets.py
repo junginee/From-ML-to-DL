@@ -1,5 +1,3 @@
-
-
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
@@ -81,11 +79,3 @@ print('r2스코어 : ', r2)
 #3. StandardScaler()
 # loss :  [4006.2705078125, 0.0]
 # r2스코어 :  0.3264762087077151
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 :
