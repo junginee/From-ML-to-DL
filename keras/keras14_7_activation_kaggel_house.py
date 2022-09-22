@@ -4,7 +4,7 @@
 # metrics 추가
 # EarlyStopping 넣고
 # 성능비교
-# 느낀점 2줄 이상
+# 느낀점 2줄 이상 
 
 import numpy as np
 import pandas as pd
@@ -100,9 +100,8 @@ print('loss :', loss)
 
 y_predict = model.predict(x_test)
 
-def RMSE(y_test, y_predict) : #(원y값, 예측y값)
-    return np.sqrt(mean_squared_error(y_test, y_predict)) # MSE에 루트를 씌워 돌려주겠다.
-
+def RMSE(y_test, y_predict) :
+    return np.sqrt(mean_squared_error(y_test, y_predict))
 rmse = RMSE(y_test, y_predict)
 print("RMSE : ", rmse)
 
@@ -119,10 +118,6 @@ y_summit = model.predict(test_set)
 
 # print(y_summit)
 # print(y_summit.shape) # (715, 1)
-
-
-# .to_csv()를 사용하여
-# submission.csv를 완성하시오
 
 # sample_submission['SalePrice'] = y_summit
 # sample_submission = sample_submission.fillna(sample_submission.mean())
