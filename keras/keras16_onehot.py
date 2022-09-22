@@ -1,5 +1,4 @@
 '''
-
 [과제]
 3가지 onehotencoding 방식을 비교할것
 
@@ -21,7 +20,7 @@
 
 3. sklearn의 OneHotEncoder https://blog.naver.com/PostView.naver?blogId=baek2sm&logNo=221811777148&parentCategoryNo=&categoryNo=75&viewDate=&isShowPopularPosts=false&from=postView
 
-미세한 차이를 정리하시오!!!
+
 
 1 판다스는 아웃풋이 무조건 데이터프레임으로 되기때문에 np.argmax 가 아닌 tf.argmax를 이용
 
