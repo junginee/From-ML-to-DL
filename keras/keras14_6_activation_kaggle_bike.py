@@ -19,7 +19,7 @@ import datetime as dt
 path = './_data/kaggle_bike/'
 train_set = pd.read_csv(path + 'train.csv') # + 명령어는 문자를 앞문자와 더해줌  index_col=n n번째 컬럼을 인덱스로 인식
             
-test_set = pd.read_csv(path + 'test.csv') # 예측에서 쓸거임        
+test_set = pd.read_csv(path + 'test.csv')  
 
 '''                        
 print(train_set)
@@ -106,8 +106,6 @@ r2 = r2_score(y_test, y_predict)
 
 print('loss : ', loss)
 print("RMSE : ", rmse)
-
-
 
 '''
 y_summit = model.predict(test_set)
