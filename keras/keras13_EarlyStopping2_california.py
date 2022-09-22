@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.datasets import fetch_california_housing
 import matplotlib.pyplot as plt
 
-#1.데이터
+#1.데이터     
 datasets = fetch_california_housing()
 x = datasets.data
 y = datasets.target
