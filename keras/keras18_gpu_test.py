@@ -7,6 +7,6 @@ print(gpus)
 if(gpus):
     print("쥐피유 돈다")
     aaa = 'gpu'
-else:
+else: 
     print("쥐피유 안돈다") 
     aaa = 'cpu'   
