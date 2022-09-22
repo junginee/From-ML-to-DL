@@ -1,4 +1,3 @@
-
 # [과제]
 # # activation : sigmoid, relu, linear
 # metrics 추가
