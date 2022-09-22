@@ -1,22 +1,16 @@
-
-
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
-from sklearn.datasets import load_iris #1. 데이터
-from sklearn.model_selection import train_test_split #1. 데이터
-
-from tensorflow.python.keras.models import Sequential #2. 모델구성
-from tensorflow.python.keras.layers import Dense #2. 모델구성
-
-from sklearn.metrics import accuracy_score #3,4  metrics로 accuracy 지표 사용
+from sklearn.datasets import load_iris 
+from sklearn.model_selection import train_test_split 
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense
+from sklearn.metrics import accuracy_score 
 import time
-
 import tensorflow as tf
 tf.random.set_seed(66)
 
 #1. 데이터
-
 datasets = load_iris()
 # print(datasets.DESCR)
 # print(datasets.feature_names)
@@ -75,7 +69,6 @@ model.add(Dense(3, activation='softmax'))
 
 
 #3. 컴파일, 훈련
-
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # 이진분류모델에서는 loss로 binary_crossentropy
@@ -93,7 +86,6 @@ hist = model.fit(x_train, y_train, epochs=100, batch_size=50,
 
 
 #4. 평가, 예측
-
 results = model.evaluate(x_test, y_test)
 print('loss : ' , results[0])
 print('accuracy : ', results[1]) 
