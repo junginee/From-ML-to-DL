@@ -1,4 +1,3 @@
-
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
@@ -7,7 +6,6 @@ from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, accuracy_score
-
 import matplotlib.pyplot as plt
 import time
 
@@ -93,11 +91,3 @@ print('acc스코어 : ', acc)
 # 걸린시간 :  1657091174.0220242
 # loss :  [0.11797408759593964, 0.9590643048286438]
 # acc스코어 :  0.9590643274853801
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
