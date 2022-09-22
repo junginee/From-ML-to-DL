@@ -1,12 +1,10 @@
 import numpy as np
 from sklearn. datasets import load_digits
 import numpy as np
-from sklearn.model_selection import train_test_split #1. 데이터
-
-from tensorflow.python.keras.models import Sequential #2. 모델구성
-from tensorflow.python.keras.layers import Dense #2. 모델구성
-
-from sklearn.metrics import accuracy_score #3,4  metrics로 accuracy 지표 사용
+from sklearn.model_selection import train_test_split
+from tensorflow.python.keras.models import Sequential 
+from tensorflow.python.keras.layers import Dense 
+from sklearn.metrics import accuracy_score 
 
 #1. 데이터
 datasets = load_digits()
@@ -30,7 +28,6 @@ plt.grid()
 plt.matshow(datasets.images[2])
 plt.show()
 
-##### 많이 사용X ######
 
 #2. 모델구성
 
@@ -106,6 +103,3 @@ print('acc스코어 : ', acc)
 #  2 8 8 9 2 0 0 8 9 1 7 3 6 1 8 6 5 2 0 4 3 7 5 3 3 7 2 2 3 1 5 2 7 0 9 2 8
 #  4 4 6 0 1 5 8 4 5 1 0 1 8 3 9 0 2 0 4 6 9 2 2 5 0 0 5]
 # acc스코어 :  0.9388888888888889
-
-
-
