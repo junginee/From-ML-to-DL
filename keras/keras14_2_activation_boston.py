@@ -72,7 +72,7 @@ print('r2스코어 : ', r2)
 
 # 2. validation / EarlyStopping 적용했을때 결과
 # loss :  18.753120512345123        
-# r2 스코어 : 0.6785231239661245 
+# r2 스코어 : 0.6785231239661245  
 
 # 3. validation / EarlyStopping / activation 적용했을때 결과
 # loss : [16.35492515563965, 3.0075416564941406]
