@@ -49,8 +49,6 @@ loss = model.evaluate(x_test, y_test)
 print('loss : ', loss)
 y_predict = model.predict(x_test) 
 
-
-
 ################### history ############################
 print('==============================')
 print(hist)
