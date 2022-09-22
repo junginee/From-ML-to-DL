@@ -1,5 +1,3 @@
-
-
 import numpy as np
 import pandas as pd #read_csv, columns, info, describe, 결측치 제공
 from tensorflow.keras.models import Sequential
@@ -97,22 +95,23 @@ print("RMSE :", rmse)
 print('r2스코어 : ', r2)
 
 #[과제] --- train 파일 / test 파일 모두 transform!! 주의
-#1. scaler 하기 전
-# loss:  
-# r2스코어 :
 
-#2. MinMaxScaler()
-# loss:  
-# r2스코어 :
+# minmax
+# loss:  106244600.0
+# RMSE :  42.329994436028066
 
-#3. StandardScaler()
-# loss:  
-# r2스코어 :
+# standard
+# loss:  4524114432.0
+# RMSE :  44.68051079811457
 
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
+# maxabs
+# loss:  1958864.0
+# RMSE :  41.22613327004314
 
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
+# robust
+# loss:  18557429760.0
+# RMSE :  45.05083185306908
+
+# none
+# loss:  508.2084045410156
+# RMSE :  39.72508807596856
