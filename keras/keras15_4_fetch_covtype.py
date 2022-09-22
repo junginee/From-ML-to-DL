@@ -1,14 +1,10 @@
-
 import numpy as np
 import tensorflow as tf
-from sklearn. datasets import fetch_covtype #1. 데이터
-from sklearn.model_selection import train_test_split #1. 데이터
-
-from tensorflow.python.keras.models import Sequential #2. 모델구성
-from tensorflow.python.keras.layers import Dense #2. 모델구성
-
-from sklearn.metrics import accuracy_score #3,4  metrics로 accuracy 지표 사용
-
+from sklearn. datasets import fetch_covtype 
+from sklearn.model_selection import train_test_split 
+from tensorflow.python.keras.models import Sequential 
+from tensorflow.python.keras.layers import Dense 
+from sklearn.metrics import accuracy_score
 
 #1. 데이터
 datasets = fetch_covtype()
@@ -78,9 +74,4 @@ print(y_test)
 
 acc= accuracy_score(y_test, y_predict)
 print('acc스코어 : ', acc) 
-
-#[결과]
-
-
-
 
