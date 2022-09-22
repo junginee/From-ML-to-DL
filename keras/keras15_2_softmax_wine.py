@@ -1,11 +1,10 @@
 import numpy as np
-from sklearn.datasets import load_wine #1. 데이터
-from sklearn.model_selection import train_test_split #1. 데이터
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+from tensorflow.python.keras.models import Sequential 
+from tensorflow.python.keras.layers import Dense 
+from sklearn.metrics import accuracy_score 
 
-from tensorflow.python.keras.models import Sequential #2. 모델구성
-from tensorflow.python.keras.layers import Dense #2. 모델구성
-
-from sklearn.metrics import accuracy_score #3,4  metrics로 accuracy 지표 사용
 
 #1. 데이터
 datasets = load_wine()
@@ -25,7 +24,6 @@ x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shu
 
 
 #2. 모델구성
-
 model = Sequential()
 model.add(Dense(5,input_dim = 13))
 model.add(Dense(10, activation='relu'))
@@ -50,7 +48,6 @@ hist = model.fit(x_train, y_train, epochs=100, batch_size=10,
 
 
 #4. 평가, 예측
-
 #[loss, acc 출력방법 1]
 loss, acc = model.evaluate(x_test, y_test)
 print('loss : ' , loss)
@@ -81,4 +78,3 @@ print('acc스코어 : ', acc)
 # [1 1 0 0 1 1 1 0 1 2 2 0 0 0 1 0 2 0 1 1 0 1 2 1 0 1 1 1 1 1 2 0 1 1 2 2]
 # [1 1 0 0 1 1 1 0 0 2 2 0 0 0 1 0 2 0 1 1 0 1 2 1 0 1 1 1 1 2 2 0 2 1 2 1]
 # acc스코어 :  0.8888888888888888
-
