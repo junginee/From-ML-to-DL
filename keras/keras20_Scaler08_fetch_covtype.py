@@ -4,13 +4,11 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import tensorflow as tf
-from sklearn. datasets import fetch_covtype #1. 데이터
-from sklearn.model_selection import train_test_split #1. 데이터
-
-from tensorflow.python.keras.models import Sequential #2. 모델구성
-from tensorflow.python.keras.layers import Dense #2. 모델구성
-
-from sklearn.metrics import accuracy_score #3,4  metrics로 accuracy 지표 사용
+from sklearn. datasets import fetch_covtype 
+from sklearn.model_selection import train_test_split 
+from tensorflow.python.keras.models import Sequential 
+from tensorflow.python.keras.layers import Dense 
+from sklearn.metrics import accuracy_score 
 import time
 
 #1. 데이터
@@ -87,7 +85,7 @@ print(y_test)
 acc= accuracy_score(y_test, y_predict)
 print('acc스코어 : ', acc) 
 
-#[과제] --- 완료
+#[과제]
 #1. scaler 하기 전
 # loss :  0.7391432523727417
 # accuracy :  0.69012850522995
@@ -99,13 +97,4 @@ print('acc스코어 : ', acc)
 #3. StandardScaler()
 # loss :  0.5919050574302673
 # accuracy :  0.7447140216827393
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
-
 
