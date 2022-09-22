@@ -7,7 +7,7 @@ from sklearn.metrics import r2_score, accuracy_score
 import matplotlib.pyplot as plt
 import time
 
-#1. 데이터
+#1. 데이터 
 datasets = load_breast_cancer()
 # print(datasets) (569,30)
 # print(datasets.DESCR)
@@ -57,8 +57,7 @@ end_time = time.time() - start_time
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test)
 print('loss : ' , loss)
-
 print("걸린시간 : ", end_time)
 
 # cpu 걸린시간 :  34.59515929222107
-# gpu 걸린시간 :  36.51170897483826
+# gpu 걸린시간 :  36.51170897483826 
