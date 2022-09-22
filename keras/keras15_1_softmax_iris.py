@@ -1,5 +1,4 @@
 '''
-
 [다중분류 총 정리]
 1. 분류 값에 대한 숫자만큼(y 값의 종류만큼)을 노드로 빼주며, 마지막 레이러의 활성화 함수를 softmax로 설정한다.  
    예) model.add(Dense(3, activation='softmax')) 
@@ -11,17 +10,12 @@
 4. loss로 categorical_crossentropy
 5. accuracy_score 구할 때 : argmax 사용
 '''
-
 import numpy as np
-from sklearn.datasets import load_iris #1. 데이터
-from sklearn.model_selection import train_test_split #1. 데이터
-
-from tensorflow.python.keras.models import Sequential #2. 모델구성
-from tensorflow.python.keras.layers import Dense #2. 모델구성
-
-from sklearn.metrics import accuracy_score #3,4  metrics로 accuracy 지표 사용
-
-
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from tensorflow.python.keras.models import Sequential 
+from tensorflow.python.keras.layers import Dense 
+from sklearn.metrics import accuracy_score 
 import tensorflow as tf
 tf.random.set_seed(66)
 
@@ -69,8 +63,7 @@ model.add(Dense(3, activation='softmax'))
 # one hot encoding이란? 자연어를 컴퓨터가 처리하도록 하기 위해서 숫자로 바꾸는 방법인 임베딩 중 하나의 방법(가장 기본적인 표현 방법)
 # how? by 사이킷런/ by 케라스 / by 판다스
 
-#주의 : 데이터 분류 시 셔플 주의!!  shuffle=True
-  
+#주의 : 데이터 분류 시 셔플 주의!!  shuffle=True 
 
 
 #3. 컴파일, 훈련
