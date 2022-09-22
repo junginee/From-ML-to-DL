@@ -59,7 +59,7 @@ print('걸린시간 : ', end_time)
 
 ##################### 한글 깨짐 해결 ###################
 import matplotlib
-matplotlib.rcParams['font.family'] ='Malgun Gothic'
+matplotlib.rcParams['font.family'] ='Malgun Gothic'         
 matplotlib.rcParams['axes.unicode_minus'] =False
 #######################################################
 
