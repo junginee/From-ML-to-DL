@@ -4,7 +4,7 @@
 # EarlyStopping 넣고
 # 성능 비교
 # 감상문, 느낀점 2줄이상!!!
-
+    
 import numpy as np
 import pandas as pd #read_csv, columns, info, describe, 결측치 제공
 from tensorflow.keras.models import Sequential
