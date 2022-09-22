@@ -49,5 +49,5 @@ plt.grid() # 모눈종이에 하겠다
 plt.title('keras12_overfit2_california')#제목
 plt.ylabel('loss')#y축 이름
 plt.xlabel('epochs')#x축 이름
-plt.legend(loc='upper right') # upper right: 위쪽 상단에 표시하겠다.(라벨 이름들)
+plt.legend(loc='upper right') # upper right: 위쪽 상단에 표시하겠다.(라벨 이름들)       
 plt.show()# 보여줘
