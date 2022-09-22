@@ -1,9 +1,4 @@
 # [실습]
-# 시작!!!
-# datasets.descibe()
-# datasets.info()
-# datasets.isnull().sum()
-
 # pandas의  y 라벨의 종류가 무엇인지 확인하는 함수 쓸것
 # numpy 에서는 np.unique(y,return_counts=True)
 
@@ -16,7 +11,6 @@ from tensorflow.python.keras.layers import Dense
 from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm_notebook #문자열을 숫자로 전환
 from sklearn.model_selection import train_test_split
-
 from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import r2_score, mean_squared_error
@@ -24,7 +18,6 @@ from sklearn.metrics import r2_score, mean_squared_error
 
 
 #1.데이터
-
 path = './_data/kaggle_titanic/' # ".은 현재 폴더"
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
@@ -127,21 +120,14 @@ gender_submission = pd.read_csv(path + 'gender_submission.csv',#예측에서 쓸
 # 해당 기능을 통해 y값을 클래스 수에 맞는 열로 늘리는 원핫 인코딩 처리를 한다.
 #1개의 컬럼으로 [0,1,2] 였던 값을 ([1,0,0],[0,1,0],[0,0,1]과 같은 shape로 만들어줌)
 
-
-
 x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.91,shuffle=True ,random_state=100)
-#셔플을 False 할 경우 순차적으로 스플릿하다보니 훈련에서는 나오지 않는 값이 생겨 정확도가 떨어진다.
-#디폴트 값인  shuffle=True 를 통해 정확도를 올린다.
+
 
 #2. 모델 구성
-
 model = Sequential()
 model.add(Dense(100,input_dim=9))
 model.add(Dense(100, activation='relu'))
 model.add(Dense(1, activation='sigmoid'))
-#다중 분류로 나오는 아웃풋 노드의 개수는 y 값의 클래스의 수와 같다.활성화함수 'softmax'를 통해 
-# 아웃풋의 합은 1이 된다.
-
 
 #3. 컴파일,훈련
 earlyStopping = EarlyStopping(monitor='loss', patience=200, mode='min', 
@@ -155,7 +141,6 @@ model.fit(x_train, y_train, epochs=100, batch_size=20,
 #다중 분류 모델은 'categorical_crossentropy'만 사용한다 !!!!
 
 #4.  평가,예측
-
 # loss,acc = model.evaluate(x_test,y_test)
 # print('loss :',loss)
 # print('accuracy :',acc)
@@ -166,32 +151,16 @@ model.fit(x_train, y_train, epochs=100, batch_size=20,
 # print('loss :',result[0])
 # print('accuracy :',result[1])
 
-
-
-
 y_predict = model.predict(x_test)
 y_predict[(y_predict<0.5)] = 0  
 y_predict[(y_predict>=0.5)] = 1  
 print(y_predict) 
 print(y_test.shape) #(134,)
 
-
-# y_test = np.argmax(y_test,axis=1)
-# import tensorflow as tf
-# y_test = np.argmax(y_test,axis=1)
-# y_predict = np.argmax(y_predict,axis=1)
-#pandas 에서 인코딩 진행시 argmax는 tensorflow 에서 임포트한다.
-# print(y_test.shape) #(87152,7)
-# y_test와 y_predict의  shape가 일치해야한다.
-
-
-
 acc = accuracy_score(y_test, y_predict)
 print('acc 스코어 :', acc)
 
-
 y_summit = model.predict(test_set)
-
 gender_submission['Survived'] = y_summit
 submission = gender_submission.fillna(gender_submission.mean())
 submission [(submission <0.5)] = 0  
@@ -202,4 +171,3 @@ submission.to_csv('test21.csv',index=True)
 
 # acc 스코어 : 0.7654320987654321
 
-'''
