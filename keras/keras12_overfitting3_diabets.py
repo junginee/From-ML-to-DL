@@ -4,6 +4,7 @@ from tensorflow.python.keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes 
 import matplotlib.pyplot as plt
+
 #1.데이터
 datasets = load_diabetes()
 x = datasets.data 
@@ -48,6 +49,6 @@ plt.plot(hist.history['val_loss'], marker = '.' ,c = 'blue', label = 'val_loss')
 plt.grid() # 모눈종이에 하겠다
 plt.title('keras12_overfitting3_diabets')#제목
 plt.ylabel('loss')#y축 이름
-plt.xlabel('epochs')#x축 이름
+plt.xlabel('epochs')#x축 이름    
 plt.legend(loc='upper right') # upper right: 위쪽 상단에 표시하겠다.(라벨 이름들)
 plt.show()# 보여줘
