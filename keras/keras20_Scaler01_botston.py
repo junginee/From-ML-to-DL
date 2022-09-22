@@ -1,5 +1,3 @@
-
-
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense
 from sklearn.datasets import load_boston
@@ -74,8 +72,6 @@ end_time = time.time()
 loss = model.evaluate(x_test, y_test)
 y_predict = model.predict(x_test)
 
-
-
 print("걸린시간 : ", end_time)
 from sklearn.metrics import r2_score
 r2 = r2_score(y_test, y_predict)
@@ -98,16 +94,6 @@ print('r2스코어 : ', r2)
 # 걸린시간 :  1657089274.0064988
 # loss :  [12.229043960571289, 2.4662506580352783]
 # r2스코어 :  0.8519792672612871
-
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
-
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
-
-
 
 
 
