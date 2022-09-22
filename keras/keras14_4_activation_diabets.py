@@ -4,7 +4,7 @@
 # EarlyStopping 넣고
 # 성능 비교
 # 감상문, 느낀점 2줄이상!!!
-
+     
 import numpy as np
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
