@@ -4,6 +4,7 @@ from tensorflow.python.keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_diabetes 
 import matplotlib.pyplot as plt
+
 #1.데이터
 datasets = load_diabetes()
 x = datasets.data 
@@ -57,5 +58,5 @@ plt.xlabel('epochs')#x축 이름
 plt.legend(loc='upper right') # upper right: 위쪽 상단에 표시하겠다.(라벨 이름들)
 plt.show()# 보여줘
 
-# loss :  2085.260498046875
+# loss :  2085.260498046875       
 # r2스코어 :  0.6519268315921122
