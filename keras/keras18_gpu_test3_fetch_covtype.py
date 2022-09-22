@@ -9,4 +9,4 @@ if(gpus):
     aaa = 'gpu'
 else:
     print("쥐피유 안돈다") 
-    aaa = 'cpu'   
+    aaa = 'cpu'    
