@@ -2,9 +2,7 @@ import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn. datasets import load_digits
-import numpy as np
 from sklearn.model_selection import train_test_split 
-
 from sklearn.metrics import accuracy_score
 
 #1. 데이터
@@ -32,7 +30,6 @@ print(np.min(x_train)) #0.0
 print(np.max(x_train)) #1.0
 
 #2. 모델구성
-
 from tensorflow.python.keras.models import Sequential, Model
 from tensorflow.python.keras.layers import Dense, Input
 
@@ -73,7 +70,6 @@ hist = model.fit(x_train, y_train, epochs=100, batch_size=10,validation_split=0.
 end_time = time.time()
 
 #4. 평가, 예측
-
 loss, acc = model.evaluate(x_test, y_test)
 
 print("걸린시간 : ", end_time)
@@ -93,7 +89,3 @@ print('acc스코어 : ', acc)
 # loss :  0.6763253808021545
 # accuracy :  0.9222221970558167
 # acc스코어 :  0.9222222222222223
-
-
-
-
