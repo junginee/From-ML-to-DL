@@ -1,5 +1,3 @@
-
-
 import numpy as np
 import pandas as pd
 from sqlalchemy import true #pandas : 엑셀땡겨올때 사용
@@ -14,8 +12,7 @@ import datetime as dt
 
 #1. 데이터
 path = './_data/kaggle_bike/'
-train_set = pd.read_csv(path + 'train.csv') # + 명령어는 문자를 앞문자와 더해줌  index_col=n n번째 컬럼을 인덱스로 인식
-            
+train_set = pd.read_csv(path + 'train.csv') # + 명령어는 문자를 앞문자와 더해줌  index_col=n n번째 컬럼을 인덱스로 인식            
 test_set = pd.read_csv(path + 'test.csv') # 예측에서 쓸거임        
 
 '''                        
@@ -32,7 +29,6 @@ print(train_set.describe()) # describe 평균치, 중간값, 최소값 등등 �
 
 
 ######## 년, 월 ,일 ,시간 분리 ############
-
 train_set["hour"] = [t.hour for t in pd.DatetimeIndex(train_set.datetime)]
 train_set["day"] = [t.dayofweek for t in pd.DatetimeIndex(train_set.datetime)]
 train_set["month"] = [t.month for t in pd.DatetimeIndex(train_set.datetime)]
@@ -134,23 +130,22 @@ submission_set['count'] = y_summit
 print(submission_set)
 submission_set.to_csv(path + 'submission.csv', index = True)
 
-#[과제] --- train 파일 / test 파일 모두 transform!! 주의
-#1. scaler 하기 전
-# loss:  
-# r2스코어 :
+# minmax
+# loss :  1506.0845947265625
+# RMSE :  50.31010383148778
 
-#2. MinMaxScaler()
-# loss:  
-# r2스코어 :
+# standard
+# loss :  1223.87255859375
+# RMSE :  46.34005317572847
 
-#3. StandardScaler()
-# loss:  
-# r2스코어 :
+# Maxabs
+# loss :  1683.7886962890625
+# RMSE :  50.37578050278697
 
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
+# Robust
+# loss :  1826.589599609375
+# RMSE :  51.49942724885991
 
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
+# none
+# loss :  2744.703125
+# RMSE :  64.7638105407249
