@@ -4,7 +4,6 @@ from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, accuracy_score
-
 import matplotlib.pyplot as plt
 import time
 
