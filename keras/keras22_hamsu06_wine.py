@@ -3,7 +3,6 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.datasets import load_wine 
 from sklearn.model_selection import train_test_split 
-
 from sklearn.metrics import accuracy_score 
 
 #1. 데이터
@@ -71,7 +70,6 @@ hist = model.fit(x_train, y_train, epochs=500, batch_size=5,
 end_time = time.time() 
 
 #4. 평가, 예측
-
 results = model.evaluate(x_test, y_test)
 print('loss : ' , results[0])
 print('accuracy : ', results[1]) 
