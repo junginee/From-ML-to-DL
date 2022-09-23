@@ -85,7 +85,7 @@ print("걸린시간 : ", end_time)
 loss = model.evaluate(x_test, y_test)
 print('loss : ',loss)
 
-
+ 
 y_predict = model.predict(x_test) 
 
 from sklearn.metrics import r2_score
