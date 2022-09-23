@@ -1,4 +1,3 @@
-
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.datasets import load_breast_cancer
@@ -6,7 +5,6 @@ from tensorflow.python.keras.models import Sequential, load_model
 from tensorflow.python.keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, accuracy_score
-
 import matplotlib.pyplot as plt
 import time
 
