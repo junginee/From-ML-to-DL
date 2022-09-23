@@ -1,14 +1,9 @@
-
-
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
-
 from sklearn.datasets import load_wine 
 from sklearn.model_selection import train_test_split 
-
 from tensorflow.python.keras.models import Sequential, load_model
 from tensorflow.python.keras.layers import Dense 
-
 from sklearn.metrics import accuracy_score 
 
 #1. 데이터
@@ -36,7 +31,6 @@ print(np.min(x_train)) #0.0
 print(np.max(x_train)) #1.0
 
 #2. 모델구성
-
 model = Sequential()
 model.add(Dense(5,input_dim = 13))
 model.add(Dense(10, activation='relu'))
@@ -66,7 +60,6 @@ end_time = time.time()
 model.save_weights("./_save/keras23_12_save_wine.h5")
 
 #4. 평가, 예측
-
 results = model.evaluate(x_test, y_test)
 print('loss : ' , results[0])
 print('accuracy : ', results[1]) 
@@ -84,4 +77,3 @@ print(y_test)
 
 acc= accuracy_score(y_test, y_predict)
 print('acc스코어 : ', acc) 
-
