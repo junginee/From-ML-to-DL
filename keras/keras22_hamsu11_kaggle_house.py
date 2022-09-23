@@ -53,7 +53,6 @@ print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 �
 
 test_set = test_set.fillna(test_set.mean())
 
-
 x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
 print(x)
 print(x.columns)
