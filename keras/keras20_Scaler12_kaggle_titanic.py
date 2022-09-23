@@ -1,9 +1,7 @@
-
 from pydoc import describe
 import numpy as np
 import pandas as pd 
 import time
-
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from tensorflow.python.keras.models import Sequential
@@ -11,7 +9,6 @@ from tensorflow.python.keras.layers import Dense
 from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm_notebook #문자열을 숫자로 전환
 from sklearn.model_selection import train_test_split
-
 from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import r2_score, mean_squared_error
@@ -19,7 +16,6 @@ from sklearn.metrics import r2_score, mean_squared_error
 
 
 #1.데이터
-
 path = './_data/kaggle_titanic/' # ".은 현재 폴더"
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
@@ -145,7 +141,6 @@ print(np.max(x_test))  # 1.0
 
 
 #2. 모델 구성
-
 model = Sequential()
 model.add(Dense(100,input_dim=9))
 model.add(Dense(100, activation='relu'))
@@ -172,7 +167,6 @@ end_time = time.time()
 #다중 분류 모델은 'categorical_crossentropy'만 사용한다 !!!!
 
 #4.  평가,예측
-
 # loss,acc = model.evaluate(x_test,y_test)
 # print('loss :',loss)
 # print('accuracy :',acc)
@@ -217,26 +211,22 @@ submission [(submission >=0.5)] = 1
 submission = submission.astype(int)
 submission.to_csv('test21.csv',index=True)
 
-#[과제] --- train 파일 / test 파일 모두 transform!! 주의
-#1. scaler 하기 전
-# loss:  
-# r2스코어 :
+# minmax
+# loss :  0.45087605714797974
+# acc :  0.8097014925373134
 
-#2. MinMaxScaler()
-# loss:  
-# r2스코어 :
+# standard
+# loss :  0.4690084159374237
+# acc :  0.7798507462686567
 
-#3. StandardScaler()
-# loss:  
-# r2스코어 :
+# maxabs
+# loss :  0.45530229806900024
+# acc :  0.7835820895522388
 
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
+# robust 
+# loss :  0.45846185088157654
+# acc :  0.7985074626865671
 
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
-
-
-
+# none
+# loss :  0.474556565284729
+# acc :  0.6231343283582089
