@@ -2,22 +2,17 @@ from pydoc import describe
 import numpy as np
 import pandas as pd 
 import time
-
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
-
 from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm_notebook #문자열을 숫자로 전환
 from sklearn.model_selection import train_test_split
-
 from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import r2_score, mean_squared_error
 
 
-
 #1.데이터
-
 path = './_data/kaggle_titanic/' # ".은 현재 폴더"
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
@@ -190,7 +185,6 @@ end_time = time.time()
 # print('accuracy :',result[1])
 
 
-
 print("걸린시간 : ", end_time)
 y_predict = model.predict(x_test)
 y_predict[(y_predict<0.5)] = 0  
@@ -208,13 +202,10 @@ y_predict[(y_predict>=0.5)] = 1
 # y_test와 y_predict의  shape가 일치해야한다.
 
 
-
 acc = accuracy_score(y_test, y_predict)
 print('acc 스코어 :', acc)
 
-
 y_summit = model.predict(test_set)
-
 
 gender_submission['Survived'] = y_summit
 submission = gender_submission.fillna(gender_submission.mean())
