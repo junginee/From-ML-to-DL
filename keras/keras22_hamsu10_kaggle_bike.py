@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from sqlalchemy import true #pandas : 엑셀땡겨올때 사용
+from sqlalchemy import true 
 from keras.layers.recurrent import LSTM, SimpleRNN
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
@@ -128,7 +128,6 @@ r2 = r2_score(y_test, y_predict)
 print("걸린시간 : ", end_time)
 print('loss : ', loss)
 print("RMSE : ", rmse)
-
 
 
 y_summit = model.predict(test_set)
