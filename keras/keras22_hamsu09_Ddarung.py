@@ -15,7 +15,7 @@ print(train_set.shape) #(1459,10)
 
 test_set = pd.read_csv(path + 'test.csv', index_col =0) #예측에서 쓸것이다.
 print(test_set)
-print(test_set.shape)  #(715, 9)
+print(test_set.shape)  #(715, 9) 
 
 print(train_set.columns)
 print(train_set.info())  #결측치 : 데이터가 빠진 ..
@@ -114,5 +114,3 @@ print('r2스코어 : ', r2)
 # loss :  [1728.5408935546875, 30.45831298828125]
 # RMSE : 41.57572361853923
 # r2스코어 :  0.7213146563813365
-
-
