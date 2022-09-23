@@ -1,6 +1,3 @@
-
-
-
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
@@ -30,7 +27,7 @@ test_set.drop(drop_cols, axis = 1, inplace =True)
 sample_submission = pd.read_csv(path + 'sample_submission.csv',
                        index_col=0)
 #print(test_set)
-#print(test_set.shape) # (1459, 79) # 예측 과정에서 쓰일 예정
+#print(test_set.shape) # (1459, 79)
 
 train_set.drop(drop_cols, axis = 1, inplace =True)
 cols = ['MSZoning', 'Street','LandContour','Neighborhood','Condition1','Condition2',
@@ -67,8 +64,6 @@ print(x.shape) # (1460, 79)
 y = train_set['SalePrice']
 print(y)
 print(y.shape) # (1460, )
-
-
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
         train_size=0.75, shuffle=True, random_state=68)
@@ -127,23 +122,22 @@ print("RMSE : ", rmse)
 
 y_summit = model.predict(test_set)
 
-#[과제] --- train 파일 / test 파일 모두 transform!! 주의
-#1. scaler 하기 전
-# loss:  
-# r2스코어 :
+# minmax
+# loss:  996753152.0
+# RMSE :  27026.661950696835
 
-#2. MinMaxScaler()
-# loss:  
-# r2스코어 :
+# standard
+# loss:  121686440.0
+# RMSE :  27313.55662626531
 
-#3. StandardScaler()
-# loss:  
-# r2스코어 :
+# Maxabs
+# loss:  886582976.0
+# RMSE :  25305.44596542389
 
-#4. MaxAbsScaler()
-# loss:  
-# r2스코어 : 
+# Robust
+# loss:  166989904.0
+# RMSE :  43023.35094320131
 
-#5. RobustScaler()
-# loss: 
-# r2스코어 : 
+# none
+# loss:  17040.515625
+# RMSE :  37817.72905265234
