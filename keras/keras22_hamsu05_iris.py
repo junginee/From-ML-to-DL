@@ -3,15 +3,12 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from sklearn.datasets import load_iris 
 from sklearn.model_selection import train_test_split 
-
 from sklearn.metrics import accuracy_score 
 import time
-
 import tensorflow as tf
 
 
 #1. 데이터
-
 datasets = load_iris()
 # print(datasets.DESCR)
 # print(datasets.feature_names)
@@ -67,7 +64,6 @@ model = Model(inputs=input1, outputs=output1)
 
 
 #3. 컴파일, 훈련
-
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # 이진분류모델에서는 loss로 binary_crossentropy
@@ -85,7 +81,6 @@ end_time = time.time()
 
 
 #4. 평가, 예측
-
 results = model.evaluate(x_test, y_test)
 
 print("걸린시간 : ", end_time)
