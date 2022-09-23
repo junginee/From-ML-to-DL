@@ -72,7 +72,6 @@ hist = model.fit(x_train, y_train, epochs=1, batch_size=10,
 end_time = time.time() 
 
 #4. 평가, 예측
-
 loss, acc = model.evaluate(x_test, y_test)
 print('loss : ' , loss)
 print('accuracy : ', acc) 
@@ -92,4 +91,4 @@ print('acc스코어 : ', acc)
 # loss :  0.6076430678367615
 # accuracy :  0.739963710308075
 # 걸린시간 :  1657161757.4388776
-# acc스코어 :  0.7399636842422312
+# acc스코어 :  0.7399636842422312 
