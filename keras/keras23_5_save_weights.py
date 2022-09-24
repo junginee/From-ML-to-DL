@@ -22,7 +22,6 @@ print(np.max(x_train)) #1.0
 
 
 #2.모델구성
-
 model = Sequential()
 model.add(Dense(64, input_dim=13)) 
 model.add(Dense(32))
@@ -39,7 +38,6 @@ model.save_weights("./_save/keras23_5_save_weights1.h5")
 
 
 #3. 컴파일, 훈련
-
 from tensorflow.python.keras.callbacks import EarlyStopping
 earlyStopping = EarlyStopping(monitor='loss', patience=200, mode='min', 
                               verbose=1,restore_best_weights=True)
@@ -61,7 +59,6 @@ model.save_weights("./_save/keras23_5_save_weights2.h5")
 #model = load_model("./_save/keras23_3_save_model.h5")
 
 # 4. 평가, 예측
-
 loss = model.evaluate(x_test, y_test)
 print('loss : ' , loss)
 print("걸린시간 : ", end_time)
