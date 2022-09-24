@@ -1,5 +1,3 @@
-
-
 import numpy as np
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense
@@ -13,7 +11,6 @@ datasets =load_diabetes()
 x = datasets.data
 y = datasets.target
 x_train,x_test,y_train, y_test = train_test_split(x,y, train_size=0.75, shuffle=True, random_state=72)
-
 
 
 scaler = StandardScaler()
