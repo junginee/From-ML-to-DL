@@ -1,5 +1,3 @@
-
-
 from tensorflow.python.keras.models import Sequential, load_model
 from tensorflow.python.keras.layers import Dense
 from sklearn.datasets import load_boston
@@ -9,7 +7,6 @@ import numpy as np
 import time
 
 #1. 데이터
-
 datasets = load_boston()
 x = datasets.data
 y = datasets.target
@@ -66,13 +63,3 @@ from sklearn.metrics import r2_score
 r2 = r2_score(y_test, y_predict)
 print('loss : ' , loss)
 print('r2스코어 : ', r2)
-
-
-
-
-
-
-
-
-
-
