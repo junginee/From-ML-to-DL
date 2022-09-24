@@ -86,5 +86,5 @@ model3 = load_model('./_ModelCheckpoint/keras24_ModelCheckpoint3.hdf5')
 loss3 = model3.evaluate(x_test, y_test)
 print('loss : ', loss3)
 y_predict = model.predict( x_test )
-r2 = r2_score(y_test, y_predict) #y-predict test비교
+r2 = r2_score(y_test, y_predict) #y-predict test비교      
 print('r2스코어 : ', r2)
