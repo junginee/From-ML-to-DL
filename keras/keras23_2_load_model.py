@@ -65,5 +65,5 @@ y_predict = model.predict(x_test)
 r2 = r2_score(y_test, y_predict) 
 print('r2스코어 : ' , r2) 
 
-
+     
 '''
