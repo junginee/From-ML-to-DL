@@ -1,15 +1,11 @@
-
-
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import tensorflow as tf
 from sklearn. datasets import fetch_covtype 
 from sklearn.model_selection import train_test_split 
-
 from tensorflow.python.keras.models import Sequential, load_model
 from tensorflow.python.keras.layers import Dense 
-
 from sklearn.metrics import accuracy_score 
 import time
 
@@ -68,7 +64,6 @@ end_time = time.time()
 model.save_weights("./_save/keras23_14_save_fetch_covtype.h5")
 
 #4. 평가, 예측
-
 loss, acc = model.evaluate(x_test, y_test)
 print('loss : ' , loss)
 print('accuracy : ', acc) 
