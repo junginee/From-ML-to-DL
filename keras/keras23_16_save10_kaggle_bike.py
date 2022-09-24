@@ -1,5 +1,3 @@
-
-
 import numpy as np
 import pandas as pd
 from sqlalchemy import true
@@ -91,7 +89,6 @@ model.add(Dense(100, activation='ReLU'))
 model.add(Dense(1))
 
 #3. 컴파일, 훈련
-
 import time
 start_time = time.time()
 
@@ -133,4 +130,3 @@ print(submission_set)
 submission_set['count'] = y_summit
 print(submission_set)
 submission_set.to_csv(path + 'submission.csv', index = True)
-
