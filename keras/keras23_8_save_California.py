@@ -1,5 +1,3 @@
-
-
 from tensorflow.keras.models import Sequential, load_model
 from tensorflow.keras.layers import Dense
 import numpy as np
@@ -43,7 +41,6 @@ model.add(Dense(1))
                 
 
 #3. 컴파일, 훈련
-
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
 from tensorflow.python.keras.callbacks import EarlyStopping
 earlyStopping = EarlyStopping(monitor='val_loss', patience=10, mode='auto', verbose=1, 
