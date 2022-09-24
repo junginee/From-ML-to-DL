@@ -1,9 +1,7 @@
-
 from pydoc import describe
 import numpy as np
 import pandas as pd 
 import time
-
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 from tensorflow.python.keras.models import Sequential, load_model
@@ -11,15 +9,12 @@ from tensorflow.python.keras.layers import Dense
 from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm_notebook #문자열을 숫자로 전환
 from sklearn.model_selection import train_test_split
-
 from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import r2_score, mean_squared_error
 
 
-
 #1.데이터
-
 path = './_data/kaggle_titanic/' # ".은 현재 폴더"
 train_set = pd.read_csv(path + 'train.csv',
                         index_col=0)
@@ -161,5 +156,3 @@ submission [(submission <0.5)] = 0
 submission [(submission >=0.5)] = 1  
 submission = submission.astype(int)
 submission.to_csv('test21.csv',index=True)
-
-
