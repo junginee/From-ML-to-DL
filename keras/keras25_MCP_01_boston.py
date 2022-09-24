@@ -64,7 +64,7 @@ earlyStopping = EarlyStopping(monitor='val_loss', patience=10, mode='auto', verb
 mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, save_best_only=True, 
                       filepath= "".join([filepath, date, '_', filename])
                       )
-
+          
 hist = model.fit(x_train, y_train, epochs=1000, batch_size=100,
                  validation_split=0.2,
                  callbacks=[earlyStopping, mcp],
