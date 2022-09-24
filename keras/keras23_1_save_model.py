@@ -36,7 +36,6 @@ model.save("./_save/keras23_1_save_model.h5")
 
 '''
 #3. 컴파일, 훈련
-
 from tensorflow.python.keras.callbacks import EarlyStopping
 earlyStopping = EarlyStopping(monitor='loss', patience=200, mode='min', 
                               verbose=1,restore_best_weights=True)
@@ -53,7 +52,6 @@ hist = model.fit(x_train, y_train, epochs=1000, batch_size=100,
 end_time = time.time() - start_time
 
 #4. 평가, 예측
-
 loss = model.evaluate(x_test, y_test)
 print('loss : ' , loss)
 print("걸린시간 : ", end_time)
