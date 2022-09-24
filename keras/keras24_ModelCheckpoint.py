@@ -3,7 +3,7 @@ from tensorflow.python.keras.models import Sequential, load_model
 from tensorflow.python.keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_boston
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score         
 from sklearn.preprocessing import MinMaxScaler
 import time   
 
