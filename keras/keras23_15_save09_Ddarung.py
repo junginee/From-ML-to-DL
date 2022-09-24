@@ -1,5 +1,3 @@
-
-
 import numpy as np
 import pandas as pd 
 from tensorflow.keras.models import Sequential, load_model
@@ -94,4 +92,3 @@ def RMSE(y_test, y_predict):
 rmse = RMSE(y_test, y_predict)
 print("RMSE :", rmse)
 print('r2스코어 : ', r2)
-
