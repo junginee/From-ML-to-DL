@@ -1,6 +1,3 @@
-
-
-
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
@@ -125,4 +122,3 @@ rmse = RMSE(y_test, y_predict)
 print("RMSE : ", rmse)
 
 y_summit = model.predict(test_set)
-
