@@ -93,7 +93,6 @@ results= model.evaluate(x_test, y_test)
 print('loss : ', results[0])
 print('accuracy : ', results[1])
 
-
 y_predict = model.predict(x_test)
 print(y_predict)
 print(y_test)
@@ -105,8 +104,6 @@ print(y_test)
 # y_test = np.argmax(y_test, axis= 1)
 print(np.unique(y_predict))
 print(np.unique(y_test))
-
-
 
 acc= accuracy_score(y_test, y_predict)
 print('acc스코어 : ', acc) 
