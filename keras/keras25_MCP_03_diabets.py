@@ -45,7 +45,7 @@ model.add(Dense(200))
 model.add(Dense(300,activation='relu'))
 model.add(Dense(150))
 model.add(Dense(180))
-model.add(Dense(1))
+model.add(Dense(1))    
 
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
