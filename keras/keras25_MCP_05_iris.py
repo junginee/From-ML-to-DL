@@ -68,7 +68,7 @@ model = Model(inputs=input1, outputs=output1)
 
 #3. 컴파일 훈련
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', # 다중 분류에서는 로스함수를 'categorical_crossentropy' 로 써준다 (99퍼센트로)
+model.compile(loss='categorical_crossentropy', optimizer='adam', # 다중 분류에서는 로스함수를 'categorical_crossentropy' 로 써준다 
               metrics=['accuracy'])
 
 from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
