@@ -9,8 +9,8 @@ from tensorflow.python.keras.layers import Dense, Input
 from sklearn.model_selection import train_test_split
 from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.metrics import r2_score, accuracy_score
-from tensorflow.keras.utils import to_categorical # https://wikidocs.net/22647 케라스 원핫인코딩
-from sklearn.preprocessing import OneHotEncoder  # https://psystat.tistory.com/136 싸이킷런 원핫인코딩
+from tensorflow.keras.utils import to_categorical
+from sklearn.preprocessing import OneHotEncoder 
 from sklearn.datasets import load_wine
 import tensorflow as tf
 
@@ -68,7 +68,7 @@ model = Model(inputs=input1, outputs=output1)
 
 #3. 컴파일 훈련
 
-model.compile(loss='categorical_crossentropy', optimizer='adam', # 다중 분류에서는 로스함수를 'categorical_crossentropy' 로 써준다 (99퍼센트로)
+model.compile(loss='categorical_crossentropy', optimizer='adam', # 다중 분류에서는 로스함수를 'categorical_crossentropy' 로 써준다 
               metrics=['accuracy'])
 
 from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
