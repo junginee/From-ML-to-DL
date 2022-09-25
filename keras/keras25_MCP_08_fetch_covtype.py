@@ -1,7 +1,7 @@
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import numpy as np
-import numpy as np
+import numpy as np  
 import pandas as pd
 from sklearn.datasets import load_iris
 from sqlalchemy import false
