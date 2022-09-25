@@ -105,7 +105,7 @@ print('accuracy : ', results[1])
 y_predict = model.predict(x_test)
 
 y_predict = np.argmax(y_predict, axis= 1)
-y_predict = to_categorical(y_predict)
+y_predict = to_categorical(y_predict) 
 
 acc= accuracy_score(y_test, y_predict)
 print('loss : ', results[0])
