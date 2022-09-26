@@ -1,96 +1,88 @@
-from sklearn.model_selection import train_test_split
-from tensorflow.python.keras.models import Sequential, load_model
-from tensorflow.python.keras.layers import Dense, Dropout
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from sklearn.datasets import load_boston
 import numpy as np
+from sklearn import datasets
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.preprocessing import MaxAbsScaler, RobustScaler
+from tensorflow.python.keras.models import Sequential, Model, load_model
+from tensorflow.python.keras.layers import Dense, Input
+from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
+from sklearn.metrics import r2_score, accuracy_score
 import time
+import matplotlib.pyplot as plt
+from matplotlib import font_manager, rc
 
-###########################폴더 생성시 현재 파일명으로 자동생성###########################################
-import inspect, os
-a = inspect.getfile(inspect.currentframe()) #현재 파일이 위치한 경로 + 현재 파일 명
-print(a)
-print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))) #현재 파일이 위치한 경로
-print(a.split("\\")[-1]) #현재 파일 명
-current_name = a.split("\\")[-1]
-##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감#######################
 
 #1. 데이터
 datasets = load_boston()
-x, y = datasets.data, datasets.target
+x, y = datasets.data, datasets['target']
 
-x_train, x_test, y_train, y_test = train_test_split(x,y,
-                                                    train_size=0.8,
-                                                    random_state=66
-                                                    )
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, train_size=0.7, random_state=66
+)
 
-scaler = MinMaxScaler()
-x_train = scaler.fit_transform(x_train)
+scaler = MaxAbsScaler()
+scaler.fit(x_train)
+x_train = scaler.transform(x_train)
 x_test = scaler.transform(x_test)
 
-start_time = time.time()
 
-#2. 모델구성
-
+#2. 모델 구성
 model = Sequential()
-model.add(Dense(100, input_dim=13))
-model.add(Dropout(0.3)) #100개 노드 중에 30개 노드를 뺀다. 랜덤하게 빠질까? & 빈자리에 그대로 다시 노드가 채워질까
+model.add(Dense(7, activation='linear', input_dim=13))
+model.add(Dense(10, activation='linear'))
+model.add(Dense(30, activation='relu'))
+model.add(Dense(40, activation='relu'))
 model.add(Dense(50, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(64, activation='relu'))
-model.add(Dense(8, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(1))
+model.add(Dense(100, activation='relu'))
+model.add(Dense(50, activation='relu'))
+model.add(Dense(40, activation='relu'))
+model.add(Dense(30, activation='relu'))
+model.add(Dense(10, activation='relu'))
+model.add(Dense(7, activation='linear'))
+model.add(Dense(1, activation='linear'))
+
 model.summary()
 
 
-#3. 컴파일, 훈련
+#3. 훈련
+model.compile(loss='mae', optimizer='adam',
+              metrics=['mse']) 
 
-model.compile(loss='mse', optimizer='adam')
-
-from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
 import datetime
-date = datetime.datetime.now()
-date = date.strftime("%m%d_%H%M") # 0707_1723
+date = datetime.datetime.now()      # 2022-07-07 17:21:42.275191
+date = date.strftime("%m%d_%H%M")   # 0707_1723
 print(date)
 
-
-
-filepath = './_ModelCheckPoint/' + current_name + '/'
+filepath = './_ModelCheckPoint/k24/'
 filename = '{epoch:04d}-{val_loss:.4f}.hdf5'
 
-earlyStopping = EarlyStopping(monitor='val_loss', patience=10, mode='auto', verbose=1, 
-                              restore_best_weights=True)        
 
-mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, save_best_only=True, 
-                      filepath= "".join([filepath, date, '_', filename])
+earlyStopping = EarlyStopping(monitor = 'val_loss', patience=100, mode='min', verbose=1, 
+                              restore_best_weights=True)  
+mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, 
+                      save_best_only=True, 
+                      filepath="".join([filepath, 'k24_', date, '_', filename])
                       )
 
-hist = model.fit(x_train, y_train, epochs=1000, batch_size=100,
+start_time =time.time()
+hist = model.fit(x_train, y_train, epochs=1000, batch_size=1, 
                  validation_split=0.2,
                  callbacks=[earlyStopping, mcp],
-                 verbose=1)
-
+                 verbose=1) 
 end_time = time.time() - start_time
 
 
 #4. 평가, 예측
-
-print("=============================1. 기본 출력=================================")
 loss = model.evaluate(x_test, y_test)
-y_predict = model.predict(x_test)
-from sklearn.metrics import r2_score
+print('loss : ', loss)
+
+y_predict = model.predict(x_test)  
 r2 = r2_score(y_test, y_predict)
-print('loss : ' , loss)
-print('r2스코어 : ', r2)
-print("걸린시간 : ", end_time)
+print('r2 스코어: ', r2)  
 
-#drop out 이전
-# loss :  9.987351417541504
-# r2스코어 :  0.8805096889714261
-# 걸린시간 :  6.109781503677368
-
-#drop out 이후
-# loss :  19.36133575439453
-# r2스코어 :  0.7683578118727833
-# 걸린시간 :  3.027078151702881
+#================================= 1. 기본 출력 ===================================#
+# loss :  [2.376533031463623, 12.149157524108887]
+# r2 스코어:  0.8529462262345302
+# k24_0707_1735_0286-1.8825.hdf5
+#=================================================================================#
