@@ -13,7 +13,7 @@ print(a)
 print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))) #현재 파일이 위치한 경로
 print(a.split("\\")[-1]) #현재 파일 명
 current_name = a.split("\\")[-1]
-##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감#######################
+##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감#################
 
 
 
@@ -56,15 +56,6 @@ model.add(Dense(50,activation='relu'))
 model.add(Dense(10))
 model.add(Dense(1))
 
-# input1 = Input(shape=(8,))
-# dense1 = Dense(20)(input1)
-# dense2 = Dense(30, activation='sigmoid')(dense1)
-# dense3 = Dense(50, activation='relu')(dense2)
-# dense4 = Dense(50, activation='relu')(dense3)
-# dense5 = Dense(50, activation='relu')(dense4)
-# dense6 = Dense(10, activation='relu')(dense5)
-# output1 = Dense(1)(dense6)
-# model = Model(inputs=input1, outputs=output1)
 
 #3. 컴파일, 훈련
 
@@ -92,6 +83,7 @@ hist = model.fit(x_train, y_train, epochs=500, batch_size=10,
                  verbose=1)
 
 #4. 평가, 예측
+
 loss = model.evaluate(x_test, y_test)
 y_predict = model.predict(x_test)
 
