@@ -1,5 +1,5 @@
 from torchvision.datasets import MNIST
-from torch.utils.data import TensorDataset, DataLoader  #텐서 데이처로 변환, 배치적용된 데이터 블러오기
+from torch.utils.data import TensorDataset, DataLoader 
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -105,8 +105,7 @@ def train(model, criterion, optimizer, loader):
         epoch_acc += acc.item()
     
     return epoch_loss / len(loader), epoch_acc / len(loader)   
-# hist = model.fit(x_train, y_train)         #hist에는 loss와 acc가 들어감
-# 엄밀히 얘기하면 hist라고 정의하기보다, loss와 acc를 반환
+
 
 def evaluate(model, criterion, loader):
     model.eval() 
