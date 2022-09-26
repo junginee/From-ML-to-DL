@@ -17,13 +17,13 @@ print(a)
 print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))) #현재 파일이 위치한 경로
 print(a.split("\\")[-1]) #현재 파일 명
 current_name = a.split("\\")[-1]
-##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감#######################
+##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감###################
 
 #1. 데이터
 path = './_data/kaggle_bike/'
-train_set = pd.read_csv(path + 'train.csv') # + 명령어는 문자를 앞문자와 더해줌  index_col=n n번째 컬럼을 인덱스로 인식
+train_set = pd.read_csv(path + 'train.csv')
             
-test_set = pd.read_csv(path + 'test.csv') # 예측에서 쓸거임        
+test_set = pd.read_csv(path + 'test.csv')     
 
 '''                        
 print(train_set)
@@ -63,7 +63,7 @@ print(test_set)
 ##########################################
 
 
-x = train_set.drop(['count'], axis=1)  # drop 데이터에서 ''사이 값 빼기
+x = train_set.drop(['count'], axis=1)  
 print(x)
 print(x.columns)
 print(x.shape) # (10886, 12)
@@ -87,10 +87,7 @@ x_test = scaler.transform(x_test)
 test_set = scaler.transform(test_set)
 
 
-
-
 #2. 모델구성
-
 # model = load_model("./_save/keras22_hamsu10_kaggle_bike.h5")
 
 # model = Sequential()
@@ -156,8 +153,8 @@ print('r2스코어 : ', r2)
 # print(y_summit)
 # print(y_summit.shape) # (6493, 1)
 
-# submission_set = pd.read_csv(path + 'sampleSubmission.csv', # + 명령어는 문자를 앞문자와 더해줌
-#                              index_col=0) # index_col=n n번째 컬럼을 인덱스로 인식
+# submission_set = pd.read_csv(path + 'sampleSubmission.csv', 
+#                              index_col=0) 
 
 # print(submission_set)
 
