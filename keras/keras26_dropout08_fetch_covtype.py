@@ -77,5 +77,6 @@ y_test = tf.argmax(y_test,axis=1)
 acc = accuracy_score(y_test,y_predict)
 print('acc : ',acc)
 
+#================================ dorpout 적용 ================================#
 # loss :  0.4642634391784668
 # acc :  0.8038541857903433
