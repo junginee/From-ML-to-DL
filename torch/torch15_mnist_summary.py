@@ -1,5 +1,5 @@
 from torchvision.datasets import MNIST
-from torch.utils.data import TensorDataset, DataLoader  #텐서 데이처로 변환, 배치적용된 데이터 블러오기
+from torch.utils.data import TensorDataset, DataLoader  
 import torch
 import torch.nn as nn
 import torch.optim as optim
