@@ -36,11 +36,6 @@ print(np.min(x_test.numpy()), np.max(x_test.numpy()))         #0.0 1.0
 x_train, x_test = x_train.unsqueeze(1), x_test.unsqueeze(1) 
 print(x_train.shape, x_test.size())     #torch.Size([60000, 1, 28, 28]) torch.Size([10000, 1, 28, 28])
 
-'''
-x_train, x_test = x_train.reshape(-1, 784), x_test.reshape(-1, 28*28)
-print(x_train.shape, x_test.size())
-'''
-
 train_dset = TensorDataset(x_train, y_train)
 test_dset = TensorDataset(x_test, y_test)
 
@@ -54,15 +49,15 @@ class CNN(nn.Module):
         # super().__init__() #동일 표현
         
         self.hidden_layer1 = nn.Sequential(
-            nn.Conv2d(num_features, 64, kernel_size=(3,3), stride=1),
+            nn.Conv2d(num_features, 64, kernel_size=(3,3), stride=1), #num_features=1 
             nn.ReLU(),
-            nn.MaxUnpool2d(kernel_size=(2,2)),
+            nn.MaxPool2d(kernel_size=(2,2)),
             nn.Dropout(0.5)
         )    
         self.hidden_layer2 = nn.Sequential(
             nn.Conv2d( 64, 32, kernel_size=(3,3)),
             nn.ReLU(),
-            nn.MaxUnpool2d(kernel_size=(2,2)),
+            nn.MaxPool2d(kernel_size=(2,2)),
             nn.Dropout(0.5)
         )        
         # self.flatten = nn.Flatten()
@@ -74,13 +69,12 @@ class CNN(nn.Module):
     def forward(self, x):
         x = self.hidden_layer1(x)
         x = self.hidden_layer2(x)
-        x = x.view(x.shape[0], -1)    # flatten (4차원->2차원으로 변환) [60000, 1*28*28]
-        # x = self.flatten(x)
+        x = x.view(x.shape[0], -1)    # flatten (4차원->2차원으로 변환) shape[0] = 행
         x = self.hidden_layer3(x)
         x = self.output_layer(x)
         return x
     
-model = CNN(1).to(DEVICE)    
+model = CNN(1).to(DEVICE)    # input = 1
 
 #3. 컴파일, 훈련
 criterion = nn.CrossEntropyLoss() #sparsecategorical entropy와 유사한 작용
@@ -145,7 +139,7 @@ def evaluate(model, criterion, loader):
     
 # loss, acc = model.evaluate(x_test, y_test)
 
-epochs = 1
+epochs = 20
 for epoch in range(1, epochs + 1) :
 
     loss, acc = train(model, criterion, optimizer, train_loader)  

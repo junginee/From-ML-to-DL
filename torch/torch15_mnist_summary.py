@@ -15,8 +15,8 @@ trasnf = tr.Compose([tr.Resize(15), tr.ToTensor()])
 #1. 데이터
 path = 'D:\study\_data\\torch_data\mnist/'
 
-train_dataset = MNIST(path, train=True, download=True)
-test_dataset = MNIST(path, train=False, download=True)
+train_dataset = MNIST(path, train=True, download=False)
+test_dataset = MNIST(path, train=False, download=False)
 
 # print(train_dataset[0][0].shape)
 
@@ -29,12 +29,12 @@ print(np.min(x_train.numpy()), np.max(x_train.numpy()))       #0.0 1.0
 print(np.min(x_test.numpy()), np.max(x_test.numpy()))         #0.0 1.0
 
 '''
-cf. keras 넘파이 배열 전환
-to_numpy(), values()
+토치와 텐서의 다른점
+60000, 28, 28, 1 ⇒ 60000, 1, 28, 28
 '''
 
-x_train, x_test = x_train.view(-1, 784), x_test.view(-1, 28*28)
-print(x_train.shape, x_test.size())     #torch.Size([60000, 784]) torch.Size([10000, 784])
+x_train, x_test = x_train.unsqueeze(1), x_test.unsqueeze(1) 
+print(x_train.shape, x_test.size())     #torch.Size([60000, 1, 28, 28]) torch.Size([10000, 1, 28, 28])
 
 '''
 x_train, x_test = x_train.reshape(-1, 784), x_test.reshape(-1, 28*28)
@@ -48,41 +48,39 @@ train_loader = DataLoader(train_dset, batch_size=32, shuffle=True)
 test_loader = DataLoader(test_dset, batch_size=32, shuffle=False)
 
 #2. 모델
-class DNN(nn.Module):
+class CNN(nn.Module):
     def __init__(self, num_features):
-        super().__init__()
+        super(CNN, self).__init__() 
+        # super().__init__() #동일 표현
         
         self.hidden_layer1 = nn.Sequential(
-            nn.Linear(num_features, 100),
+            nn.Conv2d(num_features, 64, kernel_size=(3,3), stride=1),
             nn.ReLU(),
+            nn.MaxPool2d(kernel_size=(2,2)),
             nn.Dropout(0.5)
         )    
         self.hidden_layer2 = nn.Sequential(
-        nn.Linear(100, 100),
-        nn.ReLU(),
-        nn.Dropout(0.5)
+            nn.Conv2d( 64, 32, kernel_size=(3,3)),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size=(2,2)),
+            nn.Dropout(0.5)
         )        
-        self.hidden_layer3 = nn.Sequential(
-        nn.Linear(100, 100),
-        nn.ReLU(),
-        nn.Dropout(0.5)
-        )
-        self.hidden_layer4 = nn.Sequential(
-        nn.Linear(100, 100),
-        nn.ReLU(),
-        nn.Dropout(0.5)            
-        )
-        self.output_layer = nn.Linear(100,10)
+        # self.flatten = nn.Flatten()
+        
+        self.hidden_layer3  = nn.Linear(32*5*5, 32)
+        
+        self.output_layer = nn.Linear(in_features= 32, out_features= 10)
         
     def forward(self, x):
         x = self.hidden_layer1(x)
         x = self.hidden_layer2(x)
+        x = x.view(x.shape[0], -1)    # flatten (4차원->2차원으로 변환) [60000, 1*28*28]
+        # x = self.flatten(x)
         x = self.hidden_layer3(x)
-        x = self.hidden_layer4(x)    
         x = self.output_layer(x)
         return x
     
-model = DNN(784).to(DEVICE)    
+model = CNN(1).to(DEVICE)    
 
 #3. 컴파일, 훈련
 criterion = nn.CrossEntropyLoss() #sparsecategorical entropy와 유사한 작용
@@ -128,12 +126,7 @@ def evaluate(model, criterion, loader):
     epoch_loss = 0
     epoch_acc = 0
     
-    with torch.no_grad(): 
-        
-        '''
-        순전파만 사용한다는 것을 명확히 명시하는 것 
-        (경사하강법 사용하지 않겠다는 뜻)
-        '''
+    with torch.no_grad():
         for x_batch, y_batch in loader:
             x_batch, y_batch = x_batch.to(DEVICE), y_batch.to(DEVICE)
             
@@ -152,7 +145,7 @@ def evaluate(model, criterion, loader):
     
 # loss, acc = model.evaluate(x_test, y_test)
 
-epochs = 20 
+epochs = 20
 for epoch in range(1, epochs + 1) :
 
     loss, acc = train(model, criterion, optimizer, train_loader)  
@@ -162,3 +155,31 @@ for epoch in range(1, epochs + 1) :
     print('epoch:{}, loss:{:.4f}, acc:{:.3f}, val_loss:{:.4f}, val_acc:{:.3f}'.format(
         epoch, loss, acc, val_loss, val_acc
     ))
+
+#pip install torch summary
+from torchsummary import summary
+
+summary(model, (1, 28, 28))
+
+# ----------------------------------------------------------------
+#         Layer (type)               Output Shape         Param #
+# ================================================================
+#             Conv2d-1           [-1, 64, 26, 26]             640
+#               ReLU-2           [-1, 64, 26, 26]               0
+#          MaxPool2d-3           [-1, 64, 13, 13]               0
+#            Dropout-4           [-1, 64, 13, 13]               0
+#             Conv2d-5           [-1, 32, 11, 11]          18,464
+#               ReLU-6           [-1, 32, 11, 11]               0
+#          MaxPool2d-7             [-1, 32, 5, 5]               0
+#            Dropout-8             [-1, 32, 5, 5]               0
+#             Linear-9                   [-1, 32]          25,632
+#            Linear-10                   [-1, 10]             330
+# ================================================================
+# Total params: 45,066
+# Trainable params: 45,066
+# Non-trainable params: 0
+# ----------------------------------------------------------------
+# Input size (MB): 0.00
+# Forward/backward pass size (MB): 0.90
+# Params size (MB): 0.17
+# Estimated Total Size (MB): 1.07
