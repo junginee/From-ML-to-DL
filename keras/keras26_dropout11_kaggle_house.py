@@ -1,159 +1,112 @@
-
-
-
+import tensorflow as tf
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from sklearn.preprocessing import MaxAbsScaler, RobustScaler
-from sklearn.preprocessing import LabelEncoder
-from tensorflow.python.keras.models import Sequential, load_model
-from tensorflow.python.keras.layers import Dense
+from tensorflow.python.keras.models import Sequential,Model
+from tensorflow.python.keras.layers import Dense,Input,Dropout
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.metrics import r2_score,mean_squared_error 
 import matplotlib.pyplot as plt
-from tqdm import tqdm_notebook
-import time
-###########################폴더 생성시 현재 파일명으로 자동생성###########################################
-import inspect, os
-a = inspect.getfile(inspect.currentframe()) #현재 파일이 위치한 경로 + 현재 파일 명
-print(a)
-print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))) #현재 파일이 위치한 경로
-print(a.split("\\")[-1]) #현재 파일 명
-current_name = a.split("\\")[-1]
-##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감#######################
+from sklearn.preprocessing import LabelEncoder,MinMaxScaler,StandardScaler,MaxAbsScaler,RobustScaler
+import seaborn as sns
+from scipy import stats
+from scipy.stats import norm, skew
+from sklearn.impute import SimpleImputer
 
-#1. 데이터
-path = './_data/kaggle_house/' # 경로 = .현재폴더 /하단
-train_set = pd.read_csv(path + 'train.csv', # train.csv 의 데이터가 train set에 들어가게 됨
-                        index_col=0) # 0번째 컬럼은 인덱스로 지정하는 명령
-#print(train_set)
-#print(train_set.shape) # (1460, 80) 원래 열이 81개지만, id를 인덱스로 제외하여 80개
+#1.data 처리
+############# id컬럼 index 처리 #####################
+path = './_data/kaggle_house/'
+train_set = pd.read_csv(path + 'train.csv')
+test_set = pd.read_csv(path + 'test.csv')
+train_set.set_index('Id', inplace=True)
+test_set.set_index('Id', inplace=True)
+test_id_index = train_set.index
+trainLabel = train_set['SalePrice']
+train_set.drop(['SalePrice'], axis=1, inplace=True)
+#####################################################
 
-test_set = pd.read_csv(path + 'test.csv',
-                       index_col=0)
+################### 트레인,테스트 합치기 ##############
+alldata = pd.concat((train_set, test_set), axis=0)
+alldata_index = alldata.index
+################## NA 값 20프로 이상은 drop! ##########
+NA_Ratio = 0.8 * len(alldata)
+alldata.dropna(axis=1, thresh=NA_Ratio, inplace=True)
 
-drop_cols = ['Alley', 'PoolQC', 'Fence', 'MiscFeature'] # Columns with more than 70% of missing values
-test_set.drop(drop_cols, axis = 1, inplace =True)
+###############수치형,카테고리형 분리,범위 설정 #########
+alldata_obj = alldata.select_dtypes(include='object') 
+alldata_num = alldata.select_dtypes(exclude='object')
 
-sample_submission = pd.read_csv(path + 'sample_submission.csv',
-                       index_col=0)
-#print(test_set)
-#print(test_set.shape) # (1459, 79) # 예측 과정에서 쓰일 예정
-
-train_set.drop(drop_cols, axis = 1, inplace =True)
-cols = ['MSZoning', 'Street','LandContour','Neighborhood','Condition1','Condition2',
-                'RoofStyle','RoofMatl','Exterior1st','Exterior2nd','MasVnrType','Foundation',
-                'Heating','GarageType','SaleType','SaleCondition','ExterQual','ExterCond','BsmtQual','BsmtCond','BsmtExposure','BsmtFinType1',
-                'BsmtFinType2','HeatingQC','CentralAir','Electrical','KitchenQual','Functional',
-                'FireplaceQu','GarageFinish','GarageQual','GarageCond','PavedDrive','LotShape',
-                'Utilities','LandSlope','BldgType','HouseStyle','LotConfig']
-
-for col in tqdm_notebook(cols):
-    le = LabelEncoder()
-    train_set[col]=le.fit_transform(train_set[col])
-    test_set[col]=le.fit_transform(test_set[col])
-
-#print(train_set.columns)
-#print(train_set.info()) # 각 컬럼에 대한 디테일한 내용 출력 / null값(중간에 빠진 값) '결측치'
-#print(train_set.describe())
-
-#### 결측치 처리 1. 제거 ####
-print(train_set.isnull().sum()) # 각 컬럼당 null의 갯수 확인가능
-train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna) 행별로 모두 삭제(dropna)
-print(train_set.isnull().sum())
-print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
- 
-
-test_set = test_set.fillna(test_set.mean())
+for objList in alldata_obj:
+    alldata_obj[objList] = LabelEncoder().fit_transform(alldata_obj[objList].astype(str))
+##################### 소수 na 값 처리 ###################    
+imputer = SimpleImputer(strategy='mean')
+imputer.fit(alldata_num)
+alldata_impute = imputer.transform(alldata_num)
+alldata_num = pd.DataFrame(alldata_impute, columns=alldata_num.columns, index=alldata_index)  
+###################### 분리한 데이터 다시 합치기 #####################
+alldata = pd.merge(alldata_obj, alldata_num, left_index=True, right_index=True)  
+##################### 트레인, 테스트 다시 나누기 #####################
+train_set = alldata[:len(train_set)]
+test_set = alldata[len(train_set):]
+############### 트레인 데이터에 sale price 합치기 ###################
+train_set['SalePrice'] = trainLabel
+############### sale price 다시 드랍 ###############################
+train_set = train_set.drop(['SalePrice'], axis =1)
+print(train_set)
+print(trainLabel)
+print(test_set)
 
 
-x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
-print(x)
-print(x.columns)
-print(x.shape) # (1460, 79)
-
-y = train_set['SalePrice']
-print(y)
-print(y.shape) # (1460, )
+###################################################################
+x_train, x_test, y_train, y_test = train_test_split(train_set, trainLabel, train_size=0.8, 
+                                            
+                                                random_state=58)
 
 
-
-x_train, x_test, y_train, y_test = train_test_split(x, y,
-        train_size=0.75, shuffle=True, random_state=68)
-
-
-scaler = MinMaxScaler()
-scaler.fit(x_train)
-x_train = scaler.transform(x_train) 
+scaler = MaxAbsScaler()
+x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
-test_set = scaler.transform(test_set)
-print(np.min(x_train))  # 0.0
-print(np.max(x_train))  # 1.0
+test_set = scaler.transform(test_set)             
 
-print(np.min(x_test))  # 1.0
-print(np.max(x_test))  # 1.0
+input1=Input(shape=(74,))
+dense1 =Dense(100,activation='relu')(input1)
+drop1 = Dropout(0.2)(dense1)
+dense2 =Dense(100,activation='relu')(drop1)
+drop2 = Dropout(0.3)(dense2)
+dense3 =Dense(100,activation='relu')(drop2)
+dense4 =Dense(100,activation='relu')(dense3)
+dense5 =Dense(100,activation='relu')(dense4)
+output1=Dense(1)(dense5)
+model=Model(inputs=input1,outputs=output1)
+import datetime
+date= datetime.datetime.now()
+date=date.strftime('%m%d_%H%M')
 
-
-#2. 모델구성
-model = Sequential()
-model.add(Dense(24, activation='linear', input_dim=75))
-model.add(Dense(100, activation='relu'))
-model.add(Dense(100, activation='relu'))
-model.add(Dense(10, activation='linear'))
-model.add(Dense(50, activation='linear'))
-model.add(Dense(1, activation='relu'))
 
 #3. 컴파일, 훈련
+model.compile(loss= 'mae', optimizer ='adam')
+from tensorflow.python.keras.callbacks import EarlyStopping,ModelCheckpoint
+earlyStopping= EarlyStopping(monitor='val_loss',patience=30,mode='min',restore_best_weights=True,verbose=1)
 
-import datetime
-date = datetime.datetime.now()
-date = date.strftime("%m%d_%H%M") # 0707_1723
-print(date)
+# filepath='./_ModelCheckpoint/k24/'
+# filename='{epoch:04d}-{val_loss:.4f}.hdf5'
 
-filepath = './_ModelCheckPoint/' + current_name + '/'
-filename = '{epoch:04d}-{val_loss:.4f}.hdf5'
+# mcp = ModelCheckpoint(monitor = 'val_loss',mode = 'auto', save_best_only=True, verbose=1,
+#                       filepath="".join([filepath,'kaggle_house',date,'_',filename]))
 
-model.compile(loss='mae', optimizer='adam',
-              metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=2000, batch_size=50,validation_split=0.2,callbacks=[earlyStopping],verbose=1)
 
-from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
+# #4.평가,예측
+loss = model.evaluate(train_set, trainLabel)
+print('loss: ', loss)
 
-earlyStopping = EarlyStopping(monitor='val_loss', patience=10, mode='min', verbose=1, 
-                              restore_best_weights=True) 
-start_time = time.time()
+y_predict = model.predict(x_test).flatten()
 
-#mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, save_best_only=True, 
-#                      filepath= "".join([filepath, date, '_', filename]))
+def RMSE(y_test, y_predict):
+    return np.sqrt(mean_squared_error(y_test, y_predict)) #sqrt: 루트 씌우기
 
-hist = model.fit(x_train, y_train, epochs=500, batch_size=10, 
-                validation_split=0.2,
-                callbacks=[earlyStopping],
-                verbose=1)
-
-end_time = time.time() 
-
-
-
-#4. 평가 예측
-print("걸린시간 : ", end_time)
-
-loss = model.evaluate(x_test, y_test)
-print('loss :', loss)
-
-y_predict = model.predict(x_test)
-
-def RMSE(y_test, y_predict) : #(원y값, 예측y값)
-    return np.sqrt(mean_squared_error(y_test, y_predict)) # MSE에 루트를 씌워 돌려주겠다.
 
 rmse = RMSE(y_test, y_predict)
 print("RMSE : ", rmse)
 
-y_summit = model.predict(test_set)
-
-
-#drop out 이전
-
-
-
-#drop out 이후
-
+# loss:  739975616.0
+# RMSE :  27586.782875106663
