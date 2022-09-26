@@ -20,31 +20,31 @@ current_name = a.split("\\")[-1]
 
 #1. 데이터
 path = './_data/ddarung/'
-train_set = pd.read_csv(path + 'train.csv', # + 명령어는 문자를 앞문자와 더해줌
-                        index_col=0) # index_col=n n번째 컬럼을 인덱스로 인식
+train_set = pd.read_csv(path + 'train.csv',
+                        index_col=0) 
 print(train_set)
 print(train_set.shape) # (1459, 10)
 
-test_set = pd.read_csv(path + 'test.csv', # 예측에서 쓸거임                
+test_set = pd.read_csv(path + 'test.csv',                
                        index_col=0)
 print(test_set)
 print(test_set.shape) # (715, 9)
 
 print(train_set.columns)
-print(train_set.info()) # info 정보출력
-print(train_set.describe()) # describe 평균치, 중간값, 최소값 등등 출력
+print(train_set.info()) 
+print(train_set.describe())
 
 #### 결측치 처리 1. 제거 ####
 print(train_set.isnull().sum())
-train_set = train_set.fillna(train_set.mean()) # dropna() : train_set 에서 na, null 값 들어간 행 삭제
-test_set = test_set.fillna(test_set.mean()) # test_set 에서 이빨빠진데 바로  ffill : 위에서 가져오기 test_set.mean : 평균값
+train_set = train_set.fillna(train_set.mean()) 
+test_set = test_set.fillna(test_set.mean())
 print(train_set.isnull().sum()) 
 print(train_set.shape) # (1328, 10)
 
 ############################
 
 
-x = train_set.drop(['count'], axis=1)  # drop 데이터에서 ''사이 값 빼기
+x = train_set.drop(['count'], axis=1)
 print(x)
 print(x.columns)
 print(x.shape) # (1459, 9)
@@ -138,8 +138,8 @@ print('r2스코어 : ', r2)
 # print(y_summit)
 # print(y_summit.shape) # (715, 1)
 
-# submission_set = pd.read_csv(path + 'submission.csv', # + 명령어는 문자를 앞문자와 더해줌
-#                              index_col=0) # index_col=n n번째 컬럼을 인덱스로 인식
+# submission_set = pd.read_csv(path + 'submission.csv', 
+#                              index_col=0) 
 
 # print(submission_set)
 
