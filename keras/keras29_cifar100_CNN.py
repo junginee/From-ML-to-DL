@@ -69,16 +69,13 @@ from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
 earlyStopping =EarlyStopping(monitor='val_loss', patience=1, mode='min', verbose=1, 
                              restore_best_weights=True) 
 
-#mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, 
-#                      save_best_only=True)
-
 hist = model.fit(x_train, y_train, epochs=1, batch_size=1, 
                 validation_split=0.2,
                 callbacks=[earlyStopping], 
                 verbose=1)
 
 
-
+ 
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test) 
 print('loss : ', loss[0])
