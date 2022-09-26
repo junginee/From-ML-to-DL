@@ -100,5 +100,7 @@ y_predict = y_predict.round()
 acc = accuracy_score(y_test,y_predict)
 print('acc : ',acc)
 
+
+#================================ dorpout 적용 ================================#
 # loss :  0.4440535306930542
 # acc :  0.8097014925373134
