@@ -1,117 +1,87 @@
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import numpy as np
-import pandas as pd
+from sklearn import datasets
 from sklearn.datasets import load_iris
-from sqlalchemy import false
-from tensorflow.python.keras.models import Sequential, Model, load_model
-from tensorflow.python.keras.layers import Dense, Input
 from sklearn.model_selection import train_test_split
-from tensorflow.python.keras.callbacks import EarlyStopping
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
+from tensorflow.python.keras.models import Sequential, Model, load_model
+from tensorflow.python.keras.layers import Dense, Input, Dropout
+from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.metrics import r2_score, accuracy_score
-from tensorflow.keras.utils import to_categorical # https://wikidocs.net/22647 케라스 원핫인코딩
-from sklearn.preprocessing import OneHotEncoder  # https://psystat.tistory.com/136 싸이킷런 원핫인코딩.
-
-###########################폴더 생성시 현재 파일명으로 자동생성###########################################
-import inspect, os
-a = inspect.getfile(inspect.currentframe()) #현재 파일이 위치한 경로 + 현재 파일 명
-print(a)
-print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))) #현재 파일이 위치한 경로
-print(a.split("\\")[-1]) #현재 파일 명
-current_name = a.split("\\")[-1]
-##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감#######################
-
-
-
-import tensorflow as tf
-tf.random.set_seed(66)  # y=wx 할때 w는 랜덤으로 돌아가는데 여기서 랜덤난수를 지정해줄수있음
+import time
+import matplotlib.pyplot as plt
+from matplotlib import font_manager, rc
 
 #1. 데이터
 datasets = load_iris()
-x = datasets['data']
-y = datasets['target']
+x = datasets.data
+y = datasets.target
+
+# One Hot Encoding 
+from tensorflow.keras.utils import to_categorical
 y = to_categorical(y)
-
-x_train, x_test, y_train, y_test = train_test_split(x,y,
-                                                    train_size=0.8,
-                                                    random_state=66
-                                                    )
-
-# scaler = MinMaxScaler()
-# scaler = StandardScaler()
-scaler = MaxAbsScaler()
-# scaler = RobustScaler()
-scaler.fit(x_train)
-x_train = scaler.transform(x_train)
-x_test = scaler.transform(x_test)
+print(y)
+print(y.shape)  # (150, 3)
 
 
-#2. 모델
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, train_size=0.7, random_state=66
+)
 
-# model = load_model("./_save/keras22_hamsu05_iris.h5")
+#2. 모델 구성
+model = Sequential()
+model.add(Dense(100, activation='linear', input_dim=4))
+model.add(Dropout(0.2))
+model.add(Dense(100, activation='relu'))
+model.add(Dropout(0.1))
+model.add(Dense(100, activation='relu'))
+model.add(Dropout(0.1))
+model.add(Dense(100, activation='relu'))
+model.add(Dense(3, activation='softmax'))   # 결과값 label이 3개이므로 output 노드의 갯수는 3이 됨 
+                                            # softmax를 통해 제일 큰 값이 선택됨(softmax의 값은 전체 합계 1.0이 됨)
+                                            # class: 1) Iris-Setosa  2) Iris-Versicolour  3) Iris-Virginica
 
-# model = Sequential()
-# model.add(Dense(30, input_dim=4, activation='linear')) #sigmoid : 이진분류일때 아웃풋에 activation = 'sigmoid' 라고 넣어줘서 아웃풋 값 범위를 0에서 1로 제한해줌
-# model.add(Dense(20, activation='sigmoid'))               # 출력이 0 or 1으로 나와야되기 때문, 그리고 최종으로 나온 값에 반올림을 해주면 0 or 1 완성
-# model.add(Dense(20, activation='relu'))               # relu : 히든에서만 쓸수있음, 요즘에 성능 젤좋음
-# model.add(Dense(20, activation='linear'))               
-# model.add(Dense(3, activation='softmax'))             # softmax : 다중분류일때 아웃풋에 활성화함수로 넣어줌, 아웃풋에서 소프트맥스 활성화 함수를 씌워 주면 그 합은 무조건 1로 변함
-#                                                                  # ex 70, 20, 10 -> 0.7, 0.2, 0.1
-                                                                 
-input1 = Input(shape=(4,))
-dense1 = Dense(30, activation='linear')(input1)
-dense2 = Dense(20, activation='sigmoid')(dense1)
-dense3 = Dense(20, activation='relu')(dense2)
-dense4 = Dense(20, activation='linear')(dense3)
-output1 = Dense(3, activation='softmax')(dense4)
-model = Model(inputs=input1, outputs=output1)                                                                 
 
-#3. 컴파일 훈련
-
-model.compile(loss='categorical_crossentropy', optimizer='adam', # 다중 분류에서는 로스함수를 'categorical_crossentropy' 로 써준다 (99퍼센트로)
-              metrics=['accuracy'])
-
-from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
+#3. 훈련
+model.compile(loss='categorical_crossentropy', optimizer='adam',    # 다중분류에서 loss = 'categorical_crossentropy'를 사용함
+              metrics=['accuracy'])   
 import datetime
-date = datetime.datetime.now()
-date = date.strftime("%m%d_%H%M") # 0707_1723
+date = datetime.datetime.now()      # 2022-07-07 17:21:42.275191
+date = date.strftime("%m%d_%H%M")   # 0707_1723
 print(date)
 
-
-filepath = './_ModelCheckPoint/' + current_name + '/'
+filepath = './_ModelCheckPoint/k26/'
 filename = '{epoch:04d}-{val_loss:.4f}.hdf5'
 
-earlyStopping = EarlyStopping(monitor='val_loss', patience=100, mode='auto', verbose=1, 
-                              restore_best_weights=True)        
-
-mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, save_best_only=True, 
-                      filepath= "".join([filepath, date, '_', filename])
+earlyStopping = EarlyStopping(monitor = 'val_loss', patience=50, mode='min', verbose=1, 
+                              restore_best_weights=True)
+mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, 
+                      save_best_only=True, 
+                      filepath="".join([filepath, '05_', date, '_', filename])
                       )
+start_time = time.time()
 
-hist = model.fit(x_train, y_train, epochs=1000, batch_size=100,
+hist = model.fit(x_train, y_train, epochs=1000, batch_size=10, 
                  validation_split=0.2,
                  callbacks=[earlyStopping, mcp],
                  verbose=1)
+end_time = time.time() - start_time
+
 
 #4. 평가, 예측
-results= model.evaluate(x_test, y_test)
-print('loss : ', results[0])
-print('accuracy : ', results[1])
-
-
-y_predict = model.predict(x_test)
-
-
-y_predict = np.argmax(y_predict, axis= 1)
-
-y_test = np.argmax(y_test, axis= 1)
-
-acc= accuracy_score(y_test, y_predict)
-print('loss : ', results[0])
-print('acc스코어 : ', acc) 
-
-#drop out 이전
+loss, acc = model.evaluate(x_test, y_test)
+print('loss : ', loss)       
+print('accuracy : ', acc)
 
 
 
-#drop out 이후
+#================================= 1. 기본 출력 ===================================#
+# loss :  0.07862314581871033
+# accuracy :  0.9555555582046509
+# 05_0707_1934_0203-0.0039.hdf5
+#=================================================================================#
+
+#================================ 2. dorpout 적용 ================================#
+# loss :  0.0650220736861229
+# accuracy :  0.9777777791023254
+# 05_0708_1108_0101-0.0034.hdf5
+#=================================================================================#
