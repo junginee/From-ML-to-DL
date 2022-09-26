@@ -98,4 +98,4 @@ y_predict = to_categorical(y_predict)
 #print('acc스코어 : ', acc)
 
 # loss :  1.3762474060058594
-# accuracy :  0.5
+# accuracy :  0.5 
