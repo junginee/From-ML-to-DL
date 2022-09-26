@@ -1,7 +1,3 @@
-#https://keras.io/api/layers/convolution_layers/convolution2d/
-
-#노트필기 참고
-
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, Conv2D, Flatten #이미지는 2D
 
