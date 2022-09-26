@@ -102,11 +102,10 @@ def train(model,criterion,optimizer,loader):
         acc = (y_predict == y_batch).float().mean() # bool 로 나온것을 float으로
         epoch_acc += acc.item()
     return epoch_loss / len(loader), epoch_acc / len(loader)         
-#hist = model.fit(x_train,y_train)   # hist에는 loss 와 acc가 들어감
-#엄밀하게 얘기하면 hist라고하기에는 그렇고, loss와 acc를 반환해준다고 해!
+
 
 def evaluate(model,criterion,loader):
-    model.eval() # layer 에 적용하는 변화들 test 에서는 적용되지 않는다. ex)dropout, batchnorm 등등...
+    model.eval() 
     epoch_loss = 0
     epoch_acc = 0 
 
