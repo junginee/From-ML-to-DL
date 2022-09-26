@@ -30,8 +30,6 @@ x_test = x_test.reshape(10000, 28, 28, 1)
 
 print(x_train.shape, y_train.shape) #(60000, 28, 28, 1) (60000,)
 
-
-
 #--------------------------------------------------------------------
 # y에 대한 전처리(원핫인코딩)
 print(np.unique(y_train, return_counts=True))
@@ -64,8 +62,6 @@ model.fit(x_train, y_train, epochs=10, batch_size=2, validation_split=0.2, callb
 
 
 #4. 평가, 예측
-
-
 loss = model.evaluate(x_test, y_test)
 print('loss : ' , loss[0])
 print('accuracy : ', loss[1]) 
