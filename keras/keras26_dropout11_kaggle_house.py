@@ -87,12 +87,6 @@ model.compile(loss= 'mae', optimizer ='adam')
 from tensorflow.python.keras.callbacks import EarlyStopping,ModelCheckpoint
 earlyStopping= EarlyStopping(monitor='val_loss',patience=30,mode='min',restore_best_weights=True,verbose=1)
 
-# filepath='./_ModelCheckpoint/k24/'
-# filename='{epoch:04d}-{val_loss:.4f}.hdf5'
-
-# mcp = ModelCheckpoint(monitor = 'val_loss',mode = 'auto', save_best_only=True, verbose=1,
-#                       filepath="".join([filepath,'kaggle_house',date,'_',filename]))
-
 model.fit(x_train, y_train, epochs=2000, batch_size=50,validation_split=0.2,callbacks=[earlyStopping],verbose=1)
 
 # #4.평가,예측
@@ -108,5 +102,7 @@ def RMSE(y_test, y_predict):
 rmse = RMSE(y_test, y_predict)
 print("RMSE : ", rmse)
 
+
+#================================ dorpout 적용 ================================#
 # loss:  739975616.0
 # RMSE :  27586.782875106663
