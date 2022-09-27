@@ -53,8 +53,7 @@ earlyStopping= EarlyStopping(monitor='val_loss',patience=30,mode='min',restore_b
 model.fit(x_train, y_train, epochs=500, batch_size=16,validation_split=0.2,callbacks=[earlyStopping], verbose=1)
 
 
-#4.평가,예측
-
+#4.평가,예측 
 results = model.evaluate(x_test,y_test)
 print('loss : ', results[0])
 
