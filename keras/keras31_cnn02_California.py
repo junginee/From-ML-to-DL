@@ -52,20 +52,8 @@ model.summary()
 model.compile(loss='mse', optimizer='adam',
               metrics=['mse'])   
 
-# import datetime
-# date = datetime.datetime.now()      # 2022-07-07 17:21:42.275191
-# date = date.strftime("%m%d_%H%M")   # 0707_1723
-# print(date)
-
-# filepath = './_ModelCheckPoint/k31/'
-# filename = '{epoch:04d}-{val_loss:.4f}.hdf5'
-
 earlyStopping = EarlyStopping(monitor = 'val_loss', patience=50, mode='min', verbose=1, 
                               restore_best_weights=True)
-# mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, 
-#                       save_best_only=True, 
-#                       filepath="".join([filepath, date, '_', filename]))
-
 start_time = time.time()
 hist = model.fit(x_train, y_train, epochs=100, batch_size=100, 
                  validation_split=0.2,
