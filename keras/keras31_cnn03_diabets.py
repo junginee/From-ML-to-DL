@@ -11,12 +11,9 @@ from sklearn.metrics import r2_score, accuracy_score
 import time
 
 
-
-
 #1. 데이터
 datasets = load_diabetes()
 x, y = datasets.data, datasets.target
-
 
 x_train, x_test, y_train, y_test = train_test_split(
     x, y, train_size=0.7, random_state=72)
@@ -58,22 +55,9 @@ model.summary()
 
 #3. 훈련
 model.compile(loss='mse', optimizer='adam', metrics=['mse'])  
-
-# import datetime
-# date = datetime.datetime.now()      
-# date = date.strftime("%m%d_%H%M")   
-# print(date)
-
-# filepath = './_ModelCheckPoint/k31/'
-# filename = '{epoch:04d}-{val_loss:.4f}.hdf5'
-
 earlyStopping = EarlyStopping(monitor = 'val_loss', patience=100, mode='min', 
                               verbose=1, 
                               restore_best_weights=True)
-# mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, 
-#                       save_best_only=True, 
-#                       filepath="".join([filepath, '_03_', date, '_', filename]))
-
 start_time = time.time() 
 hist = model.fit(x_train, y_train, epochs=100, batch_size=32,
                  validation_split=0.2,
