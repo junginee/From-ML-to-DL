@@ -1,6 +1,3 @@
-
-
-
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
@@ -55,20 +52,14 @@ train_set = train_set.fillna(train_set.mean()) # nan 값을 채우거나(fillna)
 print(train_set.isnull().sum())
 print(train_set.shape) # (1460, 80) 데이터가 얼마나 삭제된 것인지 확인가능(1460-1460=0)
  
-
 test_set = test_set.fillna(test_set.mean())
-
 
 x = train_set.drop(['SalePrice'], axis=1) # axis는 'count'가 컬럼이라는 것을 명시하기 위해
 print(x)
 print(x.columns)
 
-
 y = train_set['SalePrice']
 print(y)
-
-
-
 
 x_train, x_test, y_train, y_test = train_test_split(x, y,
         train_size=0.75, shuffle=True, random_state=68)
@@ -111,9 +102,6 @@ hist = model.fit(x_train, y_train, epochs=1000, batch_size=100,
                 callbacks=[earlyStopping],
                 verbose=1)
 
-
-
-
 #4. 평가 예측
 loss = model.evaluate(x_test, y_test) 
 print('loss : ', round(loss[0],4))
@@ -130,4 +118,4 @@ print("RMSE : ", round(rmse,4))
 #================================= loss,RMSE ===================================#
 # loss :  32583.0547
 # RMSE :  43828.5658
-#========================================================
+#================================================================================
