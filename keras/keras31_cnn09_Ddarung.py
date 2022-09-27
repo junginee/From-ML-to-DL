@@ -41,7 +41,6 @@ x_test = x_test.reshape(399,3,3,1)
 print(x_train.shape,x_test.shape)
 
 
-
 #2.모델구성
 model = Sequential()
 model.add(Conv2D(filters=64, kernel_size=(2,2), padding='same', input_shape=(3,3,1))) 
@@ -53,14 +52,11 @@ model.add(Dense(32, activation='relu'))
 model.add(Dense(1)) 
 
 
-
 #3. 컴파일, 훈련
 model.compile(loss= 'mse', optimizer ='adam')
-
 earlyStopping =EarlyStopping(monitor = 'val_loss',patience=30,mode='min',restore_best_weights=True,verbose=1)
-
-
 model.fit(x_train, y_train, epochs=100, batch_size=16,validation_split=0.2,callbacks=[earlyStopping],verbose=2)
+
 
 #4.평가,예측
 loss = model.evaluate(x_test, y_test)
