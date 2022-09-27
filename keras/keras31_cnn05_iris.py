@@ -1,4 +1,5 @@
 #다중분류 point) --- loss categorical!, softmax ,마지막 노드갯수!,one hot encoding, argmax
+
 import numpy as np 
 from sklearn.datasets import load_iris
 from tensorflow.python.keras.models import Sequential,Model,load_model
