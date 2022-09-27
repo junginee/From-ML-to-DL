@@ -43,15 +43,10 @@ y = train_set['count']
 print(y)
 print(y.shape) # (10886,)
 
-
-x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.75,random_state=31)   
-      
+x_train, x_test, y_train, y_test = train_test_split(x,y,train_size=0.75,random_state=31)         
 print(x_train.shape,x_test.shape)
 
-
-
 scaler = StandardScaler()
-
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test) 
 test_set = scaler.transform(test_set)  
@@ -73,13 +68,10 @@ model.add(Dense(1))
 
 
 #3. 컴파일, 훈련
-model.compile(loss='mse', optimizer='adam')
-   
-                               
+model.compile(loss='mse', optimizer='adam')                             
 earlyStopping =EarlyStopping(monitor = 'val_loss',patience=30,mode='min',restore_best_weights=True,verbose=1)
-
-
 model.fit(x_train, y_train, epochs=500, batch_size=30,validation_split=0.2,callbacks=[earlyStopping], verbose=2)
+
 
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test) 
