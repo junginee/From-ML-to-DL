@@ -10,7 +10,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 print(x_train.shape, y_train.shape) # (60000, 28, 28) (60000,)
 print(x_test.shape, y_test.shape) # (10000, 28, 28) (10000,)
-
+    
 
 #--------------------------------------------------------------------
 # x에 대한 전처리
@@ -57,9 +57,6 @@ model.fit(x_train, y_train, epochs=10, batch_size=2, validation_split=0.2, callb
 
 
 #4. 예측, 평가
-
-
-
 loss = model.evaluate(x_test, y_test)
 print('loss : ' , loss[0])
 print('accuracy : ', loss[1]) 
