@@ -39,9 +39,6 @@ model.add(Dense(32, activation='relu'))
 model.add(Dense(16, activation='relu'))
 model.add(Dense(1)) 
 
-# import datetime 
-# date = datetime.datetime.now()
-# date = date.strftime('%m%d_%H%M')
 
 earlyStopping= EarlyStopping(monitor= 'val_loss',patience=30,mode='min',restore_best_weights=True,verbose=1) 
 
