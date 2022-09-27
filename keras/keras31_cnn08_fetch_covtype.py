@@ -7,7 +7,6 @@ from sklearn.metrics import r2_score,accuracy_score
 from tensorflow.python.keras.callbacks import EarlyStopping
 import tensorflow as tf
 from sklearn.preprocessing import MinMaxScaler,StandardScaler,MaxAbsScaler,RobustScaler
-
 import pandas as pd
 
 #1.데이터 
@@ -17,7 +16,6 @@ y= datasets.target
 
 print(x.shape, y.shape) #(581012, 54) (581012, )
 print(np.unique(y,return_counts=True)) #(array[1 2 3 4 5 6 7],array[211840, 283301,  35754,   2747,   9493,  17367,  20510] )
-
 
 
 #사이킷런 원핫인코더
@@ -51,7 +49,6 @@ model.add(Dense(7,activation ='softmax'))
 #3.컴파일,훈련
 model.compile(loss= 'categorical_crossentropy', optimizer ='adam', metrics='accuracy') 
 
-
 earlyStopping= EarlyStopping(monitor='val_loss',patience=10,mode='min',restore_best_weights=True,verbose=1)
 
 model.fit(x_train, y_train, epochs=100, batch_size=100,validation_split=0.2,callbacks=earlyStopping, verbose=1) 
@@ -59,7 +56,6 @@ model.fit(x_train, y_train, epochs=100, batch_size=100,validation_split=0.2,call
 
 
 #4.평가,예측
-
 loss = model.evaluate(x_test,y_test)
 print('loss: ', round(loss[0],4))
 
@@ -71,7 +67,3 @@ y_predict = y_predict.argmax(axis=1)
 y_test = y_test.argmax(axis=1) 
 acc = accuracy_score(y_test,y_predict)
 print('acc스코어: ', round(acc,4))
-
-#================================= loss, accuracy ===================================#
-
-#=================================================================================#
