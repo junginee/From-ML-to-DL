@@ -69,7 +69,7 @@ hist = model.fit(x_train, y_train, epochs=10, batch_size=50,
                 callbacks=[earlyStopping], # 최저값을 체크해 반환해줌
                 verbose=1)
 
-
+        
 
 #4.평가 예측
 loss = model.evaluate(x_test, y_test) 
