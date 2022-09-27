@@ -10,7 +10,6 @@ from sklearn.metrics import r2_score, accuracy_score
 import time
 
 
-
 #1. 데이터
 datasets = load_boston()
 x, y = datasets.data, datasets['target']
@@ -54,21 +53,9 @@ model.summary()
 
 #3. 컴파일, 훈련
 model.compile(loss='mae', optimizer='adam', metrics=['mse']) 
-
-# import datetime
-# date = datetime.datetime.now()      
-# date = date.strftime("%m%d_%H%M")  
-# print(date)
-
-#filepath = './_ModelCheckPoint/k31/'
-#filename = '{epoch:04d}-{val_loss:.4f}.hdf5'
-
 earlyStopping = EarlyStopping(monitor='val_loss', patience=20, mode='min',
                               restore_best_weights=True,
                               verbose=1)
-#mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, 
-                    #   save_best_only=True, 
-                    #   filepath="".join([filepath, '01_', date, '_', filename]))
 start_time = time.time()
 hist = model.fit(x_train, y_train, epochs=500, batch_size=32,
                  validation_split=0.2,
