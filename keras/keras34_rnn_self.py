@@ -1,5 +1,4 @@
- 
-import numpy as np
+ import numpy as np
 
 dataset=np.array(range(1,11)) #(10,)
 #array에서 앞에서부터 4개(처음엔 1~4) 값을 가져와서 그 다음값(5)를 y로 설정하게
