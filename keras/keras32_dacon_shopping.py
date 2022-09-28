@@ -60,9 +60,6 @@ train_set['NumberHoliday'] = train_set['IsHoliday'].apply(holiday_to_number)
 # 결과를 확인합니다.
 #print(train_set)
 
-
-
-
 # Date 전처리
 test_set['Month'] = test_set['Date'].apply(get_month)
 
