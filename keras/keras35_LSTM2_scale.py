@@ -30,8 +30,6 @@ model.add(Dropout(0.1))
 model.add(Dense(1))
 
 
-
-
 # #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam')
 model.fit(x,y, epochs=850)
