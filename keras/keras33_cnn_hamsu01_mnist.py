@@ -1,7 +1,6 @@
 from tensorflow.keras.models import Sequential, Model, load_model
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.layers import Dense, Dropout, Conv2D, Flatten, Input
-
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 from sklearn.utils import validation
@@ -19,8 +18,7 @@ print(x_test.shape, y_test.shape)
 
 x_train = x_train.reshape(60000, 28, 28, 1) # 전체를 다 곱했을때 같으면 상관없다
 # x_test = x_test.reshape(60000, 28, 14, 1) # 이것도 가능하다
-x_test = x_test.reshape(10000, 28, 28, 1)
-                                          
+x_test = x_test.reshape(10000, 28, 28, 1)                                         
                                           
 
 print(np.unique(y_train, return_counts=True))   #10개 array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -58,8 +56,6 @@ model = Model(inputs=input1, outputs=output1)
 # model.add(Dense(32, activation="relu"))
 # model.add(Dense(16, activation="relu"))
 # model.add(Dense(10, activation='softmax'))
-
-
 
 
 # 3. 컴파일, 훈련
