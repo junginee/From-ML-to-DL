@@ -1,6 +1,3 @@
-#DNN 2차원 RNN 3차원 CNN 4차원
-#RNN은 왜 3차원? (N,3) > 몇개씩 자르는지 갯수 추가 > 예 : (N,3,몇개씩 자르는지) = 3차원
-
 import numpy as np
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, SimpleRNN, Dropout, LSTM
