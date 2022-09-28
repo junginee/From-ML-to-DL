@@ -30,8 +30,6 @@ model.add(Dropout(0.1))
 model.add(Dense(1))
 
 
-
-
 # #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam')
 model.fit(x,y, epochs=850)
@@ -39,7 +37,6 @@ model.fit(x,y, epochs=850)
 #4. 평가, 예측
 loss = model.evaluate(x,y)
 y_predict = np.array([50,60,70]).reshape(1,3,1) #[[[8], [9], [10]]]
-
 
 result = model.predict (y_predict)
 
