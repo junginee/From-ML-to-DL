@@ -71,9 +71,7 @@ test_set['Month'] = test_set['Date'].apply(get_month)
 test_set['NumberHoliday'] = test_set['IsHoliday'].apply(holiday_to_number)
 
 
-
 #2. 모델 선언
-
 #from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 model = RandomForestRegressor()
