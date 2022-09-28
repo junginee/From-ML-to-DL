@@ -1,5 +1,3 @@
-#함수형 바꾸기
-
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, Conv2D, Flatten, MaxPooling2D, Dropout # 이미지 작업은 2D
 from keras.datasets import mnist, cifar100
