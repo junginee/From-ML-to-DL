@@ -1,5 +1,3 @@
-#함수형 바꾸기
-
 import numpy as np
 import pandas as pd
 from tensorflow.keras.models import Sequential
@@ -66,8 +64,6 @@ model.fit(x_train, y_train, epochs=10, batch_size=2, validation_split=0.2, callb
 
 
 #4. 평가, 예측
-
-
 loss = model.evaluate(x_test, y_test)
 print('loss : ' , loss[0])
 print('accuracy : ', loss[1]) 
