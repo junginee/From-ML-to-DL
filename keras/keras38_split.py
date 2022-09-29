@@ -13,7 +13,7 @@ def split_x(dataset,size):
 bbb = split_x(a, size)
 print(bbb)
 print(bbb.shape)
-
+  
 x = bbb[:, :-1] #x값 뒤에서 하나씩 추출한다.
 y = bbb[:, 2] #추출한 값을 y에 넣어준다.
 
