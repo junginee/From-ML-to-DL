@@ -1,6 +1,3 @@
-
-
-
 import numpy as np
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, Dropout, LSTM
@@ -24,8 +21,6 @@ y = bbb[:, -1]
 
 print(x,y)
 print(x.shape,y.shape) #(96, 4) (96,)
-
-
 
 #---------------------------------------------
 x_predict = np.array(range(96,106)) 
