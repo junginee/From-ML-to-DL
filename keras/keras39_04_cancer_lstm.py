@@ -7,6 +7,7 @@ from sklearn.metrics import r2_score, accuracy_score
 from sklearn.preprocessing import MinMaxScaler,StandardScaler,MaxAbsScaler,RobustScaler
 from tensorflow.python.keras.callbacks import EarlyStopping,ModelCheckpoint
 
+
 #1.데이터
 datasets = load_breast_cancer()
 
