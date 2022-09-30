@@ -11,10 +11,6 @@ from tensorflow.python.keras.callbacks import EarlyStopping
 from sklearn.metrics import r2_score, accuracy_score
 from tensorflow.keras.utils import to_categorical # https://wikidocs.net/22647 케라스 원핫인코딩
 from sklearn.preprocessing import OneHotEncoder  # https://psystat.tistory.com/136 싸이킷런 원핫인코딩.
-
-
-
-
 import tensorflow as tf
 tf.random.set_seed(66)  # y=wx 할때 w는 랜덤으로 돌아가는데 여기서 랜덤난수를 지정해줄수있음
 
@@ -40,14 +36,6 @@ x_test = x_test.reshape(30, 2,2)
 print(x_train.shape, x_test.shape) #(120, 2, 2) (30, 2, 2)
  
 #2. 모델
-
-# model = Sequential()
-# model.add(Dense(30, input_dim=4, activation='linear')) #sigmoid : 이진분류일때 아웃풋에 activation = 'sigmoid' 라고 넣어줘서 아웃풋 값 범위를 0에서 1로 제한해줌
-# model.add(Dense(20, activation='sigmoid'))               # 출력이 0 or 1으로 나와야되기 때문, 그리고 최종으로 나온 값에 반올림을 해주면 0 or 1 완성
-# model.add(Dense(20, activation='relu'))               # relu : 히든에서만 쓸수있음, 요즘에 성능 젤좋음
-# model.add(Dense(20, activation='linear'))               
-# model.add(Dense(3, activation='softmax'))             # softmax : 다중분류일때 아웃풋에 활성화함수로 넣어줌, 아웃풋에서 소프트맥스 활성화 함수를 씌워 주면 그 합은 무조건 1로 변함
-                                                                 # ex 70, 20, 10 -> 0.7, 0.2, 0.1
                                                                
 input1 = Input(shape=(2,2))
 dense1 = LSTM(30, activation='linear')(input1)
