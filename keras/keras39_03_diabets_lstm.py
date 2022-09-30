@@ -11,8 +11,6 @@ from sklearn.metrics import r2_score, accuracy_score
 import time
 
 
-
-
 #1. 데이터
 datasets = load_diabetes()
 x, y = datasets.data, datasets.target
@@ -46,9 +44,7 @@ model.add(Dropout(0.25))
 model.add(Dense(64, activation='relu'))                
 model.add(Dropout(0.2))   
 model.add(Dense(64,activation='relu'))                
-model.add(Dropout(0.2))   
-
-   
+model.add(Dropout(0.2))      
 model.add(Dense(32, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(1, activation='linear'))
@@ -69,7 +65,6 @@ hist = model.fit(x_train, y_train, epochs=100, batch_size=32,
                  validation_split=0.2,
                  callbacks=[earlyStopping],
                  verbose=1)
-
 
 
 #4. 평가, 예측
