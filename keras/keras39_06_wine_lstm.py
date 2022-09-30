@@ -54,7 +54,7 @@ model.fit(x_train, y_train, epochs=500, batch_size=16,validation_split=0.2,callb
 
 results = model.evaluate(x_test,y_test)
 print('loss : ', results[0])
-
+      
 loss = model.evaluate(x_test,y_test)
 print('loss: ', round(loss[0],4))
 
