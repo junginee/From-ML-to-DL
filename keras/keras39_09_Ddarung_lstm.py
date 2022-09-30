@@ -2,7 +2,7 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.preprocessing import MaxAbsScaler, RobustScaler
 import numpy as np
 import pandas as pd
-from sqlalchemy import true #pandas : 엑셀땡겨올때 씀
+from sqlalchemy import true 
 from tensorflow.python.keras.models import Sequential, Model
 from tensorflow.python.keras.layers import Dense, Input, LSTM
 from sklearn.model_selection import train_test_split
@@ -69,8 +69,6 @@ print(x_train.shape, x_test.shape) #(1094, 9, 1) (365, 9, 1)
 
 
 #2. 모델구성
-
-
 input1 = Input(shape=(9,1))
 dense1 = LSTM(100, activation='selu')(input1)
 dense2 = Dense(100, activation='selu')(dense1)
@@ -79,7 +77,6 @@ output1 = Dense(1)(dense3)
 model = Model(inputs=input1, outputs=output1)     
 
 #3. 컴파일, 훈련
-
 model.compile(loss='mse', optimizer='adam', metrics=['mae'])
 from tensorflow.python.keras.callbacks import EarlyStopping
 
@@ -119,6 +116,3 @@ print('r2스코어 : ', r2)
 # RMSE :  39.6789007900789
 # r2스코어 :  0.7753489169625116
 #=================================================================================#
-
-
-
