@@ -1,4 +1,3 @@
-#[실습]#
 import numpy as np 
 import pandas as pd
 from sklearn import metrics
@@ -90,9 +89,6 @@ model.add(Dense(1,activation = 'sigmoid'))
 #.컴파일,훈련
 model.compile(loss= 'binary_crossentropy',optimizer='adam')
 earlyStopping= EarlyStopping(monitor= 'val_loss',patience=50,mode='min',restore_best_weights=True,verbose=1)
-
-
-
 model.fit(x_train, y_train, epochs=300, batch_size=32,validation_split=0.2,callbacks=[earlyStopping], verbose=1)
 
 #4.평가,예측
