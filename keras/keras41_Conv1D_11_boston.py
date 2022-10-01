@@ -10,7 +10,6 @@ from sklearn.metrics import r2_score, accuracy_score
 import time
 
 
-
 #1. 데이터
 datasets = load_boston()
 x, y = datasets.data, datasets['target']
