@@ -1,7 +1,6 @@
 from tensorflow.keras.models import Sequential, Model, load_model
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.layers import Dense, Dropout, LSTM
-
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 from sklearn.utils import validation
@@ -15,18 +14,12 @@ import time
 y_train = to_categorical(y_train)
 y_test = to_categorical(y_test)         # test도 카테고리컬해줘야 10으로 바뀜
 
-
-
-print(x_train.shape, x_test.shape)   #(60000, 28, 28) (10000, 28, 28)
-                      
-                                          
-
+print(x_train.shape, x_test.shape)   #(60000, 28, 28) (10000, 28, 28)               
+                                         
 print(np.unique(y_train, return_counts=True))   #10개 array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
-
 # 2. 모델구성
-
 model  =  Sequential() 
 model.add(LSTM(10, input_shape=(28, 28 ) ))
 model.add(Dense(5, activation="relu") )
@@ -37,7 +30,6 @@ model.add(Dropout(0.2))
 model.add(Dense(32, activation="relu"))
 model.add(Dense(16, activation="relu"))
 model.add(Dense(10, activation='softmax'))
-
 
 
 
