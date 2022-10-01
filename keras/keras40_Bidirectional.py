@@ -23,7 +23,6 @@ model.add(SimpleRNN(10,return_sequences = True,input_shape=(3,1))) #행 무시(�
 model.add(Bidirectional(SimpleRNN(5)))
 model.add(Dense(3, activation = 'relu')) 
 model.add(Dense(1))
-
 model.summary()
 
 # Model: "sequential"
