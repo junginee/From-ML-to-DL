@@ -37,9 +37,8 @@ model.add(Dropout(0.15))
 model.add(Dense(50)) 
 model.add(Dropout(0.1))
 model.add(Dense(1))
-
+  
 model.summary()
-
 
 
 #3. 컴파일, 훈련
