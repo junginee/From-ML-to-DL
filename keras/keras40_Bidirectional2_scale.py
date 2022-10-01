@@ -19,7 +19,6 @@ print(x.shape) #(13, 3, 1)
 
 
 #2. 모델구성
-
 # units * (feature + bias + units) = parms
 
 # [simple] units : units * (feature + bias + units) = parms
@@ -38,8 +37,6 @@ model.add(Dropout(0.1))
 model.add(Dense(1))
 
 model.summary()
-
-
 
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam')
