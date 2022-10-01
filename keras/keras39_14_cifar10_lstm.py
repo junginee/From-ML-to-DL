@@ -49,19 +49,15 @@ model.add(Dropout(0.2))
 model.add(Dense(10, activation='softmax')) 
 model.summary()
 
-#3.컴파일 훈련
 
+
+#3.컴파일 훈련
 model.compile(loss='categorical_crossentropy', optimizer='adam',
               metrics=['accuracy'])
 
 from tensorflow.python.keras.callbacks import EarlyStopping
-
-
-
 earlyStopping =EarlyStopping(monitor='val_loss', patience=5, mode='min', verbose=1, 
                              restore_best_weights=True) 
-
-
 
 hist = model.fit(x_train, y_train, epochs=5, batch_size=3000, 
                 validation_split=0.2,
