@@ -1,6 +1,3 @@
-
-
-
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
@@ -67,7 +64,6 @@ y = train_set['SalePrice']
 print(y)
 
 
-
 x_train, x_test, y_train, y_test = train_test_split(x, y,
         train_size=0.75, shuffle=True, random_state=68)
 print(x_train.shape, x_test.shape) #(1095, 75) (365, 75)
@@ -106,8 +102,6 @@ hist = model.fit(x_train, y_train, epochs=1000, batch_size=100,
                 validation_split=0.2,
                 callbacks=[earlyStopping],
                 verbose=1)
-
-
 
 
 #4. 평가 예측
