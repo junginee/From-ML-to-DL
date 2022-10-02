@@ -14,7 +14,6 @@ x = datasets['data']
 y = datasets['target']
 
 x_train,x_test,y_train,y_test=train_test_split(x,y,train_size= 0.7,random_state=31)
-
 print(x_train.shape,x_test.shape)
 
 
@@ -44,7 +43,6 @@ earlyStopping= EarlyStopping(monitor= 'val_loss',patience=30,mode='min',restore_
 
 #3.컴파일,훈련
 model.compile(loss='binary_crossentropy',optimizer='adam',metrics=['accuracy','mse'],) 
-
 
 hist=model.fit(x_train,y_train,epochs=500, batch_size=16,verbose=1,validation_split=0.2, callbacks= [earlyStopping])
 
