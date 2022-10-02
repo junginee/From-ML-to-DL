@@ -9,7 +9,7 @@ from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
 from sklearn.metrics import r2_score, accuracy_score
 import time
 
-
+      
 #1. 데이터
 datasets = fetch_california_housing()
 x, y = datasets.data, datasets.target
