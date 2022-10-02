@@ -23,7 +23,6 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3,shuffle=T
 
 print(x_train.shape,x_test.shape)
 
-
 scaler = StandardScaler()
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
@@ -76,5 +75,5 @@ print('acc스코어: ', round(acc,4))
 
 #================================= [Conv1D]loss, accuracy ==========================#
 # loss:  0.4776
-# acc스코어:  0.9074
+# acc스코어:  0.9074   
 #=================================================================================#
