@@ -30,9 +30,8 @@ x_test = x_test.reshape(10000, 784, 1)
 
 print(x_train.shape, y_test.shape) #(60000, 784, 1) (10000,)
 
-
-
 #--------------------------------------------------------------------
+
 # y에 대한 전처리(원핫인코딩)
 print(np.unique(y_train, return_counts=True))
 # return_count=True 함수는 전체 개수에서 np.unique의 각 컬럼의 개수가 나옴 
@@ -75,7 +74,6 @@ y_predict = np.argmax(y_predict, axis= 1) #열(axis= 1)에서 최댓값을 구�
 
 from tensorflow.keras.utils import to_categorical 
 y_predict = to_categorical(y_predict)
-
 
 acc= accuracy_score(y_test, y_predict)
 print('acc스코어 : ', acc)
