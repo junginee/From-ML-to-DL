@@ -1,4 +1,3 @@
-#[실습]#
 import numpy as np 
 import pandas as pd
 from sklearn import metrics
@@ -65,7 +64,6 @@ x_train,x_test,y_train,y_test=train_test_split(x,y,test_size= 0.3,random_state=6
 
 print(x_train.shape,x_test.shape) #(623, 8) (268, 8)
 
-
 scaler = MinMaxScaler()
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
@@ -88,13 +86,12 @@ model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(1, activation='linear'))
 
+
 #.컴파일,훈련
 model.compile(loss= 'binary_crossentropy',optimizer='adam')
 earlyStopping= EarlyStopping(monitor= 'val_loss',patience=50,mode='min',restore_best_weights=True,verbose=1)
-
-
-
 model.fit(x_train, y_train, epochs=300, batch_size=32,validation_split=0.2,callbacks=[earlyStopping], verbose=1)
+
 
 #4.평가,예측
 loss = model.evaluate(x_test,y_test)
