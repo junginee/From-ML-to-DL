@@ -4,7 +4,6 @@ from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import Dense, Dropout, Conv1D,Flatten
 from sklearn.preprocessing import StandardScaler
 
-
 #1. 데이터
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 print(x_train.shape, y_train.shape) #(50000, 32, 32, 3) (50000, 1)
@@ -49,19 +48,15 @@ model.add(Dropout(0.2))
 model.add(Dense(10, activation='softmax')) 
 model.summary()
 
-#3.컴파일 훈련
 
+#3.컴파일 훈련
 model.compile(loss='categorical_crossentropy', optimizer='adam',
               metrics=['accuracy'])
 
 from tensorflow.python.keras.callbacks import EarlyStopping
 
-
-
 earlyStopping =EarlyStopping(monitor='val_loss', patience=5, mode='min', verbose=1, 
                              restore_best_weights=True) 
-
-
 
 hist = model.fit(x_train, y_train, epochs=10, batch_size=5000, 
                 validation_split=0.2,
