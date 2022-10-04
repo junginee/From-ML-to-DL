@@ -67,4 +67,4 @@ print('MNIST')
 
 # [CONV1]
 # loss :  0.5532
-# accuracy :  0.8766
+# accuracy :  0.8766 
