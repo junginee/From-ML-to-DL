@@ -75,7 +75,6 @@ model.fit([x1_train] ,[y1_train,y2_train] ,epochs=300, batch_size=16,
 loss= model.evaluate([x1_test] ,[y1_test, y2_test])
 print('loss(y) : ', loss)
 
-
 from sklearn.metrics import r2_score
 y1_predict, y2_predict = model.predict([x1_test])  
 r2_1 = r2_score(y1_test, y1_predict)
