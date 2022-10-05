@@ -1,17 +1,16 @@
-
-
 #1. 데이터
 import numpy as np
 x1_datasets = np.array([range(100), range(301,401)]) #삼성전자 종가, 하이닉스 종가
 x2_datasets = np. array([range(101,201), range(411,511), range(150,250)]) #원유, 돈육, 일
 x3_datasets = np. array([range(100,200), range(1301,1401)]) #원유, 돈육, 일
 
+
 x1 = np.transpose(x1_datasets)
 x2 = np.transpose(x2_datasets)
 x3 = np.transpose(x3_datasets)
 
-print(x1.shape, x2.shape, x3.shape) #(100,2) (100,3) (100,2)
 
+print(x1.shape, x2.shape, x3.shape) #(100,2) (100,3) (100,2)
 y = np.array(range(2001,2101)) #금리 
 
 from sklearn.model_selection import train_test_split
