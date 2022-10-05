@@ -1,4 +1,3 @@
-
 #model1  model2
 #   ㅁ    ㅁ
 #     ＼ ／
@@ -22,13 +21,9 @@ from sklearn.model_selection import train_test_split
 x1_train, x1_test,y1_train, y1_test ,y2_train, y2_test= train_test_split(
     x1, y1,y2, random_state = 66, test_size = 0.3)
 
-
-
 print(x1_train.shape,x1_test.shape)   #(70, 2) (30, 2)
 print(y1_train.shape, y1_test.shape)    #(70,) (30,)
 print(y2_train.shape, y2_test.shape)    #(70,) (30,)
-
-
 
 #2.모델구성 (#Sequential model은 복잡한 모델 만드는데 한계가 있으므로 함수형 모델 사용)
 from tensorflow.python.keras.models import Model
@@ -77,7 +72,6 @@ model.fit([x1_train] ,[y1_train,y2_train] ,epochs=300, batch_size=16,
                  #validation_split=0.2,             
                  verbose=1)
 
-
 #4. 평가, 예측
 loss= model.evaluate([x1_test] ,[y1_test, y2_test])
 print('loss(y) : ', loss)
@@ -94,4 +88,3 @@ print('y2의 r2 스코어: ', round(r2_2,3))
 #             ㄴ y1 + y2의 loss  / ㄴ y1의 loss  /  ㄴ y2의 loss
 # y1의 r2 스코어:  0.987
 # y2의 r2 스코어:  0.205
-
