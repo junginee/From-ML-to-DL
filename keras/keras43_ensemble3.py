@@ -1,4 +1,3 @@
-
 #model1  model2
 #   ㅁ    ㅁ
 #     ＼ ／
@@ -97,7 +96,6 @@ model = Model(inputs=[input1,input2,input3], outputs = [last_output2,last_output
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer = 'adam')
               #metrics = ['mse'])
-
 model.fit([x1_train,x2_train,x3_train] ,[y1_train,y2_train] ,epochs=300, batch_size=16,
                  #validation_split=0.2,             
                  verbose=1)
@@ -119,4 +117,3 @@ print('y2의 r2 스코어: ', round(r2_2,3))
 #               ㄴ y1 + y2의 loss  / ㄴ y1의 loss  /  ㄴ y2의 loss
 # y1의 r2 스코어:  0.986
 # y2의 r2 스코어:  0.202
-
