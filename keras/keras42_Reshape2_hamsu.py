@@ -1,5 +1,3 @@
-#함수형
-
 from tensorflow.python.keras.models import Sequential, Model, load_model
 from tensorflow.keras.datasets import mnist
 from tensorflow.python.keras.layers import Dense, Dropout, Conv2D, Flatten, MaxPooling2D
@@ -19,18 +17,12 @@ print(x_train.shape, y_train.shape)
 print(x_test.shape, y_test.shape)      
 
 x_train = x_train.reshape(60000, 28, 28, 1) 
-
 x_test = x_test.reshape(10000, 28, 28, 1)                            
                                          
-
 print(np.unique(y_train, return_counts=True))   #10개 
-
-
 print(x_train.shape, y_train.shape) #(60000, 28, 28, 1) (60000,)
 
-
 # 2. 모델구성
-
 model  =  Sequential() 
 model.add(Conv2D(64, kernel_size=(3,3), padding = 'same', input_shape=(28, 28, 1 ) ))
 model.add(MaxPooling2D())                                     #(None, 14, 14, 64) 
