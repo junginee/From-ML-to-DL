@@ -1,5 +1,3 @@
-
-
 #1. 데이터
 import numpy as np
 x1_datasets = np.array([range(100), range(301,401)]) #삼성전자 종가, 하이닉스 종가
@@ -8,7 +6,6 @@ x1 = np.transpose(x1_datasets)
 x2 = np.transpose(x2_datasets)
 
 print(x1.shape, x2.shape) #(100,2) (100,3)
-
 y = np.array(range(2001,2101)) #금리 
 
 from sklearn.model_selection import train_test_split
@@ -18,7 +15,6 @@ x1_train, x1_test, x2_train, x2_test, y_train, y_test = train_test_split(
 print(x1_train.shape,x1_test.shape)   #(70, 2) (30, 2)
 print(x2_train.shape, x2_test.shape)  #(70, 3) (30, 3)
 print(y_train.shape, y_test.shape)    #(70,) (30,)
-
 
 
 #2.모델구성 (#Sequential model은 복잡한 모델 만드는데 한계가 있으므로 함수형 모델 사용)
@@ -51,9 +47,9 @@ last_output = Dense(1, name='last')(merge3)
 model = Model(inputs=[input1,input2], outputs = last_output)
 model.summary()
 
+
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer = 'adam', metrics = ['mse'])
-
 model.fit([x1_train,x2_train] ,y_train ,epochs=1, batch_size=32,
                  validation_split=0.2,             
                  verbose=1)
