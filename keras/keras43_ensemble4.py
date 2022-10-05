@@ -55,7 +55,6 @@ output41 = Dense(10)(last_output)
 output42 = Dense(10)(output41)
 last_output2 = Dense(1)(output42)
 
-
 #output 모델2
 output51 = Dense(10)(last_output)
 output52 = Dense(10)(output51)
