@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 from tensorflow.python.keras.models import Sequential
@@ -10,7 +9,6 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
 
 
-
 ###########################폴더 생성시 현재 파일명으로 자동생성###########################################
 import inspect, os
 a = inspect.getfile(inspect.currentframe()) #현재 파일이 위치한 경로 + 현재 파일 명
@@ -19,9 +17,6 @@ print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))))
 print(a.split("\\")[-1]) #현재 파일 명
 current_name = a.split("\\")[-1]
 ##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감##################
-
-
-
 
 path = './_data/kaggle_jena/'
 df_weather=pd.read_csv(path + 'kaggle_jena.csv', index_col=0)
@@ -42,8 +37,6 @@ print(df_weather.columns)
 # df_weather['월'] =df_weather['Date Time'].dt.month
 # df_weather['일'] =df_weather['Date Time'].dt.day
 
-
-
 #Normalization 정규화
 
 from sklearn.preprocessing import MinMaxScaler
@@ -61,7 +54,6 @@ df_scaled.columns = scale_cols
 print(df_scaled)
 
 
-
 #학습을 시킬 데이터 셋 생성
 TEST_SIZE = 200
 
@@ -75,7 +67,6 @@ def make_dataset(data, label, window_size=20):
         feature_list.append(np.array(data.iloc[i:i+window_size]))
         label_list.append(np.array(label.iloc[i+window_size]))
     return np.array(feature_list), np.array(label_list)
-
 
 
 #feature 와 label(예측 데이터) 정의
@@ -103,11 +94,6 @@ x_train, x_test, y_train, y_test = train_test_split(train_feature, train_label, 
 # print(test_feature.shape, test_label.shape)
 
 
-
-
-
-#Keras를 활용한 LSTM 모델 생성
-
 #2.모델 구성
 model = Sequential()
 model.add(LSTM(16, 
@@ -119,7 +105,6 @@ model.add(Dense(1))
 
 
 #3. 컴파일, 훈련
-
 model.compile(loss='mse', optimizer='adam')
 
 from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
