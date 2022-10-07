@@ -15,7 +15,6 @@ train_datagen = ImageDataGenerator(
     
 )
 
-
 test_datagen = ImageDataGenerator(
     rescale = 1./255
     
@@ -38,7 +37,6 @@ xy_test = test_datagen.flow_from_directory(
     color_mode = 'grayscale',
     shuffle=True,
 )  #Found 120 images belonging to 2 classesv.
-
 
 print(xy_train[0])
 print(xy_train[31][0]) #뒤에 [0]로 하면 x값
