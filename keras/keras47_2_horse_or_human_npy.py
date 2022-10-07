@@ -1,5 +1,3 @@
-
-
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 from regex import X
@@ -29,13 +27,13 @@ model.add(Dense(12, activation='relu'))
 model.add(Dense(5))
 model.add(Dense(1, activation='sigmoid'))
 
+
 #3.컴파일, 훈련
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(x_train, y_train, epochs=100, validation_split=0.2) 
 
 
 #4. 평가, 예측
-
 loss = model.evaluate(x_test, y_test)
 y_predict = model.predict(x_test)  
 
@@ -48,6 +46,3 @@ print('acc : ', round(acc,2))
 
 # loss :  1.13
 # acc :  0.76
-
-
-
