@@ -1,5 +1,3 @@
-#넘파이 불러와서 모델
-
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -29,7 +27,6 @@ model.fit(x_train, y_train, epochs=50, validation_split=0.2)
 
 
 #4. 평가, 예측
-
 loss = model.evaluate(x_test, y_test)
 y_predict = model.predict(x_test)  
 
@@ -43,5 +40,3 @@ print('acc : ', acc)
 
 # loss :  3.35
 # acc :  0.521
-
-
