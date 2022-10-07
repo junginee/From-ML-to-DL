@@ -1,5 +1,3 @@
-
-
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 import warnings
@@ -39,8 +37,5 @@ print(data[0][0].shape) #(1027, 100, 100, 3)
 print(data[0][1].shape) #(1027,)
 
 
-
 np.save('d:/study_data/_save/_npy/keras47_2_x.npy', arr=data[0][0])
 np.save('d:/study_data/_save/_npy/keras47_2_y.npy', arr=data[0][1])
-
-
