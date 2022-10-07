@@ -1,11 +1,7 @@
-
-
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 
 #1. 데이터    
-
-
 # np.save('d:/study_data/_save/_npy/keras46_5_train_x.npy', arr=xy_train[0][0])
 # np.save('d:/study_data/_save/_npy/keras46_5_train_x.npy', arr=xy_train[0][1])
 # np.save('d:/study_data/_save/_npy/keras46_5_test_x.npy', arr=xy_test[0][0])
@@ -51,6 +47,3 @@ print('loss : ',loss[-1])
 print('val_loss :', val_loss[-1])
 print('accuracy : ',accuracy[-1])
 print('val_accuracy :',val_accuracy[-1])
-
-
-
