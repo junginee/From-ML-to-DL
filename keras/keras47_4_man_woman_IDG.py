@@ -17,4 +17,4 @@ xy = datagen.flow_from_directory(
 print(xy)
 
 np.save('D:\study_data\_save\_npy\keras47_04_x.npy', arr=xy[0][0])
-np.save('D:\study_data\_save\_npy\keras47_04_y.npy', arr=xy[0][1])
+np.save('D:\study_data\_save\_npy\keras47_04_y.npy', arr=xy[0][1])   
