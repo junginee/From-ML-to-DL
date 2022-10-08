@@ -1,5 +1,3 @@
-
-
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
 from sklearn.model_selection import train_test_split
@@ -55,6 +53,3 @@ print('acc : ', acc)
 
 # loss :  1.0994013547897339
 # acc :  0.0
-
-
-
