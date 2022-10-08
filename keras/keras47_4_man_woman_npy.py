@@ -45,7 +45,7 @@ print('acc : ', round(acc,2))
 
 
 # yys = ImageDataGenerator(
-#     rescale=1./255)
+#     rescale=1./255)  
 
 # yys = yys.flow_from_directory(
 #     'D:\study_data\_data\image\dddd', # 이 경로의 이미지파일을 불러 수치화
