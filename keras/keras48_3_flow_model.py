@@ -1,13 +1,9 @@
-### 모델구성 ###
-# 성능비교, 증폭 전 후 비교
-
 from tensorflow.keras.datasets import fashion_mnist
 from keras.preprocessing.image import ImageDataGenerator
 from tensorflow.python.keras.models import Sequential
 from tensorflow.python.keras.layers import  Conv2D, MaxPool2D, Flatten, Dense, Dropout
 import numpy as np
 import pandas as pd
-
 
 (x_train, y_train),(x_test, y_test) = fashion_mnist.load_data()
 
