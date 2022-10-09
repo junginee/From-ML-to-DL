@@ -76,4 +76,4 @@ for i in range(20):
     plt.axis('off')
     plt.imshow(x_train[i], cmap='winter_r')
   
-plt.show()
+plt.show()   
