@@ -8,7 +8,6 @@ import pandas as pd
 (x_train, y_train),(x_test, y_test) = fashion_mnist.load_data()
 
 
-
 #-----------------augument 데이터 만들기---------------------------------------------------
 
 augument_size = 40000
@@ -75,7 +74,6 @@ model.add(Dense(16))
 model.add(Dense(10, activation='softmax'))
 
 
-
 #3. 컴파일
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 from tensorflow.keras.callbacks import EarlyStopping
@@ -84,17 +82,9 @@ es = EarlyStopping(monitor='val_loss', patience=20, mode='min', restore_best_wei
 hist=model.fit_generator(xy_train, epochs=1)
 
 
-
-
 #4. 평가, 예측
 accuracy=hist.history['accuracy']
 loss = hist.hisory['loss']
 
 print('loss : ', loss[-1])
 print('accuracy : ', loss[-1])
-
-
-
-
-
-
