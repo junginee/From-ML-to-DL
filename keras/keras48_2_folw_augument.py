@@ -85,4 +85,4 @@ for i in range(100):
   plt.axis('off')
   plt.imshow(x_data[0][0][i], cmap='winter_r')     
 plt.show()  
-'''
+'''   
