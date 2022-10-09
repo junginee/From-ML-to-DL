@@ -50,7 +50,7 @@ print(x_data[0][1].shape) #(100,)             .next() 미사용 y 출력
 import matplotlib.pyplot as plt
 plt.figure(figsize=(10,10))
 for i in range(100):
-  plt.subplot(10,10,i+1)
+  plt.subplot(10,10,i+1)  
   plt.axis('off')
   plt.imshow(x_data[0][0][i], cmap='winter_r')     
 plt.show()  
