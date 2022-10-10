@@ -90,11 +90,8 @@ print(xy_train[0][0])
 print(xy_train[0][0].shape)
 
 
-
 print(xy_train[0][0].shape) #(100000, 28, 28, 1)
 print(xy_train[0][1].shape) #(100000,)
-
-
 
 
 np.save('d:/study_data/_save/_npy/keras49_4_train_x.npy', arr=xy_train[0][0])
