@@ -6,7 +6,6 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, Ro
 from keras.preprocessing.image import ImageDataGenerator
 
 
-
 (x_train, y_train), (x_test, y_test) = cifar10.load_data()
 
 print(x_train.shape, x_test.shape) # (50000, 32, 32, 3) (10000, 32, 32, 3)
