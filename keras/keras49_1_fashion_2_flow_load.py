@@ -8,7 +8,6 @@ from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
 
 #1. 데이터 로드
-
 x_train = np.load('d:/study_data/_save/_npy/keras49_1_train_x.npy')
 y_train = np.load('d:/study_data/_save/_npy/keras49_1_train_y.npy')
 x_test = np.load('d:/study_data/_save/_npy/keras49_1_test_x.npy')
@@ -85,6 +84,6 @@ plt.show()
 # val_loss : 0.7431361079216003
 # accuracy : 0.8171499967575073
 # val_accuracy : 0.7240999937057495
-# =====================================================================
+# ===============================================================================
 # 걸린시간 :  991.4976036548615
 #================================================================================#
