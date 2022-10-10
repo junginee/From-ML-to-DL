@@ -15,7 +15,6 @@ x_test = np.load('d:/study_data/_save/_npy/keras49_3_test_x.npy')
 y_test = np.load('d:/study_data/_save/_npy/keras49_3_test_y.npy')
 
 
-
 #2. 모델구성
 input1 = Input(shape=(32, 32, 3 ))
 dense1 = Conv2D(100,3, padding='same')(input1)
@@ -32,14 +31,12 @@ output1 = Dense(10,  activation='softmax')(dense8)
 model = Model(inputs=input1, outputs=output1)
 
 
-
 #3. 컴파일, 훈련
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 from tensorflow.python.keras.callbacks import EarlyStopping
 
 earlyStopping = EarlyStopping(monitor='val_loss', patience=50, mode='auto', verbose=1, 
                               restore_best_weights=True)        
-
 
 
 hist = model.fit(x_train, y_train, epochs=300, batch_size=32,
