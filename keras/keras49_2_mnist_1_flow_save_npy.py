@@ -5,7 +5,6 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
 from keras.preprocessing.image import ImageDataGenerator
 
-
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
 #---------------------------------------------------------------------------------------
@@ -58,5 +57,5 @@ xy_train = test_datagen.flow(x_train, y_train,
 
 np.save('d:/study_data/_save/_npy/keras49_2_train_x.npy', arr=xy_train[0][0])
 np.save('d:/study_data/_save/_npy/keras49_2_train_y.npy', arr=xy_train[0][1])
-np.save('d:/study_data/_save/_npy/keras49_2_test_x.npy', arr=x_test)
+np.save('d:/study_data/_save/_npy/keras49_2_test_x.npy', arr=x_test) 
 np.save('d:/study_data/_save/_npy/keras49_2_test_y.npy', arr=y_test)
