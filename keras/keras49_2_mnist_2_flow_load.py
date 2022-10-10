@@ -8,12 +8,10 @@ from sklearn.metrics import r2_score, accuracy_score
 from sklearn.preprocessing import MinMaxScaler, StandardScaler, MaxAbsScaler, RobustScaler
 from keras.preprocessing.image import ImageDataGenerator
 
-
 x_train = np.load('d:/study_data/_save/_npy/keras49_2_train_x.npy')
 y_train = np.load('d:/study_data/_save/_npy/keras49_2_train_y.npy')
 x_test = np.load('d:/study_data/_save/_npy/keras49_2_test_x.npy')
 y_test = np.load('d:/study_data/_save/_npy/keras49_2_test_y.npy')
-
 
 
 #2. 모델구성
@@ -32,14 +30,12 @@ output1 = Dense(10,  activation='softmax')(dense8)
 model = Model(inputs=input1, outputs=output1) 
 
 
-
 #3. 컴파일, 훈련
 model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 from tensorflow.python.keras.callbacks import EarlyStopping
 
 earlyStopping = EarlyStopping(monitor='val_loss', patience=50, mode='auto', verbose=1, 
                               restore_best_weights=True)        
-
 
 
 hist = model.fit(x_train, y_train, epochs=300, batch_size=32,
@@ -59,7 +55,6 @@ val_loss = hist.history['val_loss']
 
 print('loss : ', loss[-1])
 print('accuracy : ', acc[-1])
-
 
 
 #=============================== 이전 결과값 ====================================#
