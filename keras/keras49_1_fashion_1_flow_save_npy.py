@@ -8,9 +8,7 @@ from sklearn.metrics import r2_score, accuracy_score
 from sklearn.preprocessing import MinMaxScaler
 from keras.preprocessing.image import ImageDataGenerator
 
-
 (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
-
 
 #################################### 스케일링 ######################################
 x_train1 = x_train.reshape((x_train.shape[0]), (x_train.shape[1])*(x_train.shape[2]))
@@ -75,13 +73,8 @@ xy_train = test_datagen.flow(x_train, y_train,
 print(xy_train[0][0])
 print(xy_train[0][0].shape)
 
-
-
 print(xy_train[0][0].shape) #(100000, 28, 28, 1)
 print(xy_train[0][1].shape) #(100000,)
-
-
-
 
 np.save('d:/study_data/_save/_npy/keras49_1_train_x.npy', arr=xy_train[0][0])
 np.save('d:/study_data/_save/_npy/keras49_1_train_y.npy', arr=xy_train[0][1])
