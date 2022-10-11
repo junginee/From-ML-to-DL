@@ -28,7 +28,6 @@ model.add(Dense(1, activation='sigmoid'))
 #3. 컴파일, 훈련
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint
-
 earlyStopping = EarlyStopping(monitor='val_loss', patience=100, mode='auto', verbose=1, 
                               restore_best_weights=True)        
 
