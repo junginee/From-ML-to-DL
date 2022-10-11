@@ -27,7 +27,6 @@ y_test = np.load('d:/study_data/_save/_npy/keras49_4_test_y.npy')
 
 
 
-
 #2. 모델구성
 model = Sequential()
 input1 = Input(shape=(32,32,3))
