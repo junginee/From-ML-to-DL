@@ -1,4 +1,3 @@
-
 from warnings import filters
 from tensorflow.python.keras.models import Sequential, Model
 from tensorflow.python.keras.layers import Activation, Dense, Conv2D, Flatten, MaxPooling2D, Input, Dropout
@@ -22,10 +21,9 @@ print(a)
 print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))) #현재 파일이 위치한 경로
 print(a.split("\\")[-1]) #현재 파일 명
 current_name = a.split("\\")[-1]
-##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감###################
+##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감#################
 
 #1. 데이터
-
 x_train = np.load('d:/study_data/_save/_npy/keras49_7_train_x.npy')
 y_train = np.load('d:/study_data/_save/_npy/keras49_7_train_y.npy')
 x_test = np.load('d:/study_data/_save/_npy/keras49_7_test_x.npy')
@@ -84,7 +82,6 @@ print('loss : ', loss[-1])
 print('val_loss : ', val_loss[-1])
 print('accuracy : ', acc[-1])
 print('val_accuracy : ', val_accuracy[-1])
-
 
 # 4. 평가, 예측
 loss = model.evaluate(x_test,y_test)
