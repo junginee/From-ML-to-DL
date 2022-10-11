@@ -58,7 +58,6 @@ print(x_train.shape,x_test.shape) #(160, 150, 150, 1) (120, 150, 150, 1)
 print(y_train.shape,y_test.shape) #(160,) (120,)
 
 
-
 #################################### 스케일링 ######################################
 x_train1 = x_train.reshape((x_train.shape[0]), (x_train.shape[1])*(x_train.shape[2])*1)
 x_test1 = x_test.reshape((x_test.shape[0]), (x_test.shape[1])*(x_test.shape[2])*1)
