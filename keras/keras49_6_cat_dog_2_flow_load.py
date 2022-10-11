@@ -8,9 +8,7 @@ from keras.preprocessing.image import ImageDataGenerator
 import time
 start = time.time()
 
-
 #1. 데이터
-
 x_train = np.load('d:/study_data/_save/_npy/keras49_6_train_x.npy')
 y_train = np.load('d:/study_data/_save/_npy/keras49_6_train_y.npy')
 x_test = np.load('d:/study_data/_save/_npy/keras49_6_test_x.npy')
