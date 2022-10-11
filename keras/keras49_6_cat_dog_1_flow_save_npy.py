@@ -103,8 +103,6 @@ xy_train = test_datagen.flow(x_train, y_train,
 print(xy_train[0][0])
 print(xy_train[0][0].shape)
 
-
-
 print(xy_train[0][0].shape) #(200, 150, 150, 1)
 print(xy_train[0][1].shape) #(200,)
 
