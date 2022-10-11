@@ -20,9 +20,7 @@ print(a)
 print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))) #현재 파일이 위치한 경로
 print(a.split("\\")[-1]) #현재 파일 명
 current_name = a.split("\\")[-1]
-##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감###################
-
-
+########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감###################
 
 
 #1. 데이터
@@ -54,12 +52,8 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.7,
                                                     )
 
 
-
-
 print(x_train.shape,x_test.shape) #(8005, 100, 100, 3) (2023, 100, 100, 3)
 print(y_train.shape,y_test.shape) #(8005, 2) (2023, 2)
-
-
 
 #################################### 스케일링 ######################################
 x_train1 = x_train.reshape((x_train.shape[0]), (x_train.shape[1])*(x_train.shape[2])*3)
@@ -106,7 +100,6 @@ xy_train = test_datagen.flow(x_train, y_train,
 
 print(xy_train[0][0])
 print(xy_train[0][0].shape)
-
 
 
 print(xy_train[0][0].shape) #(200, 150, 150, 1)
