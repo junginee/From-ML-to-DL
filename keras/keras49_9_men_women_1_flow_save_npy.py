@@ -20,9 +20,7 @@ print(a)
 print(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))) #현재 파일이 위치한 경로
 print(a.split("\\")[-1]) #현재 파일 명
 current_name = a.split("\\")[-1]
-##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감###################
-
-
+#########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감##################
 
 
 #1. 데이터
@@ -123,14 +121,11 @@ x_train = np.concatenate((x_train, x_augumented))
 y_train = np.concatenate((y_train, y_augumented))
 
 
-
 xy_train = test_datagen.flow(x_train, y_train,
                                   batch_size=100000,
                                   shuffle=False)
-
 print(xy_train[0][0])
 print(xy_train[0][0].shape)
-
 
 
 print(xy_train[0][0].shape) #(200, 150, 150, 1)
