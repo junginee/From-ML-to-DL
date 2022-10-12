@@ -85,7 +85,7 @@ print('val_loss : ', val_loss[-1])
 print('accuracy : ', acc[-1])
 print('val_accuracy : ', val_accuracy[-1])
 
-
+             
 # 4. 평가, 예측
 loss = model.evaluate(x_test,y_test)
 y_predict = model.predict(x_test)
