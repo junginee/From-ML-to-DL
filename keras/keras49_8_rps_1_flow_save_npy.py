@@ -23,8 +23,6 @@ current_name = a.split("\\")[-1]
 ##########################밑에 filepath경로에 추가로  + current_name + '/' 삽입해야 돌아감###################
 
 
-
-
 #1. 데이터
 train_datagen = ImageDataGenerator(
     horizontal_flip=True,
@@ -59,7 +57,6 @@ print(x.shape,y.shape) #(2520, 100, 100, 3) (2520, 3)
 x_train, x_test, y_train, y_test = train_test_split(x,y, train_size=0.7,
                                                     shuffle=True
                                                     )
-
 
 
 
@@ -113,7 +110,6 @@ xy_train = test_datagen.flow(x_train, y_train,
 
 print(xy_train[0][0])
 print(xy_train[0][0].shape)
-
 
 
 print(xy_train[0][0].shape) #(200, 150, 150, 1)
