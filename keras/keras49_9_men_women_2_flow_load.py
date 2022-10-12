@@ -25,7 +25,6 @@ current_name = a.split("\\")[-1]
 
 
 #1. 데이터
-
 x_train = np.load('d:/study_data/_save/_npy/keras49_9_train_x.npy')
 y_train = np.load('d:/study_data/_save/_npy/keras49_9_train_y.npy')
 x_test = np.load('d:/study_data/_save/_npy/keras49_9_test_x.npy')
@@ -80,8 +79,6 @@ accuracy = hist.history['accuracy']
 val_accuracy = hist.history['val_accuracy']
 loss = hist.history['loss']
 val_loss = hist.history['val_loss']
-
-
 
 
 # 4. 평가, 예측
