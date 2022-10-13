@@ -13,7 +13,6 @@ docs = ['너무 재밌어요', '참 최고에요', '참 잘 만든 영화예요'
 #긍정1, 부정0
 labels = np.array([1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1])
 
-
 token = Tokenizer() #토큰화 함수 지정
 token.fit_on_texts(docs) #토큰화 함수에 문장적용
 print(token.word_index) #각 단어에 매겨진 인덱스 값 출력
@@ -75,7 +74,6 @@ print(token.word_index)
 #  '지루해요': 21, '연기가': 22, '어색해요': 23, '재미없어요': 24, '재밋네요': 25, 
 #  '민수가': 26, '못': 27, '생기긴': 28, '했어요': 29, '안결': 30, 
 #  '혼해요': 31, '나는': 32, '형권이가': 33}
-
 
 x_predict = token.texts_to_sequences(x_predict)
 x_predict = pad_sequences(x_predict, padding='pre', maxlen=5, truncating='pre' )
