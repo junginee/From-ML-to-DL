@@ -9,7 +9,6 @@ token.fit_on_texts([text1, text2]) #fit을 통해 수치화 작업 및 index 처
 
 print(token.word_index) 
 
-
 x = token.texts_to_sequences([text1,text2])
 print(x) #>> 이 데이터는 수치화 작업이 되어있으나 연속성을 가진 데이터이므로 원핫인코딩 작업
 
