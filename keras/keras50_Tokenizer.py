@@ -18,4 +18,4 @@ print(x)
 print(x.shape) #(1, 11, 9) #각각의 어절이 총 11개의 열로 이루어짐
 
 # ohe = OneHotEncoder()
-# x = ohe.fit_transform(x.reshape)
+# x = ohe.fit_transform(x.reshape)              
