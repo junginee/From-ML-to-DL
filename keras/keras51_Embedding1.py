@@ -1,4 +1,3 @@
-
 from keras.preprocessing.text import Tokenizer
 import numpy as np
 
@@ -13,7 +12,6 @@ docs = ['너무 재밌어요', '참 최고에요', '참 잘 만든 영화예요'
 
 #긍정1, 부정0
 labels = np.array([1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1])
-
 
 token = Tokenizer()
 token.fit_on_texts(docs) 
@@ -67,7 +65,6 @@ model.summary()
 #3.컴파일, 훈련
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
 model.fit(pad_x, labels, epochs=15, batch_size=16)
-
 
 #4.평가, 예측
 acc = model.evaluate(pad_x, labels)[1]
