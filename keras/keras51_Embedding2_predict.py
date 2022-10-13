@@ -56,11 +56,9 @@ model.summary()
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc'])
 model.fit(pad_x, labels, epochs=100, batch_size=5)
 
-
 #4.평가, 예측
 acc = model.evaluate(pad_x, labels)[1]
 print('acc :', round(acc,3))
-
 
 #긍정1, 부정0
 #########[실습]##########
