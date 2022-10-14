@@ -3,11 +3,9 @@ import numpy as np
 import pandas as np
 import pandas as pd
 
-
 (x_train, y_train),(x_test, y_test) = reuters.load_data(
     num_words=10000, test_split=0.2
 )
-
 
 print(x_train.shape, x_test.shape) #(8982,) (2246,)
 print(len(np.unique(y_train))) #46
@@ -63,7 +61,6 @@ model.fit(x_train, y_train, epochs=50, batch_size=32)
 
 
 #4.평가, 예측
-
 loss = model.evaluate(x_test, y_test)
 print('loss : ' ,round(loss[0],4))
 print('accuracy : ', round(loss[1],4)) 
