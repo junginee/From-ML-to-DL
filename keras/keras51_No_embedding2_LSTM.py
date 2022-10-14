@@ -86,6 +86,6 @@ result = model.predict(x_predict)
 print(result)
 
 if result >= 0.5 :
-    print("긍정")
+    print("긍정") 
 else :
     print("부정")
