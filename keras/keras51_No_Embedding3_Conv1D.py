@@ -91,4 +91,4 @@ if result >= 0.5 :
 else :
     print("부정")
     
-    
+            
