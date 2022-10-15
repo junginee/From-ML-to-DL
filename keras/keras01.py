@@ -11,7 +11,7 @@ from tensorflow.keras.layers import Dense
 model = Sequential()                                      
 model.add(Dense(4, input_dim=1))   
 model.add(Dense(5))
-model.add(Dense(3)) 
+model.add(Dense(3))                   
 model.add(Dense(3))                                             
 model.add(Dense(1)) 
             
