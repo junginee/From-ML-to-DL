@@ -1,4 +1,4 @@
-import numpy as np
+import numpy as np        
 from keras.datasets import mnist         
                                                                     
 (x_train, _), (x_test, _) = mnist.load_data()   
