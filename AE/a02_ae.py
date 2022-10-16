@@ -3,7 +3,7 @@ from keras.datasets import mnist
                                                                     
 (x_train, _), (x_test, _) = mnist.load_data()   
 
-x_train = x_train.reshape(60000, 784).astype('float32')/255. 
+x_train = x_train.reshape(60000, 784).astype('float32')/255.             
 x_test = x_test.reshape(10000, 784).astype('float32')/255.
 
 from keras.models import Sequential, Model
