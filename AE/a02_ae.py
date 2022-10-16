@@ -8,7 +8,7 @@ x_test = x_test.reshape(10000, 784).astype('float32')/255.
 
 from keras.models import Sequential, Model
 from keras.layers import Dense, Input
-
+         
 def autoencoder(hidden_layer_size):
         model = Sequential()
         model.add(Dense(units=hidden_layer_size, input_shape=(784, ),
