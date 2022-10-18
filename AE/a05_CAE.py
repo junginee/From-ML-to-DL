@@ -4,7 +4,7 @@ from keras.datasets import mnist
 from tensorflow.python.keras import activations
 
 def autoencoder(hidden_layer_size):
-    model = Sequential()
+    model = Sequential()                   
     model.add(Conv2D(hidden_layer_size,kernel_size=(2,2),padding='same',activation='relu'))
     model.add(MaxPooling2D())
     model.add(Conv2D(hidden_layer_size*2,(2,2),padding='same',activation='relu'))
