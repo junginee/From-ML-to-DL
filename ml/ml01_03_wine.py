@@ -9,7 +9,7 @@ from sklearn.svm import LinearSVC
 datasets = load_wine()
 x = datasets.data
 y= datasets.target
-
+    
 print(x.shape, y.shape) #(178, 13) #(178,)
 print(np.unique(y, return_counts = True)) #[0 1 2]
 
