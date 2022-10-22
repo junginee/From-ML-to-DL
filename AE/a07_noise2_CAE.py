@@ -12,7 +12,7 @@ def autoencoder(hidden_layer_size):
     model.add(Conv2D(hidden_layer_size*4,(2,2),padding='same',activation='relu'))
     model.add(UpSampling2D())
     model.add(Conv2D(hidden_layer_size*2,(2,2),padding='same',activation='relu'))
-    model.add(UpSampling2D())
+    model.add(UpSampling2D())             
     model.add(Conv2D(hidden_layer_size,(2,2),padding='same',activation='relu'))
     model.add(Conv2D(1,(2,2),padding='same',activation='sigmoid'))
     return model
