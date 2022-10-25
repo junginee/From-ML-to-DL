@@ -6,7 +6,7 @@ from keras.datasets import mnist
 x_train = x_train.reshape(60000, 784).astype('float32')/255.               
 x_test = x_test.reshape(10000, 784).astype('float32')/255.
 
-from keras.models import Sequential, Model                   
+from keras.models import Sequential, Model                            
 from keras.layers import Dense, Input                   
 
 input_img = Input(shape=(784,))
