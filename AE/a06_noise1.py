@@ -12,7 +12,7 @@ x_test_noised = x_test + np.random.normal(0, 0.1, size=x_test.shape)
 x_train_noised = np.clip(x_train_noised, a_min=0, a_max=1)
 x_test_noised = np.clip(x_test_noised, a_min=0, a_max=1)
                                              
-from keras.models import Sequential, Model
+from keras.models import Sequential, Model                
 from keras.layers import Dense, Input
 
 def autoencoder(hidden_layer_size):
