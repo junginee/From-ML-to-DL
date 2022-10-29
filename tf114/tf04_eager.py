@@ -7,7 +7,7 @@ import tensorflow as tf
 print(tf.__version__)
 print(tf.executing_eagerly()) #True 현재 스레드가 열망 실행을 활성화 한 경우 true
 print(tf.executing_eagerly())
-
+      
 hello = tf.constant("Hello world")
 
 sess = tf.compat.v1.Session()
