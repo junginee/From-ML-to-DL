@@ -10,7 +10,7 @@ from keras.models import Sequential, Model
 from keras.layers import Dense, Input
 
 def autoencoder(hidden1, hidden2, hidden3, hidden4):
-        model = Sequential()
+        model = Sequential()               
         model.add(Dense(units=hidden1, input_shape=(784, ),
                                       activation='relu'))
         model.add(Dense(units=hidden2, activation='relu'))
