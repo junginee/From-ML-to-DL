@@ -7,7 +7,7 @@ from sklearn.svm import LinearSVC
 
 #1. 데이터
 datasets = load_wine()
-x = datasets.data
+x = datasets.data          
 y= datasets.target
     
 print(x.shape, y.shape) #(178, 13) #(178,)
