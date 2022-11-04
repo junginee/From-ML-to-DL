@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.svm import LinearSVC
 
 #1. 데이터
-datasets = fetch_covtype()
+datasets = fetch_covtype()                           
 x = datasets.data
 y= datasets.target
 
