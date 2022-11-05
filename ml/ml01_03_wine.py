@@ -3,7 +3,7 @@ from sklearn.datasets import load_wine
 from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split 
 from sklearn.metrics import accuracy_score 
-from sklearn.svm import LinearSVC
+from sklearn.svm import LinearSVC       
 
 #1. 데이터
 datasets = load_wine()
