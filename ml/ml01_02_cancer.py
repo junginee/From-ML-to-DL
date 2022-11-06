@@ -11,7 +11,7 @@ datasets = load_breast_cancer()
 
 x = datasets.data   
 y = datasets.target
-print(x.shape, y.shape) 
+print(x.shape, y.shape)                    
 
 
 x_train, x_test, y_train, y_test = train_test_split(x,y,
