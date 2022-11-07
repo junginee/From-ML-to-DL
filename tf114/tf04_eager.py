@@ -11,4 +11,4 @@ print(tf.executing_eagerly())
 hello = tf.constant("Hello world")
 
 sess = tf.compat.v1.Session()
-print(sess.run(hello)) #b'Hello world'  
+print(sess.run(hello)) #b'Hello world'          
