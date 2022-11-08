@@ -6,7 +6,7 @@ tf.set_random_seed(123)
 #1. 데이터
 x = [1,2,3]
 y = [1,2,3]
-
+                           
 w = tf.Variable(11, dtype=tf.float32)
 b = tf.Variable(10, dtype=tf.float32)
 
