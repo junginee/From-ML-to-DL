@@ -11,7 +11,7 @@ y = np.array([11,12,13,14,15,16,17,18,19,20])
 print(x.shape)  #(3,10)
 print(y.shape)  #(10,)
 
-x = x.transpose()
+x = x.transpose()           
 print(x) #(10,3)
 print(x.shape)
 
