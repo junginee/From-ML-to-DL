@@ -5,7 +5,7 @@ import tensorflow as tf
 
 sess = tf.compat.v1.Session()
 # print(sess.run(node3))
-
+               
 a = tf.compat.v1.placeholder(tf.float32)
 b = tf.compat.v1.placeholder(tf.float32)
 
