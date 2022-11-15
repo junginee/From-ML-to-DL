@@ -3,7 +3,7 @@ print(ak.__version__)       #1.0.20
 import tensorflow as tf 
 import keras
 import time 
-
+          
 # 1.데이터
 (x_train,y_train), (x_test, y_test) = \
     keras.datasets.mnist.load_data()
