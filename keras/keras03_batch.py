@@ -7,7 +7,7 @@ y = np.array([1,2,3,4,5])
 from tensorflow.keras.models import Sequential 
 from tensorflow.keras.layers import Dense
 
-model = Sequential()
+model = Sequential()    
 model.add(Dense(4, input_dim=1)) 
 model.add(Dense(10))
 model.add(Dense(1)) 
