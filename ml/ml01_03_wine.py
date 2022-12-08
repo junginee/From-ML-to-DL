@@ -14,7 +14,7 @@ print(x.shape, y.shape) #(178, 13) #(178,)
 print(np.unique(y, return_counts = True)) #[0 1 2]
 
 import tensorflow as tf
-tf.random.set_seed(66)
+tf.random.set_seed(66)      
 
 x_train, x_test, y_train, y_test = train_test_split( x, y, train_size = 0.8, shuffle=True, random_state=68 )
 
