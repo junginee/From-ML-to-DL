@@ -4,7 +4,7 @@ import tensorflow as tf
 # print(tf.executing_eagerly()) #True 
 
 sess = tf.compat.v1.Session()
-# print(sess.run(node3))
+# print(sess.run(node3))     
                
 a = tf.compat.v1.placeholder(tf.float32)
 b = tf.compat.v1.placeholder(tf.float32)
