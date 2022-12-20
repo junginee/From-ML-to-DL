@@ -10,7 +10,7 @@ datasets = load_digits()
 x = datasets.data
 y= datasets.target
 
-print(x.shape, y.shape)
+print(x.shape, y.shape)      
 print(np.unique(y)) 
 
 import tensorflow as tf
